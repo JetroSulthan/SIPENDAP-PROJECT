@@ -10,9 +10,8 @@
 
     @include('navbar.nav')
 
-<div class="container mt-4">
-    @yield('container')
-</div>
+  @yield('container')
+
 
     
   </body>

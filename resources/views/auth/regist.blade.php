@@ -1,49 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Registration</title>
-</head>
-<body>
-    
+
     @extends('layout.main')
 
+@section('container')
+<div class="bg-[#72B944] flex justify-center h-screen">
     <div class="flex flex-col relative mx-auto mt-20 bg-white w-[1200px] h-[600px] rounded-[30px] justify-center">
-        <div>
-            <h1 class="text-center">Lengkapi Data Diri</h1>
-            <p></p>
+        <div class="-mt-24 flex flex-row items-center justify-center">
+            
+            <div class="flex flex-row gap-1 items-center">
+                <p class="rounded-full bg-[#72B944] w-6 h-6 text-center">1</p>
+                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
+                    <div class="bg-[#72B944] h-3 rounded-full" style="width: 50%"></div>
+                  </div>
+                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">2</p>
+                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
+                    <div class=" h-3 rounded-full " style="width: 50%"></div>
+                  </div>
+                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">3</p>
+                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
+                    <div class=" h-3 rounded-full " style="width: 50%"></div>
+                  </div>
+                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">4</p>
+            </div>
+            <div class="ml-52 -mr-72">
+                <a href="/register2">
+                    <button type="submit" class=" text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-sm w-full sm:w-auto px-5 py-1.5 text-center">Selanjutnya</button>
+                </a>
+            </div>
         </div>
-        <form class="relative bg-[FFFFFF] block mt-10 w-auto space-y-7">
+        
+        <div class="mt-10">
+            <h1 class="text-center font-bold text-2xl">Lengkapi Data Diri</h1>
+            <p class="text-center">Isi Keterangan Lahanmu dibawah Ini dengan Sesuai!</p>
+        </div>
+
+        <form class="relative bg-[FFFFFF] block px-48 mt-4 w-auto justify-center space-y-7">
         <div class="relative z-0 w-full group">
-            <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK " required />
+            <input type="email" name="nik" id="floating_email" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK " required />
         </div>
         <div class="relative z-0 w-full mt-2 group">
-            <input type="password" name="floating_password" id="floating_password" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nama" required />
+            <input type="password" name="nama" id="floating_password" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nama" required />
         </div>
-        <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="inline-flex content-between md:gap-6">
           <div class="relative z-0 w-full mb-5 group">
-              <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Alamat Rumah" required />
+              <input type="text" name="alamat" id="floating_first_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Alamat Rumah" required />
           </div>
           <div class="relative z-0 w-full mb-5 group">
-              <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-              <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
-          </div>
-        </div>
-        <div class="grid md:grid-cols-2 md:gap-6">
-          <div class="relative z-0 w-full mb-5 group">
-              <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-              <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (123-456-7890)</label>
-          </div>
-          <div class="relative z-0 w-full mb-5 group">
-              <input type="text" name="floating_company" id="floating_company" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-              <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company (Ex. Google)</label>
+              <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[380px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tempat " required />
           </div>
         </div>
-        <button type="submit" class="absolute text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-sm w-full sm:w-auto px-5 py-1.5 text-center ">Selanjutnya</button>
+        <div class="inline-flex content-between md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-5 group">
+              <input type="text" name="jenis" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Jenis Kelamin " required /> 
+          </div>
+          <div class="relative z-0 w-full mb-5 group">
+              <input type="text" name="telepon" id="floating_company" class="block py-2.5 px-4 text-sm text-[#72B944] w-[380px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="No. Telp" required />
+          </div>
+        </div>
+        
         </form>  
     </div>
-</body>
-</html>
+</div>
+@endsection

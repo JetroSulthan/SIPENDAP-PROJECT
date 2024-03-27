@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout.main')
 
+@section('container')
     <aside id="default-sidebar" class="mt-10 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-lime-300 dark:bg-gray-800">
            <ul class="space-y-2 font-medium">
@@ -76,10 +68,10 @@
            </ul>
         </div>
      </aside>
-
-     @extends('layout.main')
-     
-</body>
-</html>
-@extends('layout.main')
+     @foreach ($users as $user)     
+     <p>{{ $user->id_user }}</p>
+     <p>{{ $user->username }}</p>
+     <p>{{ $user->password }}</p>
+     @endforeach
+@endsection
 
