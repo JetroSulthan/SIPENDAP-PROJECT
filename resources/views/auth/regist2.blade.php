@@ -6,7 +6,7 @@
     <div class="flex flex-col relative mx-auto mt-20 bg-white w-[1200px] h-[600px] rounded-[30px] justify-center">
         <div class="-mt-24 flex flex-row items-center justify-center">
             <div class="-ml-72 mr-52">
-                <a href="/register1">
+                <a href="/register">
                     <button type="submit" class=" text-[#72B944] hover:text-white border-2 border-[#72B944] bg-[#FFFFFF] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-sm w-full sm:w-auto px-5 py-1.5 text-center">Sebelumnya</button>
                 </a>
             </div>
