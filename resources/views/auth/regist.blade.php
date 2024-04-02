@@ -35,10 +35,10 @@
 
         <form class="relative bg-[FFFFFF] block px-48 mt-4 w-auto justify-center space-y-7">
         <div class="relative z-0 w-full group">
-            <input type="email" name="nik" id="floating_email" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK " required />
+            <input type="text" name="nik" id="floating_email" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK " required />
         </div>
         <div class="relative z-0 w-full mt-2 group">
-            <input type="password" name="nama" id="floating_password" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nama" required />
+            <input type="text" name="nama" id="floating_password" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nama" required />
         </div>
         <div class="inline-flex content-between md:gap-6">
           <div class="relative z-0 w-full mb-5 group">

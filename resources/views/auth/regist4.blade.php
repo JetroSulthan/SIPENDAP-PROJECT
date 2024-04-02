@@ -22,9 +22,9 @@
                   </div>
                 <p class="rounded-full bg-[#72B944] w-6 h-6 text-center">3</p>
                 <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
-                    <div class="bg-[#72B944] h-3 rounded-full " style="width: 50%"></div>
+                    <div class="bg-[#72B944] h-3 rounded-full " style="width: 100%"></div>
                   </div>
-                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">4</p>
+                <p class="rounded-full bg-[#72B944] w-6 h-6 text-center">4</p>
             </div>
 
             
