@@ -17,7 +17,6 @@ class JenisKelamin extends Model
     ];
 
     protected $fillable =[
-        'id_jenis_kelamin',
         'nama'
     ];
 }

@@ -14,13 +14,16 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public $timestamps = false;
-    public $incrementing = false;
+    // public $incrementing = true;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-   
+    protected $guarded =[
+        'id_user'
+    ];
+    
     protected $fillable =[
         'username',
         'password'
