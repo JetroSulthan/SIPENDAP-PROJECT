@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class KategoriPetani extends Model
 {
     use HasFactory;
 
@@ -13,12 +13,10 @@ class Role extends Model
     public $timestamps = false;
 
     protected $guarded = [
-        'id_role',
+        'id_kategori_petani',
     ];
 
     protected $fillable =[
-        'nama_role'
+        'kategori_petani'
     ];
 }
-
-
