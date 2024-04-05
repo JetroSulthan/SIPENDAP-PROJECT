@@ -49,15 +49,6 @@
         <div class="inline-flex content-between md:gap-6">
           <div class="relative z-0 w-full group">
               <input id="incre" type="number" name="volume" id="floating_first_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Volume Komoditas" value="Volume Komoditas (Kg)" required />
-              {{-- <div class="increment absolute bottom-3 right-6 text-white font-extrabold">
-                  <button id="button1" class="bg-slate-300 w-6 rounded-lg">+</button>
-                  <button id="button2" class="bg-slate-300 w-6 rounded-lg">-</button>
-                  <script>
-                    let now= 0
-                    document.getElementById('button1').onclick = () => {document.getElementById('incre').value = `${now+=1} Kg`};
-                    document.getElementById('button2').onclick = () => {document.getElementById('incre').value =  `${now-=1} Kg`};  
-                  </script>
-              </div> --}}
           </div>
           <div class="relative z-0 w-full group">
               <input type="text" name="Luas" id="floating_last_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[380px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Luas Total" required />

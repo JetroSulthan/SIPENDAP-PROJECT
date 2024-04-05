@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Komoditas extends Model
 {
     use HasFactory;
 
@@ -13,17 +13,11 @@ class Role extends Model
     public $timestamps = false;
 
     protected $guarded = [
-        'id',
+        'id_komoditas',
     ];
 
     protected $fillable =[
-        'nama_role'
+        'jenis_komoditas_id',
+        'nama_komoditas'
     ];
-
-    public function User()
-    {
-        return $this->hasMany(User::class);
-    }
 }
-
-
