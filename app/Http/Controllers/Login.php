@@ -25,10 +25,10 @@ class Login extends Controller
             $request->session()->regenerate();
             $user = User::find(auth()->user()->id);
             
-            if ($user->roles_id === 1) {
+            if ($user->roles_id === 2) {
                 return redirect('/dashboard');
             } 
-            else if($user->roles_id === 2 && $user->status === "enable") {
+            else if($user->roles_id === 3 && $user->status === "enable") {
                 return redirect('/home');
             } 
                  

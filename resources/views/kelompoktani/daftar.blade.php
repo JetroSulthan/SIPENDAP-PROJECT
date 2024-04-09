@@ -2,8 +2,8 @@
     @extends('layout.main')
 
 @section('container')
-<div class="bg-[#72B944] flex justify-center h-[120vh]">
-    <div class="flex flex-col relative mx-auto mt-20 bg-white w-[1200px] h-screen rounded-[30px]">
+<div class="bg-[#72B944] flex justify-center h-[140vh]">
+    <div class="flex flex-col justify-center items-center relative mx-auto mt-20 mb-8 bg-white w-[1000px]  rounded-[30px]">
         {{-- <div class="mt-7 flex flex-row items-center justify-center">
             
             <div class="flex flex-row gap-1 items-center">
@@ -42,7 +42,7 @@
           </div>
           <div class="relative flex z-0 w-full mb-1 group">
               <input type="text" name="floating_last_name" id="tempat" class="block py-2.5 px-4 text-sm text-[#72B944] w-[110px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tempat " required />
-              <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="block ml-[20px] py-2.5 px-4 text-sm text-[#72B944] w-[250px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tanggal Lahir" required />
+              <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="block ml-[10px] py-2.5 px-4 text-sm text-[#72B944] w-[245px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tanggal Lahir" required />
           </div>
         </div>
         <div class="inline-flex content-between grid-cols-2 gap-6">
@@ -50,7 +50,7 @@
               <input type="text" name="jenis" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Jenis Kelamin " required /> 
           </div>
           <div class="relative z-0 w-full mb-1 group">
-              <input type="text" name="telepon" id="floating_company" class="block py-2.5 px-4 text-sm text-[#72B944] w-[380px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="No. Telp" required />
+              <input type="text" name="telepon" id="floating_company" class="block py-2.5 px-4 text-sm text-[#72B944] w-[365px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="No. Telp" required />
           </div>
         </div>
         <div class="relative z-0 w-full group">
@@ -64,38 +64,29 @@
               <input id="incre" type="number" name="volume" id="floating_first_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Volume Komoditas" value="Volume Komoditas (Kg)" required />
           </div>
           <div class="relative z-0 w-full group">
-              <input type="text" name="Luas" id="floating_last_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[380px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Luas Total" required />
+              <input type="text" name="Luas" id="floating_last_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[365px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Luas Total" required />
           </div>
         </div>
         <div class="relative z-0 w-full -mt-20 group">
             <input type="text" name="jenis" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Jenis Kelamin " required /> 
         </div>
-        <div class="ml-52 -mr-72">
+        <div class="relative z-0 w-full group">
+            <label for="ktp">KTP</label>
+            <input type="File" name="ktp" id="ktp" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="Klik Untuk Mengunggah " required />
+        </div>
+        <div class="relative z-0 w-full mt-1 group">
+            <label for="KK">Kartu Keluarga</label>
+            <input type="file" name="koordinat" id="KK" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah" required />
+        </div>
+        <div class="relative z-0 w-full -mt-10 group">
+            <label for="foto lahan">Foto Lahan (Sertakan Timestamp)</label>
+            <input type="file" name="jenis" id="foto lahan" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah " required /> 
+        </div>
+        <div class=" px-80">
             <a href="/register2">
-                <button type="submit" class=" text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-sm w-full sm:w-auto px-5 py-1.5 text-center">Selanjutnya</button>
+                <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Kirim</button>
             </a>
         </div>
-        
-        <label for="dropdown">Select or Enter Option:</label>
-    <select id="dropdown" onchange="handleChange(this)">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-        <option value="custom">Custom</option>
-    </select>
-    <input type="text" id="customInput" style="display: none;" placeholder="Enter custom value">
-    
-    <script>
-        function handleChange(select) {
-            var customInput = document.getElementById("customInput");
-            if (select.value === "custom") {
-                customInput.style.display = "inline-block";
-            } else {
-                customInput.style.display = "none";
-            }
-        }
-    </script>
-
         </form>  
 
         <script>

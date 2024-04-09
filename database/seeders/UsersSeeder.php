@@ -16,7 +16,18 @@ class UsersSeeder extends Seeder
     {
         User::create([
             'username' => 'mhmdbambang',
-            'password' => 'b4mb4ng00'
+            'password' => 'b4mb4ng00',
+            'roles_id' => 2
+        ]);
+        User::create([
+            'username' => 'adminSIPPENDAP',
+            'password' => 'admin123',
+            'roles_id' => 1
+        ]);
+        User::create([
+            'username' => 'saifulkuncoro',
+            'password' => 'kuncoro0823',
+            'roles_id' => 3
         ]);
     }
 }

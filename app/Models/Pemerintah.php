@@ -17,9 +17,19 @@ class Pemerintah extends Model
     ];
 
     protected $fillable =[
-        'id_pemerintah',
-        'nama_lengkap',
+        'users_id',
         'nip',
+        'nama_lengkap',
         'nomor_sk'  
     ];
+
+    public function Petani()
+    {
+        return $this->hasMany(Petani::class);
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

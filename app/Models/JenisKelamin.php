@@ -19,4 +19,15 @@ class JenisKelamin extends Model
     protected $fillable =[
         'nama'
     ];
+
+    public function Petani()
+    {
+        return $this->hasMany(Petani::class);
+    }
+
+    public function KelompokTani()
+    {
+        return $this->hasMany(KelompokTani::class);
+    }
+
 }

@@ -19,4 +19,9 @@ class Persetujuan extends Model
     protected $fillable =[
         'opsi'
     ];
+    
+    public function Petani()
+    {
+        return $this->hasMany(Petani::class);
+    }
 }

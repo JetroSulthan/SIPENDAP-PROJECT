@@ -19,4 +19,9 @@ class JenisKomoditas extends Model
     protected $fillable =[
         'nama_komoditas'
     ];
+
+    public function Komodtias()
+    {
+        return $this->hasMany(Komodtias::class);
+    }
 }

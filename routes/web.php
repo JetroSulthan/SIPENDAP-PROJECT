@@ -18,18 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return view('landing');});
 
-Route::get('/home', function () {
-    return view('homepage');
-});
 
-Route::get('/pemerintah', function () {
-    return view('pemerintah', [
-        'users' => User::all()
-    ]);
-});
 
+// Kelompok Tani
+Route::get('/register', function () {return view('kelompoktani.daftar');});
+Route::get('/home', function () { return view('kelompoktani.dashboard');});
+
+
+// Pemerintah
+Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
+
+// Auth
 Route::get('/login', function () {return view('auth/login');});
-Route::get('/register', function () {return view('auth/regist');});
-Route::get('/register2', function () {return view('auth/regist2');});
-Route::get('/register3', function () {return view('auth/regist3');});
-Route::get('/register4', function () {return view('auth/regist4');});

@@ -20,4 +20,14 @@ class Komoditas extends Model
         'jenis_komoditas_id',
         'nama_komoditas'
     ];
+
+    public function Petani()
+    {
+        return $this->hasMany(Petani::class);
+    }
+
+    public function JenisKomoditas()
+    {
+        return $this->belongsTo(JenisKomoditas::class);
+    }
 }

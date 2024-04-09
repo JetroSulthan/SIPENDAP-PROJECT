@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Petani', function (Blueprint $table) {
+        Schema::create('petanis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
             $table->string('nik');
             $table->foreignId('jenis_kelamins_id');
             $table->string('tempat_lahir');
-            $table->string('alamat_lahan');
+            $table->date('tanggal_lahir');
+            $table->string('jalan');
+            $table->string('kecamatan');
+            $table->string('kota');
             $table->foreignId('komoditas_id');
             $table->string('vol_komoditas');
             $table->string('luas_lahan');
@@ -27,6 +30,10 @@ return new class extends Migration
             $table->string('scan_kk');
             $table->string('scan_ktp');
             $table->string('foto_lahan');
+            $table->foreignId('persetujuans_id');
+            $table->string('komentar');
+            $table->foreignId('pemerintah_id');
+            $table->foreignId('kelompok_tani_id');
         });
     }
 

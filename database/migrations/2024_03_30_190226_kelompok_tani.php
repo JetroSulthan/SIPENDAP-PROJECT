@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kelompok_tani', function (Blueprint $table) {
+        Schema::create('kelompok_tanis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lengkap');
+            $table->foreignId('users_id');
+            $table->string('nama_kelompok');
             $table->string('nik');
+            $table->string('nama_lengkap');
+            $table->foreignId('jenis_kelamins_id');
             $table->string('tempat_lahir');
-            $table->string('alamat');
-            // $table->string('id_user'); foreign
-            // $table->string('jenis_kelamin'); foreign
+            $table->string('tanggal_lahir');
+            $table->string('jalan');
+            $table->string('kecamatan');
+            $table->string('kota');
         });
     }
 

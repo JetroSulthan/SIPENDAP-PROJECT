@@ -19,4 +19,9 @@ class KategoriPetani extends Model
     protected $fillable =[
         'kategori_petani'
     ];
+
+    public function Petani()
+    {
+        return $this->hasMany(Petani::class);
+    }
 }

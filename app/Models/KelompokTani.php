@@ -17,10 +17,30 @@ class KelompokTani extends Model
     ];
 
     protected $fillable =[
-        'id_kelompok_tani',
-        'nama_lengkap',
+        'users_id',
+        'nama_kelompok',
         'nik',
+        'nama_lengkap',
+        'jenis_kelamins_id',
         'tempat_lahir',
-        'alamat'
+        'tanggal_lahir',
+        'jalan',
+        'kecamatan',
+        'kota'
     ];
+
+    public function Petani()
+    {
+        return $this->hasMany(Petani::class);
+    }
+
+    public function JenisKelamin()
+    {
+        return $this->belongsTo(JenisKelamin::class);
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
