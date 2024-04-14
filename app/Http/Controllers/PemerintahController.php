@@ -6,7 +6,7 @@ use App\Models\Petani;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class Pemerintah extends Controller
+class PemerintahController extends Controller
 {
     public function index()
     {

@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\User;
+use App\Http\Controllers\Login_C;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,9 @@ Route::get('/home', function () { return view('kelompoktani.dashboard');});
 
 
 // Pemerintah
+// Route::get('/dashboard',[PemerintahController::class,'index']);
 Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
 
 // Auth
-Route::get('/login', function () {return view('auth/login');});
+Route::get('/login',[LoginController::class,'user']);
+Route::post('/login',[LoginController::class,'loginUser']);
