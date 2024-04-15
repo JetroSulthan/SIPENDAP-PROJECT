@@ -12,10 +12,6 @@ class Komoditas extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $guarded = [
-        'id_komoditas',
-    ];
-
     protected $fillable =[
         'jenis_komoditas_id',
         'nama_komoditas'

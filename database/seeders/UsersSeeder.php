@@ -26,7 +26,7 @@ class UsersSeeder extends Seeder
         ]);
         User::create([
             'username' => 'saifulkuncoro',
-            'password' => 'kuncoro0823',
+            'password' => bcrypt ('kuncoro0823'),
             'roles_id' => 3
         ]);
     }

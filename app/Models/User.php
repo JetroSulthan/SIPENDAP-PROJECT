@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded =[
-        'id_user'
+        'id'
     ];
     
     protected $fillable =[
@@ -32,6 +32,8 @@ class User extends Authenticatable
         'password',
         'roles_id'
     ];
+
+    protected $casts = ['password' => 'hashed'];
 
     public function Role()
     {

@@ -75,7 +75,7 @@
       </div>
       <div>
          <div>
-            <a href="">
+            <a href="/daftar">
                <button class="flex flex-col ml-[-200px] space-between items-center justify-center mb-14 -mt-[550px] bg-white border-2 border-[#72B944] rounded-3xl h-[450px] w-[300px]">
                   <img src="img/petanireg.png" alt="" class="w-[250px] pb-20">
                   <p class=" font-bold text-2xl w-60">Masukkan Data Petani</p>

@@ -30,10 +30,10 @@ return new class extends Migration
             $table->string('scan_kk');
             $table->string('scan_ktp');
             $table->string('foto_lahan');
-            $table->foreignId('persetujuans_id');
-            $table->string('komentar');
-            $table->foreignId('pemerintah_id');
-            $table->foreignId('kelompok_tani_id');
+            $table->foreignId('persetujuans_id')->nullable();
+            $table->string('komentar')->nullable();
+            $table->foreignId('pemerintah_id')->nullable();
+            $table->foreignId('kelompok_tani_id')->nullable();
         });
     }
 

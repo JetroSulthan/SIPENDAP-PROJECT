@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'username' => 'mhmdbambang',
-            'password' => 'b4mb4ng00',
+            'password' => bcrypt ('b4mb4ng00'),
             'roles_id' => 2
         ]);
         User::create([
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'username' => 'zainularifin',
-            'password' => 'zaimul300',
+            'password' => bcrypt ('zainul300'),
             'roles_id' => 3
         ]);
 

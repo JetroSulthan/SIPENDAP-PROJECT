@@ -12,10 +12,6 @@ class JenisKelamin extends Model
     public $timestamps = false;
     public $incrementing = false;
 
-    protected $guarded = [
-        'id_jenis_kelamin',
-    ];
-
     protected $fillable =[
         'nama'
     ];

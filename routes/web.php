@@ -4,6 +4,8 @@ use App\Models\User;
 use App\Http\Controllers\Login_C;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PemerintahController;
+use App\Http\Controllers\RegisterPetaniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,9 @@ Route::get('/', function () {return view('landing');});
 
 
 // Kelompok Tani
-Route::get('/register', function () {return view('kelompoktani.daftar');});
+Route::get('/daftar',[RegisterPetaniController::class,'petani']);
+Route::post('/daftar', [RegisterPetaniController::class,"regisPetani"]);
+// Route::get('/register', function () {return view('kelompoktani.daftar');});
 Route::get('/home', function () { return view('kelompoktani.dashboard');});
 
 
@@ -33,4 +37,4 @@ Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
 
 // Auth
 Route::get('/login',[LoginController::class,'user']);
-Route::post('/login',[LoginController::class,'loginUser']);
+Route::post('/login',[LoginController::class,'authenticate']);

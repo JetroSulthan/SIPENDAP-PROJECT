@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Komoditas;
+use App\Models\Persetujuan;
+use App\Models\JenisKelamin;
+use App\Models\KelompokTani;
+use App\Models\KategoriPetani;
 use App\Http\Controllers\Pemerintah;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Petani extends Model
 {
@@ -22,6 +27,7 @@ class Petani extends Model
         'nik',
         'jenis_kelamins_id',
         'tempat_lahir',
+        'tanggal_lahir',
         'jalan',
         'kecamatan',
         'kota',
