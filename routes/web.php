@@ -34,6 +34,8 @@ Route::get('/home', function () { return view('kelompoktani.dashboard');});
 // Pemerintah
 // Route::get('/dashboard',[PemerintahController::class,'index']);
 Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
+Route::get('/verif',[PemerintahController::class,'edit']);
+// Route::get('/verif',[PemerintahController::class,'regisPetani']);
 
 // Auth
 Route::get('/login',[LoginController::class,'user']);

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Berkas;
+use App\Models\DataLahan;
 use App\Models\Komoditas;
 use App\Models\Persetujuan;
 use App\Models\JenisKelamin;
@@ -40,6 +42,8 @@ class Petani extends Model
         'scan_ktp',
         'scan_kk',
         'foto_lahan',
+        'data_lahans_id',
+        'berkas_id',
         'persetejuans_id',
         'komentar',
         'pemerintah_id',
@@ -74,6 +78,16 @@ class Petani extends Model
     public function KategoriPetani()
     {
         return $this->belongsTo(KategoriPetani::class);
+    }
+
+    public function Berkas()
+    {
+        return $this->belongsTo(Berkas::class);
+    }
+
+    public function DataLahan()
+    {
+        return $this->belongsTo(DataLahan::class);
     }
 }
 

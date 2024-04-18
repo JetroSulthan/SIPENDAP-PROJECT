@@ -79,6 +79,6 @@ class RegisterPetaniController extends Controller
 
         // var_dump($request->all());
         $request->session()->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
-        return redirect('/login');
+        return redirect('/home');
     }
 }

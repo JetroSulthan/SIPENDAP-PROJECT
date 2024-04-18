@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Berkas;
 use App\Models\Petani;
+use App\Models\DataLahan;
 use App\Models\Komoditas;
 use App\Models\Pemerintah;
 use App\Models\Persetujuan;
@@ -195,6 +197,22 @@ class DatabaseSeeder extends Seeder
             'komentar' => 'akan menerima bantuan',
             'pemerintah_id' => 1,
             'kelompok_tani_id' => 1
+        ]);
+
+        Berkas::create([
+            'status' => 'sesuai'
+        ]);
+        
+        Berkas::create([
+            'status' => 'tidak sesuai'
+        ]);
+
+        DataLahan::create([
+            'status' => 'sesuai'
+        ]);
+        
+        DataLahan::create([
+            'status' => 'tidak sesuai'
         ]);
     }
 }

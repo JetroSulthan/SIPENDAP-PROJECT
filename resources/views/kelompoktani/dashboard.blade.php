@@ -82,7 +82,7 @@
                </button>
             </a>
 
-            <a href="">
+            <a href="/verif">
                <button class="flex flex-col ml-[350px] space-between items-center justify-center mb-28 -mt-[500px] bg-white border-2 border-[#72B944] rounded-3xl h-[450px] w-[300px]">
                   <img src="img/verifpetani.png" alt="" class="w-[250px] pb-20">
                   <p class=" font-bold text-2xl w-60">Verifikasi Petani</p>
