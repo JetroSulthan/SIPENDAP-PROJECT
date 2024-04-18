@@ -27,6 +27,7 @@ Route::get('/', function () {return view('landing');});
 // Kelompok Tani
 Route::get('/daftar',[RegisterPetaniController::class,'petani']);
 Route::post('/daftar', [RegisterPetaniController::class,"regisPetani"]);
+Route::get('/datapetani', [RegisterPetaniController::class,"edit"]);
 // Route::get('/register', function () {return view('kelompoktani.daftar');});
 Route::get('/home', function () { return view('kelompoktani.dashboard');});
 
@@ -35,6 +36,7 @@ Route::get('/home', function () { return view('kelompoktani.dashboard');});
 // Route::get('/dashboard',[PemerintahController::class,'index']);
 Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
 Route::get('/verif',[PemerintahController::class,'edit']);
+Route::put('/verif',[PemerintahController::class,'edit']);
 // Route::get('/verif',[PemerintahController::class,'regisPetani']);
 
 // Auth

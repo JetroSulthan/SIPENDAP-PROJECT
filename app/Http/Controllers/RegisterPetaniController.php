@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Petani;
+use App\Models\DataLahan;
 use App\Models\Komoditas;
 use App\Models\JenisKelamin;
 use Illuminate\Http\Request;
 use App\Models\KategoriPetani;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterPetaniController extends Controller
@@ -23,6 +25,27 @@ class RegisterPetaniController extends Controller
 
         ]);
 
+    }
+
+    public function edit()
+    {   
+        $data = Petani::all();
+        $petani = Petani::find($data);
+        $profil = Petani::where('id', $petani)->first();
+        $kelamin = JenisKelamin::all();
+        $komoditas = Komoditas::all();
+        $kategori = KategoriPetani::all();
+        $kategoriId = $data->pluck('kategori_petanis_id')->toArray();
+        $komoditasId = $data->pluck('komoditas_id')->toArray();
+        $kelaminId = $data->pluck('jenis_kelamins_id')->toArray();
+        // dd($berkasId);
+        $kategoriuser = KategoriPetani::whereIn('id', $kategoriId)->first();
+        $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+        $komoditasuser = Komoditas::whereIn('id', $komoditasId)->first();
+
+        // $lahan_user = DataLahan::whereIn('id', $dataId)->first();
+
+        return view('kelompoktani.data', compact('kelamin', 'kategori', 'kategoriId', 'komoditas', 'komoditasId', 'kategoriuser', 'komoditasuser', 'kelamin','kelaminId','kelaminuser', 'data', 'profil'));
     }
 
     public function regisPetani(Request $request)
@@ -52,30 +75,7 @@ class RegisterPetaniController extends Controller
         $regist['kategori_petanis_id']= $request ->input('kategori_petanis');
         
 
-        Petani::create(
-        // 'nama_lengkap' => $regist['nama_lengkap'],
-        // 'nik' => $regist['nik'],
-        // 'jenis_kelamins_id' => $regist['jenis_kelamin'],
-        // 'tempat_lahir' => $regist['tempat_lahir'],
-        // 'tanggal_lahir' => $regist['tanggal_lahir'],
-        // 'jalan' => $regist['jalan'],
-        // 'kecamatan' => $regist['kecamatan'],
-        // 'kota' => $regist['kota'],
-        // 'komoditas_id' => $regist['komoditas'],
-        // 'vol_komoditas' => $regist['vol_komoditas'],
-        // 'luas_lahan' => $regist['luas_lahan'],
-        // 'titik_koor_lahan' => $regist['titik_koor_lahan'],
-        // 'no_telp' => $regist['no_telp'],
-        // 'kategori_petanis_id' => $regist['kategori_petanis'],
-        // 'scan_ktp' => $regist['scan_ktp'],
-        // 'scan_kk' => $regist['scan_kk'],
-        // 'foto_lahan' => $regist['foto_lahan'],
-        // // Tambahkan nilai default untuk kolom-kolom yang tidak Anda isi pada saat pembuatan record baru
-        // 'persetejuans_id' => null, // Misalnya, nilai default untuk persetujuan
-        // 'komentar' => null, // Misalnya, nilai default untuk komentar
-        // 'pemerintah_id' => null, // Misalnya, nilai default untuk ID pemerintah
-        // 'kelompok_tani_id' => null // Misalnya, nilai default untuk ID kelompok tani
-        $regist);
+        Petani::create($regist);
 
         // var_dump($request->all());
         $request->session()->flash('success', 'Berhasil menambahkan akun, Silakan Login!');

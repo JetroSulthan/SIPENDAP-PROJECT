@@ -115,7 +115,7 @@
                         <div class="px-2 py-1">{{ $loop->iteration }}</div>
                     </td>
                     <td class="">
-                       <a href="/daftar">
+                       <a href="/datapetani">
                           <div class="px-3">{{ $dp->nama_lengkap }}</div>
                        </a>
                     </td>

@@ -33,7 +33,7 @@
             </div>
             <div class="flex flex-col">
                 <button type="submit" class="mb-3 text-black bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-lg w-full sm:w-auto px-5 py-1.5 text-center">Login</button>
-                <a class="relative text-black bg-clear underline focus:bg-sky-600" href="/register">Don't have an account?</a>
+                {{-- <a class="relative text-black bg-clear underline focus:bg-sky-600" href="/register">Don't have an account?</a> --}}
             </div>
         </form>
 </div>
