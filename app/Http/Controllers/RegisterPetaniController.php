@@ -27,17 +27,21 @@ class RegisterPetaniController extends Controller
 
     }
 
-    public function edit()
+    public function edit($id)
     {   
-        $data = Petani::all();
-        $petani = Petani::find($data);
-        $profil = Petani::where('id', $petani)->first();
+        // $data = Petani::all();
+        // $petani = Petani::find($data);
+        // $profil = Petani::where('id', $data)->first();
+        $profil = Petani::find($id);
         $kelamin = JenisKelamin::all();
         $komoditas = Komoditas::all();
         $kategori = KategoriPetani::all();
-        $kategoriId = $data->pluck('kategori_petanis_id')->toArray();
-        $komoditasId = $data->pluck('komoditas_id')->toArray();
-        $kelaminId = $data->pluck('jenis_kelamins_id')->toArray();
+        // $kategoriId = $data->pluck('kategori_petanis_id')->toArray();
+        // $komoditasId = $data->pluck('komoditas_id')->toArray();
+        // $kelaminId = $data->pluck('jenis_kelamins_id')->toArray();
+        $kategoriId = $profil->pluck('kategori_petanis_id')->toArray();
+        $komoditasId = $profil->pluck('komoditas_id')->toArray();
+        $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
         // dd($berkasId);
         $kategoriuser = KategoriPetani::whereIn('id', $kategoriId)->first();
         $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
@@ -45,7 +49,7 @@ class RegisterPetaniController extends Controller
 
         // $lahan_user = DataLahan::whereIn('id', $dataId)->first();
 
-        return view('kelompoktani.data', compact('kelamin', 'kategori', 'kategoriId', 'komoditas', 'komoditasId', 'kategoriuser', 'komoditasuser', 'kelamin','kelaminId','kelaminuser', 'data', 'profil'));
+        return view('kelompoktani.data', compact('kelamin', 'kategori', 'kategoriId', 'komoditas', 'komoditasId', 'kategoriuser', 'komoditasuser', 'kelamin','kelaminId','kelaminuser', 'profil'));
     }
 
     public function regisPetani(Request $request)

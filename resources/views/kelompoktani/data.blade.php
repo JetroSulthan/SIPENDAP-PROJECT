@@ -19,32 +19,9 @@
     @endif
 
     <div class="flex flex-col justify-center items-center relative mx-auto mt-20 mb-8 bg-white w-[1000px]  rounded-[30px]">
-        {{-- <div class="mt-7 flex flex-row items-center justify-center">
-            
-            <div class="flex flex-row gap-1 items-center">
-                <p class="rounded-full bg-[#72B944] w-6 h-6 text-center">1</p>
-                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
-                    <div class="bg-[#72B944] h-3 rounded-full" style="width: 50%"></div>
-                  </div>
-                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">2</p>
-                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
-                    <div class=" h-3 rounded-full " style="width: 50%"></div>
-                  </div>
-                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">3</p>
-                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
-                    <div class=" h-3 rounded-full " style="width: 50%"></div>
-                  </div>
-                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">4</p>
-            </div>
-            
-        </div> --}}
         
-        {{-- <div class="mt-6">
-            <h1 class="text-center font-bold text-2xl">Lengkapi Data Diri</h1>
-            <p class="text-center">Isi Keterangan Lahanmu dibawah Ini dengan Sesuai!</p>
-        </div> --}}
-
         <form class="relative bg-[FFFFFF] px-48 mt-4 w-auto flex flex-col space-y-3" enctype="multipart/form-data">
+            {{-- @foreach ($profil as $profil) --}}
             <div class="relative z-0 w-full group">
                 <input type="text" name="nik" id="nik" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="{{ $profil->nik }}"/>
             </div>
@@ -99,7 +76,7 @@
             <div class="relative z-0 w-full -mt-20 group">
                 <select class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" name="kategori_petanis" id="kelurahan">
                     <option value="" disabled selected>Kategori Petani</option>
-                    @foreach ($kategoris as $item)
+                    @foreach ($kategori as $item)
                       <option value="{{ $item->id }}" {{ $kategoriuser->id == $item->id ? 'selected':'' }} >{{ $item->kategori_petani }}</option>
                     @endforeach
                   </select>
@@ -119,10 +96,37 @@
             </div>
             <div class=" px-80">
                 <a href="/verif">
-                    <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Kirim</button>
+                    <button type="button" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Kembali</button>
                 </a>
             </div>
+            {{-- @endforeach --}}
         </form>  
+        {{-- <div class="mt-7 flex flex-row items-center justify-center">
+            
+            <div class="flex flex-row gap-1 items-center">
+                <p class="rounded-full bg-[#72B944] w-6 h-6 text-center">1</p>
+                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
+                    <div class="bg-[#72B944] h-3 rounded-full" style="width: 50%"></div>
+                  </div>
+                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">2</p>
+                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
+                    <div class=" h-3 rounded-full " style="width: 50%"></div>
+                  </div>
+                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">3</p>
+                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
+                    <div class=" h-3 rounded-full " style="width: 50%"></div>
+                  </div>
+                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">4</p>
+            </div>
+            
+        </div> --}}
+        
+        {{-- <div class="mt-6">
+            <h1 class="text-center font-bold text-2xl">Lengkapi Data Diri</h1>
+            <p class="text-center">Isi Keterangan Lahanmu dibawah Ini dengan Sesuai!</p>
+        </div> --}}
+
+        
     </div>
 </div>
 @endsection

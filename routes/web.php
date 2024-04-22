@@ -27,7 +27,7 @@ Route::get('/', function () {return view('landing');});
 // Kelompok Tani
 Route::get('/daftar',[RegisterPetaniController::class,'petani']);
 Route::post('/daftar', [RegisterPetaniController::class,"regisPetani"]);
-Route::get('/datapetani', [RegisterPetaniController::class,"edit"]);
+Route::get('/datapetani/{id}', [RegisterPetaniController::class,"edit"]);
 // Route::get('/register', function () {return view('kelompoktani.daftar');});
 Route::get('/home', function () { return view('kelompoktani.dashboard');});
 
