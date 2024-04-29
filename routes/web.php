@@ -27,17 +27,27 @@ Route::get('/', function () {return view('landing');});
 // Kelompok Tani
 Route::get('/daftar',[RegisterPetaniController::class,'petani']);
 Route::post('/daftar', [RegisterPetaniController::class,"regisPetani"]);
-Route::get('/datapetani/{id}', [RegisterPetaniController::class,"edit"]);
+Route::get('/datapetani/{id}', [RegisterPetaniController::class,"lihat"]);
+Route::get('/verifikasi', [RegisterPetaniController::class, "verif"]);
 // Route::get('/register', function () {return view('kelompoktani.daftar');});
 Route::get('/home', function () { return view('kelompoktani.dashboard');});
 
 
 // Pemerintah
+
 // Route::get('/dashboard',[PemerintahController::class,'index']);
 Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
-Route::get('/verif',[PemerintahController::class,'edit']);
+Route::get('/verif',[PemerintahController::class,'lihat']);
 Route::put('/verif',[PemerintahController::class,'edit']);
+Route::get('/keltani',[PemerintahController::class,'kelompok']);
+Route::get('/keltani/{id}',[PemerintahController::class,'detailkelompok']);
 // Route::get('/verif',[PemerintahController::class,'regisPetani']);
+
+
+// Admin
+Route::get('/admin', function () {return view('admin.dashboard');});
+
+
 
 // Auth
 Route::get('/login',[LoginController::class,'user']);

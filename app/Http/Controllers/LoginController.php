@@ -38,6 +38,9 @@ class LoginController extends Controller
             else if($user->roles_id == 3) {
                 return redirect('/home');
             } 
+            else if($user->roles_id == 1) {
+                return redirect('/admin');
+            } 
                  
             }  
 

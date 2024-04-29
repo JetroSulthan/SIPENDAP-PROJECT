@@ -1,9 +1,8 @@
 @extends('layout.main')
 
 @section('container')
-</div class=" relative inline-flex items-center justify-center">
     <aside id="default-sidebar" class=" mt-[55px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-white">
+        <div class="h-full px-3 py-4  bg-white">
            <ul class="space-y-2 font-medium">
               <li>
                  <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -69,38 +68,36 @@
         </div>
      </aside>
 
-   <div class="ml-[650px] mt-[-650px] space-y-[600px]">
-      <div class=" -mb-[100px]">
-         <h1 class=" text-5xl font-bold">Halo, <span class=" text-white">Kelompok Tani</span> !</h1>
-      </div>
-      <div>
-         <div>
-            <a href="/daftar">
-               <button class="flex flex-col ml-[-200px] space-between items-center justify-center mb-14 -mt-[550px] bg-white border-2 border-[#72B944] rounded-3xl h-[450px] w-[300px]">
-                  <img src="img/petanireg.png" alt="" class="w-[250px] pb-20">
-                  <p class=" font-bold text-2xl w-60">Masukkan Data Petani</p>
-               </button>
-            </a>
-
-            <a href="/verifikasi">
-               <button class="flex flex-col ml-[350px] space-between items-center justify-center mb-28 -mt-[500px] bg-white border-2 border-[#72B944] rounded-3xl h-[450px] w-[300px]">
-                  <img src="img/verifpetani.png" alt="" class="w-[250px] pb-20">
-                  <p class=" font-bold text-2xl w-60">Verifikasi Petani</p>
-               </button>
-            </a>
-
-
-         </div>
-      </div>
-   </div>
-
-
+    <div class="flex flex-col mx-96 absolute top-36 bg-white w-[65vw] h-[40vw] rounded-[30px]">
+        <div class="flex flex-col items-center justify-center">
+            <p class="text-3xl font-bold mt-5 mb-10">Daftar Akun Kelompok Tani</p>
+            <table class=" cursor-pointer text-left rounded-xl w-[60vw] text-sm">
+                <thead class="rounded-xl">
+                    <tr class="text-gray-700 rounded-2xl bg-gray-200">
+                        <th class="px-2 py-2 font-xl">
+                            Nama Lengkap
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($keltani as $item)
+                    <tr>
+                            <td class="px-4 py-4 border-b-2">
+                                <a href="/keltani/{{ $item->id }}">
+                                    <div>{{ $item->nama_lengkap }}</div>
+                                </a>
+                            </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 <style>
-   body{
-      background-image:linear-gradient( #72B944, #FFFFFF);
-   }
+    body{
+    background: #72B944;
+    }
 </style>
 @endsection
-

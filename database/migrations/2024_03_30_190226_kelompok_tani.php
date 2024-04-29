@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('users_id');
             $table->string('nama_kelompok');
-            $table->string('nik');
+            $table->bigInteger('nik');
             $table->string('nama_lengkap');
             $table->foreignId('jenis_kelamins_id');
             $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
+            $table->date('tanggal_lahir');
             $table->string('jalan');
             $table->string('kecamatan');
             $table->string('kota');

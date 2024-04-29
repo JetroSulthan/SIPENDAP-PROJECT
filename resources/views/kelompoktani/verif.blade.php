@@ -1,7 +1,17 @@
 @extends('layout.main')
 
 @section('container')
-</div class=" relative inline-flex items-center justify-center">
+{{-- @dd($datapetani->datalahan->status) --}}
+{{-- @php
+   $berkas = Berkas::all();
+   $datapetani = Petani::all();
+   $idBerkasPetani = $datapetani->pluck('berkas_id')->toArray();
+   $berkasTerpilih = $berkas->whereIn('id', $idBerkasPetani);
+
+   dd($berkasTerpilih);
+@endphp --}}
+{{-- @dd($lahan_user) --}}
+<div class=" relative inline-flex items-center justify-center">
     <aside id="default-sidebar" class=" mt-[55px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white">
            <ul class="space-y-2 font-medium">
@@ -15,7 +25,7 @@
                  </a>
               </li>
               <li>
-                 <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <a href="/verif" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
                     </svg>
@@ -68,38 +78,140 @@
            </ul>
         </div>
      </aside>
-
-   <div class="ml-[650px] mt-[-650px] space-y-[600px]">
-      <div class=" -mb-[100px]">
-         <h1 class=" text-5xl font-bold">Halo, <span class=" text-white">Kelompok Tani</span> !</h1>
-      </div>
-      <div>
-         <div>
-            <a href="/daftar">
-               <button class="flex flex-col ml-[-200px] space-between items-center justify-center mb-14 -mt-[550px] bg-white border-2 border-[#72B944] rounded-3xl h-[450px] w-[300px]">
-                  <img src="img/petanireg.png" alt="" class="w-[250px] pb-20">
-                  <p class=" font-bold text-2xl w-60">Masukkan Data Petani</p>
-               </button>
-            </a>
-
-            <a href="/verifikasi">
-               <button class="flex flex-col ml-[350px] space-between items-center justify-center mb-28 -mt-[500px] bg-white border-2 border-[#72B944] rounded-3xl h-[450px] w-[300px]">
-                  <img src="img/verifpetani.png" alt="" class="w-[250px] pb-20">
-                  <p class=" font-bold text-2xl w-60">Verifikasi Petani</p>
-               </button>
-            </a>
-
-
-         </div>
-      </div>
    </div>
 
+     <div class="flex absolute top-20 px-96 rounded-xl ">
+      <table class="rounded-xl w-full table-auto">
+          <thead class="bg-white rounded-xl">
+              <tr class="rounded-xl">
+                  <th 
+                      class="px-3 py-2 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                      No</th>
+                  <th 
+                      class=" px-20 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                      Data Diri</th>
+                  <th
+                      class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                      Data Lahan</th>
+                  <th
+                      class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                      Pembaruan Terakhir</th>
+                  <th
+                      class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                      Berkas</th>
+                  <th 
+                      class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                      Komentar</th>
+                  <th 
+                      class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                      Status</th>
+              </tr>
+          </thead>
+<div>
+         <form action="">
+            @csrf
+            <tbody class="bg-white  ">
+                @foreach ($datapetani as $dp)
+                <tr class="border-b">
+                    <td class="">
+                        <div class="px-2 py-1">{{ $loop->iteration }}</div>
+                    </td>
+                    <td class="">
+                       <a href="/datapetani/{{ $dp->id }}">
+                          <div class="px-3">{{ $dp->nama_lengkap }}</div>
+                       </a>
+                    </td>
+                    <td class="flex content-center items-center justify-center">
+                        
+                     @if ($dp->datalahan)
+                      <!-- Check if there is a related DataLahan -->
+                     <div class="relative z-0 group">
+                        <p>{{ $dp->datalahan->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                     </div>
+                     
+                     @endif
+                    </td>
+                    <td class="">
+                       <div class="px-3">{{ $tgl }}</div>
+                    </td>
+                    <td class=" flex justify-center">
+                     @if ($dp->berkas) <!-- Check if there is a related DataLahan -->
+                     <div class="relative z-0 group">
+                        <p>{{ $dp->berkas->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                     </div>
+                     @endif
+                    </td>
+                    <td class="">
+                        <div class=" px-2 py-1 fs-6 lh-sm">
+                           <p>{{ $dp->komentar }}</p>
+                          {{-- <input type="text"> --}}
+                        </div>
+                    </td>
+                    <td class="relative flex justify-center">
+                     @if ($dp->Persetujuan) <!-- Check if there is a related DataLahan -->
+                     <div class=" z-0 group">
+                        <p>{{ $dp->Persetujuan->opsi }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                     </div>
+                     @endif
+                   </td>
+                   
+                    
+                    
+                    
+                </tr>
+                @endforeach
+            </tbody>
+         </form>
+
+          <script>
+            document.getElementById('tambah').onclick = function(event) {
+               event.stopPropagation(); // Menghentikan event bubbling untuk mencegah penutupan tooltip saat ikon diklik
+               document.getElementById('tooltip').classList.toggle('invisible');
+            };
+
+            const tdElements = document.querySelectorAll('td.relative');
+
+    // Loop melalui setiap elemen td
+            tdElements.forEach(td => {
+               // Tambahkan event listener untuk event click
+               td.addEventListener('click', function() {
+                     // Ketika td diklik, toggle kelas 'invisible' pada elemen dengan id "tooltip" di dalamnya
+                     const tooltip = this.querySelector('#tooltip');
+                     tooltip.classList.toggle('invisible');
+               });
+            });
+
+            
+
+// // Menambahkan event listener untuk tombol-tombol submit
+//             document.querySelectorAll('.submit-btn').forEach(function(btn) {
+//                btn.addEventListener('click', function(event) {
+//                event.preventDefault(); // Mencegah perilaku bawaan submit tombol
+//         // Lakukan pengiriman data melalui Ajax ke server di sini
+//         // Anda bisa menggunakan fetch atau library Ajax seperti axios
+//     });
+// });
+
+            // document.getElementById('tambah').addEventListener('click', function() {
+            //    var tooltip = document.getElementById('tooltip');
+            //    tooltip.classList.toggle('invisible');
+            // });
+
+//             document.querySelectorAll('.submit-btn').forEach(function(btn) {
+//     btn.addEventListener('click', function(event) {
+//         event.preventDefault();
+//         var value = btn.value;
+//         document.getElementById('gambar').src = "/img/" + value + ".png"; // Ganti sumber gambar sesuai dengan nilai tombol yang diklik
+//     });
+// });
 
 
+
+        </script> 
 
 <style>
    body{
-      background-image:linear-gradient( #72B944, #FFFFFF);
+      background:#72B944;
    }
 </style>
 @endsection

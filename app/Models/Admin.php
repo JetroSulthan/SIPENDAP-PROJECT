@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Petani;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Persetujuan extends Model
+class Admin extends Model
 {
     use HasFactory;
 
@@ -14,15 +14,16 @@ class Persetujuan extends Model
     public $timestamps = false;
 
     protected $guarded = [
-        'id_persetujuan',
+        'id_admin',
     ];
 
     protected $fillable =[
-        'opsi'
+        'nama'  
     ];
-    
-    public function Petani()
+
+    public function User()
     {
-        return $this->hasMany(Petani::class);
+        return $this->belongsTo(User::class);
     }
 }
+

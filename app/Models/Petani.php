@@ -9,7 +9,7 @@ use App\Models\Persetujuan;
 use App\Models\JenisKelamin;
 use App\Models\KelompokTani;
 use App\Models\KategoriPetani;
-use App\Http\Controllers\Pemerintah;
+use App\Models\Pemerintah;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -70,7 +70,7 @@ class Petani extends Model
         return $this->belongsTo(JenisKelamin::class);
     }
 
-    public function Persetujuan()
+    public function persetujuan()
     {
         return $this->belongsTo(Persetujuan::class);
     }
@@ -80,12 +80,12 @@ class Petani extends Model
         return $this->belongsTo(KategoriPetani::class);
     }
 
-    public function Berkas()
+    public function berkas()
     {
         return $this->belongsTo(Berkas::class);
     }
 
-    public function DataLahan()
+    public function dataLahan()
     {
         return $this->belongsTo(DataLahan::class);
     }

@@ -10,7 +10,7 @@
    dd($berkasTerpilih);
 @endphp --}}
 {{-- @dd($lahan_user) --}}
-</div class=" relative inline-flex items-center justify-center">
+<div class=" relative inline-flex items-center justify-center">
     <aside id="default-sidebar" class=" mt-[55px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white">
            <ul class="space-y-2 font-medium">
@@ -77,11 +77,12 @@
            </ul>
         </div>
      </aside>
+   </div>
 
-     <div class=" -space-y-[650px]  px-[400px] flex flex-col rounded-3xl ">
-      <table class="rounded-xl w-full">
-          <thead class="bg-white">
-              <tr>
+     <div class="flex absolute top-32 px-[340px] rounded-xl ">
+      <table class="rounded-xl w-full table-auto">
+          <thead class="bg-white rounded-xl">
+              <tr class="rounded-xl">
                   <th 
                       class="px-3 py-2 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
                       No</th>
@@ -103,6 +104,9 @@
                   <th 
                       class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                       Status</th>
+                  <th 
+                      class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
+                     </th>
               </tr>
           </thead>
 <div>
@@ -119,57 +123,40 @@
                           <div class="px-3">{{ $dp->nama_lengkap }}</div>
                        </a>
                     </td>
-                    <td class="items-center justify-center content-center">
-                     {{-- @dd($lahan_user) --}}
-                       <div class="relative z-0 group">
-                          <select class=" ml-4 block py-1.5 px-2 text-sm h-8 text-[#72B944] w-[100px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" name="data_lahan" id="kelurahan">
-                              <option value="" disabled selected>Pilih</option>
-                              @foreach ($data_lahan as $item)
-                                <option value="{{ $item->id }}" {{  $lahan_user['id'] == $item->id ? 'selected' : ''}}>{{ $item->status }}</option>
-                              @endforeach
-                            </select>
-                          {{-- <input type="text" name="kategori_petani" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Kategori Petani " required />  --}}
-                      </div>
+                    <td class="flex content-center items-center justify-center">
+                     @if ($petani->DataLahan) <!-- Check if there is a related DataLahan -->
+                     <div class="relative z-0 group">
+                        <p>{{ $petani->DataLahan->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                     </div>
+                     @endif
                     </td>
                     <td class="">
                        <div class="px-3">{{ $tgl }}</div>
                     </td>
-                    <td class="">
-                     {{-- @dd($berkasuser) --}}
-                       <div class="absolute z-0 group">
-                          <select class=" ml-4 block py-1.5 px-2 text-sm -mt-[16px] h-8 text-[#72B944] w-[100px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" name="berkas" id="kelurahan">
-                           <option value="" disabled selected>Pilih</option>
-                              @foreach ($berkas as $item)
-                                <option value="{{ $item->id }}" {{  $berkasuser == $item->id ? 'selected' : ''}}>{{ $item->status }}</option>
-                              @endforeach
-                            </select>
-                          {{-- <input type="text" name="kategori_petani" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Kategori Petani " required />  --}}
-                      </div>
+                    <td class=" flex justify-center">
+                     @if ($petani->Berkas) <!-- Check if there is a related DataLahan -->
+                     <div class="relative z-0 group">
+                        <p>{{ $petani->Berkas->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                     </div>
+                     @endif
                     </td>
                     <td class="">
-                        <div class=" px-2 py-1 fs-6 lh-sm">
-                          <input type="text">
+                        <div class=" px-2 py-1">
+                           <p>{{ $dp->komentar }}</p>
+                          {{-- <input type="text"> --}}
                         </div>
                     </td>
-                    <td class="relative">
-                     {{-- @dd($pers_user) --}}
-                        @foreach ($persetujuan as $item)
-                        @if ($pers_user->id == $item->id)
-                          <div>{{ $item->opsi }}</div>
-                        @else
-                        <div id="tambah" class="absolute inset-0 flex items-center justify-center cursor-pointer">
-                           <img class="w-8" src="/img/tambah.png" alt=""/>
-                       </div>
-                        @endif
-                        @endforeach
-
-
-                        <div id="tooltip" class="tooltip invisible absolute ml-24 -mt-12 w-28 p-2 bg-white rounded-xl shadow-md">
-                           <form action="/verif" method="POST" class="flex flex-col">
-                               <button type="submit" class="text-base font-semibold text-green-700 hover:text-green-400">Disetujui</button>
-                               <button type="submit" class="text-base font-semibold text-red-700 hover:text-red-400">Tidak Disetujui</button>
-                           </form> 
-                       </div>
+                    <td class="relative flex justify-center">
+                     @if ($petani->Persetujuan) <!-- Check if there is a related DataLahan -->
+                     <div class=" z-0 group">
+                        <p>{{ $petani->Persetujuan->opsi }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                     </div>
+                     @endif
+                   </td>
+                   <td class="px-4 py-4">
+                     <a href="">
+                        <img src="/img/edit.png" alt="" class="h-7 w-7">
+                     </a>
                    </td>
                    
                     

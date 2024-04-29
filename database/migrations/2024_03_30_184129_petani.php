@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('petanis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
-            $table->string('nik');
+            $table->bigInteger('nik');
             $table->foreignId('jenis_kelamins_id');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('vol_komoditas');
             $table->string('luas_lahan');
             $table->string('titik_koor_lahan');
-            $table->string('no_telp');
+            $table->bigInteger('no_telp');
             $table->foreignId('kategori_petanis_id');
             $table->string('scan_kk');
             $table->string('scan_ktp');

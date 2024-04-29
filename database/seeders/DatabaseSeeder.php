@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Berkas;
 use App\Models\Petani;
 use App\Models\DataLahan;
@@ -168,11 +169,29 @@ class DatabaseSeeder extends Seeder
             'kota' => 'Situbondo'
         ]);
 
+        KelompokTani::create([
+            'users_id' => 3,
+            'nama_kelompok' => 'Sumber Makmur',
+            'nik' => '351098565432178',
+            'nama_lengkap' => 'Saiful Kuncoro',
+            'jenis_kelamins_id' => 1,
+            'tempat_lahir' => 'Makassar',
+            'tanggal_lahir' => '1986-10-05',
+            'jalan' => 'Jl. Merdeka 5',
+            'kecamatan' => 'Panji',
+            'kota' => 'Situbondo'
+        ]);
+
         Pemerintah::create([
             'users_id' => 1,
             'nip' => '198507232005022001',
             'nama_lengkap' => 'Ahmad Mahfud',
             'nomor_sk' => '188/59/431.308.5/2024'
+        ]);
+
+        Admin::create([
+            'users_id' => 2,
+            'nama' => 'SIPENDAP2024',
         ]);
 
         Petani::create([
