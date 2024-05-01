@@ -94,9 +94,9 @@ class RegisterPetaniController extends Controller
     {
         
         // $berkas = Berkas::all();
-        $datapetani = Petani::all()->first();
-        $berkaspetani = $datapetani->persetujuan;
-        dd($berkaspetani);
+        $datapetani = Petani::all();
+        // $berkaspetani = $datapetani->persetujuan;
+        // dd($berkaspetani);
         // $petani = Petani::with('Berkas', 'DataLahan', 'Persetujuan')->first();
         // $data_lahan = DataLahan::all();
         // $persetujuan = Persetujuan::all();

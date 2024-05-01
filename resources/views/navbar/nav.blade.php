@@ -6,4 +6,5 @@
         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">tentang SIPENDAP</span>
     </a>
   </div>
+  <div></div>
 </nav>

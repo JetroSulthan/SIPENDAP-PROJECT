@@ -6,12 +6,24 @@
     <div class="container_kiri">
         <h1>Subsisi <span class="text-white">Pupuk</span> Kini <br> <span><span class=" text-white">Lebih</span> Mudah  </span></h1>
         <p>Membantu lebih dari 1000+ petani mendapat bantuan <br>pupuk langsung dari pemerintah! </p>
+        <div class="">
+            <a href="/login">
+                <button class="text-xl">Login</button>
+            </a>
+        </div> 
     </div>
 +
     <div class="container_kanan">
         <img src="img/rumah.png" alt="" width="620px"></img>
     </div>
+
+    <div>
+        <a href="">
+            <button class="text-xl absolute">Login</button>
+        </a>
+    </div>    
 </div>
+
 <style>
 body{
     background-image:linear-gradient( #72B944, #FFFFFF);

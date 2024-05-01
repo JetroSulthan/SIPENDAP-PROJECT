@@ -124,19 +124,19 @@
                        </a>
                     </td>
                     <td class="flex content-center items-center justify-center">
-                     @if ($petani->DataLahan) <!-- Check if there is a related DataLahan -->
-                     <div class="relative z-0 group">
-                        <p>{{ $petani->DataLahan->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
-                     </div>
-                     @endif
+                       @if ($petani->datalahan) <!-- Check if there is a related DataLahan -->
+                           <div class="relative z-0 group">
+                              <p>{{ $petani->datalahan->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                           </div>
+                       @endif
                     </td>
                     <td class="">
                        <div class="px-3">{{ $tgl }}</div>
                     </td>
                     <td class=" flex justify-center">
-                     @if ($petani->Berkas) <!-- Check if there is a related DataLahan -->
+                     @if ($petani->berkas) <!-- Check if there is a related DataLahan -->
                      <div class="relative z-0 group">
-                        <p>{{ $petani->Berkas->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                        <p>{{ $petani->berkas->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
                      </div>
                      @endif
                     </td>

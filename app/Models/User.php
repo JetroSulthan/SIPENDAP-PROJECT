@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasMany(Pemerintah::class);
     }
 
-    public function KelompokTani()
+    public function kelompokTani()
     {
         return $this->hasMany(KelompokTani::class);
     }

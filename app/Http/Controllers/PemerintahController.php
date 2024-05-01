@@ -6,9 +6,13 @@ use Carbon\Carbon;
 use App\Models\Berkas;
 use App\Models\Petani;
 use App\Models\DataLahan;
-use App\Models\KelompokTani;
+use App\Models\Komoditas;
 use App\Models\Persetujuan;
+use App\Models\JenisKelamin;
+use App\Models\KelompokTani;
 use Illuminate\Http\Request;
+use App\Models\KategoriPetani;
+use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Debug\Dumper;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +51,8 @@ class PemerintahController extends Controller
         // $berkas = Berkas::all();
         $datapetani = Petani::all();
         // dd($datapetani->DataLahan);
-        // $petani = Petani::with('Berkas', 'DataLahan', 'Persetujuan')->first();
+        $petani = Petani::with('berkas', 'datalahan', 'persetujuan')->first();
+        // dd($petani);
         // $data_lahan = DataLahan::all();
         // $persetujuan = Persetujuan::all();
         // $berkasId = $datapetani->pluck('berkas_id')->toArray();
@@ -59,7 +64,7 @@ class PemerintahController extends Controller
         // $pers_user = Persetujuan::whereIn('id', $persId)->first();
         // dd($lahan_user);
         $tgl= Carbon::now()->isoFormat('ddd, LL');
-        return view('pemerintah.verif', compact( 'datapetani','tgl'));
+        return view('pemerintah.verif', compact( 'datapetani','tgl', 'petani'));
     }
 
     public function kelompok()
@@ -71,13 +76,19 @@ class PemerintahController extends Controller
 
     public function detailkelompok($id)
     {   
-        // $data = Petani::all();
-        // $petani = Petani::find($data);
-        // $profil = Petani::where('id', $data)->first();
-        $profil = KelompokTani::find($id);
-        $kelamin = $profil->JenisKelamin;
+        $data = Petani::all();
+        $petani = Petani::find($id);
+        $profil = Petani::where('id', $data)->first();
+        // dd($petani);
+        // $profil = KelompokTani::find($id);
+        $kelamin = JenisKelamin::all();
+        $user = User::all();
+        $userId = $profil->pluck('users_id')->toArray();
+        $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
         dd($kelamin);
+        $users = User::whereIn('id', $userId)->first();
+        $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
 
-        return view('pemerintah.detail', compact('profil','kelamin'));
+        return view('pemerintah.detail', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data', 'petani'));
     }
 }
