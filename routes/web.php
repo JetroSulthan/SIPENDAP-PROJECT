@@ -3,9 +3,14 @@
 use App\Models\User;
 use App\Http\Controllers\Login_C;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KiosController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\DaftarPemerintah;
+use App\Http\Controllers\DaftarKelompokTani;
 use App\Http\Controllers\PemerintahController;
 use App\Http\Controllers\RegisterPetaniController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,12 +46,22 @@ Route::get('/verif',[PemerintahController::class,'lihat']);
 Route::put('/verif',[PemerintahController::class,'edit']);
 Route::get('/keltani',[PemerintahController::class,'kelompok']);
 Route::get('/keltani/{id}',[PemerintahController::class,'detailkelompok']);
+Route::get('/daftar-kelompok-tani',[DaftarKelompokTani::class,'kelompoktani']);
+Route::post('/daftar-kelompok-tani',[DaftarKelompokTani::class,"regiskeltani"]);
+Route::get('/view/laporan',[KiosController::class,"showFiles"]);
+Route::get('/coba',[KiosController::class,"index"]);
+Route::get('/laporanmelihat/{id}',[KiosController::class,"viewer"]);
+Route::post('/coba',[KiosController::class,"store"]);
+// Route::get('/laporan/kios',[BerkasController::class,"index"]);
+Route::post('/download/{id}',[KiosController::class,"download"]);
+
 // Route::get('/verif',[PemerintahController::class,'regisPetani']);
 
 
 // Admin
 Route::get('/admin', function () {return view('admin.dashboard');});
-
+Route::get('/daftar/pemerintah',[DaftarPemerintah::class,'pemerintahan']);
+Route::post('/daftar/pemerintah',[DaftarPemerintah::class,'regispemerintah']);
 
 
 // Auth

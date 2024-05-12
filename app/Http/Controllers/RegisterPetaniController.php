@@ -60,26 +60,41 @@ class RegisterPetaniController extends Controller
         $regist= $request->validate([
             'nama_lengkap' => 'required',
             'nik' => 'required | unique:petanis',
-            // 'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required | date',
             'jalan' => 'required',
             'kecamatan' => 'required',
             'kota' => 'required',
-            // 'komoditas' => 'required',
             'vol_komoditas' => 'required',
             'luas_lahan' => 'required',
             'titik_koor_lahan' => 'required',
             'no_telp' => 'required',
             'kategori_petanis' => 'required',
-            'scan_ktp' => 'required |file',
-            'scan_kk' => 'required | file',
-            'foto_lahan' => 'required |file'
+            'scan_ktp' => 'required |file|mimes:png,jpg,pdf,jpeg',
+            'scan_kk' => 'required | file|mimes:png,jpg,pdf,jpeg',
+            'foto_lahan' => 'required |file|mimes:png,jpg,pdf,jpeg'
         ]);
+
+        $fileupload = [
+            'scan_ktp',
+            'scan_kk',
+            'foto_lahan'
+        ];
+
+        foreach ($fileupload as $upload) {
+            if ($request->hasFile($upload)) {
+                $file = $request->file($upload);
+                $nama_file = $file->getClientOriginalName();
+                $file->move('assets', $nama_file);
+                $regist[$upload] = $nama_file;
+            }
+        }
+        
 
         $regist['jenis_kelamins_id']= $request ->input('jenis_kelamin');
         $regist['komoditas_id']= $request ->input('komoditas');
         $regist['kategori_petanis_id']= $request ->input('kategori_petanis');
+        
         
 
         Petani::create($regist);

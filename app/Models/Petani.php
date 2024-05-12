@@ -89,6 +89,11 @@ class Petani extends Model
     {
         return $this->belongsTo(DataLahan::class);
     }
+
+    public function kios()
+    {
+        return $this->belongsTo(Kios::class);
+    }
 }
 
 

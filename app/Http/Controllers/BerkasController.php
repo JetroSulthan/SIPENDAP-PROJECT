@@ -3,63 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berkas;
+use App\Models\Petani;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class BerkasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $datapetani = Petani::all();
+
+        return view('pemerintah.laporankios', compact('datapetani'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function view($id)
     {
-        //
+        $data = Petani::find($id);
+
+        return view(); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function view_pdf()
+    // {
+    //     $mpdf = new \Mpdf\Mpdf();
+    //     $datapetani= Petani::all();
+    //     // $datapetani = $petani;
+    //     $mpdf->WriteHTML(view('pemerintah.laporankios', compact('datapetani')));
+    //     $mpdf->Output();
+    // }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Berkas $berkas)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Berkas $berkas)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Berkas $berkas)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Berkas $berkas)
-    {
-        //
-    }
+    // public function download_pdf()
+    // {
+    //     $mpdf = new \Mpdf\Mpdf();
+    //     $petani = Petani::getById();
+    //     $mpdf->WriteHTML(view("pemerintah.liatlaporan", ['datapetani'=>$petani]));
+    //     $mpdf->Output('laporan.pdf', 'D');
+    // }
+    
 }

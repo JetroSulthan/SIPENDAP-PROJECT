@@ -108,7 +108,7 @@
             </div>
             <div class="relative z-0 w-full group">
                 <label for="ktp">KTP</label>
-                <input type="File" name="scan_ktp" id="ktp" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="Klik Untuk Mengunggah " required />
+                <input type="file" name="scan_ktp" id="ktp" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="Klik Untuk Mengunggah " required />
             </div>
             <div class="relative z-0 w-full mt-1 group">
                 <label for="KK">Kartu Keluarga</label>
