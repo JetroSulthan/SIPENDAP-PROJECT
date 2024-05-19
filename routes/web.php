@@ -55,6 +55,7 @@ Route::post('/view/laporan',[PemerintahController::class,"download"]);
 Route::get('/rdkk',[BerkasController::class,"view_rdkk"]);
 Route::get('/rdkk/view',[BerkasController::class,"view_pdf"]);
 Route::get('/verif/laporan',[PemerintahController::class,"verif_laporan"]);
+Route::get('/telegram', function () {return view('pemerintah.telegram');});
 
 
 // Admin

@@ -152,24 +152,22 @@ class PemerintahController extends Controller
 
     public function ubahverif($id)
     {   
-        // $data = Petani::all();
-        // $petani = Petani::find($id);
-        // $profil = Petani::where('id', $data)->first();
-        // // dd($petani);
-        // // $profil = KelompokTani::find($id);
-        // $kelamin = JenisKelamin::all();
-        // $user = User::all();
-        // $userId = $profil->pluck('users_id')->toArray();
-        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
-        // // dd($kelamin);
-        // $users = User::whereIn('id', $userId)->first();
-        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
-
-       
+        $data = Petani::all();
+        $profil = Petani::where('id', $data)->first();
+        $kelamin = JenisKelamin::all();
+        $berkas = Berkas::all();
+        $user = User::all();
+        $userId = $profil->pluck('users_id')->toArray();
+        $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        $berkasId = $profil->pluck('berkas_id')->toArray();
+        // dd($kelamin);
+        $users = User::whereIn('id', $userId)->first();
+        $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+        $berkasuser = Berkas::whereIn('id', $kelaminId)->first();
         $datapetani = Petani::findOrFail($id);
-        return view('pemerintah.ubah', compact('datapetani'));
+        
     
 
-        // return view('pemerintah.ubah', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data', 'petani'));
+        return view('pemerintah.ubah', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data', 'petani', 'datapetani', 'berkas', 'berkasId'));
     }
 }
