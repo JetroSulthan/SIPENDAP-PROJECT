@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.kelompoktani')
 
 @section('container')
 </div class=" relative inline-flex items-center justify-center">

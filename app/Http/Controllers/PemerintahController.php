@@ -86,7 +86,7 @@ class PemerintahController extends Controller
         $user = User::all();
         $userId = $profil->pluck('users_id')->toArray();
         $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
-        dd($kelamin);
+        // dd($kelamin);
         $users = User::whereIn('id', $userId)->first();
         $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
 
@@ -148,5 +148,28 @@ class PemerintahController extends Controller
         Kios::create($data);
 
         return back()->with('success', 'File has been uploaded and data saved successfully.');
+    }
+
+    public function ubahverif($id)
+    {   
+        // $data = Petani::all();
+        // $petani = Petani::find($id);
+        // $profil = Petani::where('id', $data)->first();
+        // // dd($petani);
+        // // $profil = KelompokTani::find($id);
+        // $kelamin = JenisKelamin::all();
+        // $user = User::all();
+        // $userId = $profil->pluck('users_id')->toArray();
+        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        // // dd($kelamin);
+        // $users = User::whereIn('id', $userId)->first();
+        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+
+       
+        $datapetani = Petani::findOrFail($id);
+        return view('pemerintah.ubah', compact('datapetani'));
+    
+
+        // return view('pemerintah.ubah', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data', 'petani'));
     }
 }

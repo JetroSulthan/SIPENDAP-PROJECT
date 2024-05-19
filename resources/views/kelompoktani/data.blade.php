@@ -1,5 +1,5 @@
 
-@extends('layout.main')
+@extends('layout.kelompoktani')
 
 @section('container')
 <div class="bg-[#72B944] flex justify-center h-[150vh]">

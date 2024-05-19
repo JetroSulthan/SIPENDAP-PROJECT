@@ -1,5 +1,5 @@
 
-@extends('layout.main')
+@extends('layout.pemerintah')
 
 @section('container')
 

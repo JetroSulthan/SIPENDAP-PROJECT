@@ -42,6 +42,7 @@ Route::get('/home', function () { return view('kelompoktani.dashboard');});
 Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
 Route::get('/verifpetani',[PemerintahController::class,'lihat']);
 Route::put('/verifpetani',[PemerintahController::class,'edit']);
+Route::get('/ubahverif/{id}',[PemerintahController::class,'ubahverif']);
 Route::get('/keltani',[PemerintahController::class,'kelompok']);
 Route::get('/keltani/{id}',[PemerintahController::class,'detailkelompok']);
 Route::get('/daftar-kelompok-tani',[DaftarKelompokTani::class,'kelompoktani']);
@@ -74,3 +75,4 @@ Route::get('/telegramadmin', function () {return view('admin.telegram');});
 // Auth
 Route::get('/login',[LoginController::class,'user']);
 Route::post('/login',[LoginController::class,'authenticate']);
+
