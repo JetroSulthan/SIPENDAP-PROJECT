@@ -6,38 +6,29 @@ use App\Models\Berkas;
 use App\Models\Petani;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Mpdf\Tag\H1;
+use PDF;
 
 class BerkasController extends Controller
 {
-    public function index()
+
+    public function view_rdkk()
     {
         $datapetani = Petani::all();
 
-        return view('pemerintah.laporankios', compact('datapetani'));
+        return view('pemerintah.rdkk', compact('datapetani'));
     }
 
-    public function view($id)
+    public function view_pdf()
     {
-        $data = Petani::find($id);
-
-        return view(); 
+        $mpdf = new \Mpdf\Mpdf();
+        $datapetani = Petani::all();
+        $html = view('pemerintah.rdkk', compact('datapetani'));
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('nama_file.pdf', 'I');
     }
 
-    // public function view_pdf()
-    // {
-    //     $mpdf = new \Mpdf\Mpdf();
-    //     $datapetani= Petani::all();
-    //     // $datapetani = $petani;
-    //     $mpdf->WriteHTML(view('pemerintah.laporankios', compact('datapetani')));
-    //     $mpdf->Output();
-    // }
 
-    // public function download_pdf()
-    // {
-    //     $mpdf = new \Mpdf\Mpdf();
-    //     $petani = Petani::getById();
-    //     $mpdf->WriteHTML(view("pemerintah.liatlaporan", ['datapetani'=>$petani]));
-    //     $mpdf->Output('laporan.pdf', 'D');
-    // }
+    
     
 }

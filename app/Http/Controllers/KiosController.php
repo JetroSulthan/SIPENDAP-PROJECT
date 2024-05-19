@@ -13,7 +13,7 @@ class KiosController extends Controller
     public function showFiles()
     {
         $files = Kios::all(); // Fetch all files from the database
-        return view('pemerintah.laporankios', compact('files'));
+        return view('pemerintah.laporanpemerintah', compact('files'));
     }
 
     public function index()
@@ -32,10 +32,11 @@ class KiosController extends Controller
     return view('pemerintah.liatlaporan', compact('petani'));
     }
 
-    public function download(Request $request, $file)
-{
-    return response()->download(public_path('laporan/' . $file));
-}
+    public function download($file)
+    {
+        $download = public_path('laporan/' . $file);
+        return response()->download($download);
+    }
 
 
     /**
@@ -60,28 +61,4 @@ class KiosController extends Controller
         return back()->with('success', 'File has been uploaded and data saved successfully.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-
-    public function show(Kios $kios)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Kios $kios)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Kios $kios)
-    {
-        //
-    }
 }

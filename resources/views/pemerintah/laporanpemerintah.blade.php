@@ -95,23 +95,27 @@
               </tr>
           </thead>
 <div>
-         <form action="/view/laporan" method="POST" enctype="multipart/form-data">
+   @foreach ($files as $file)
+   {{-- @dd($file->id) --}}
+         <form action="" method="POST" enctype="multipart/form-data">
             @csrf
             <tbody class="bg-white  ">
-               @foreach ($files as $file)
+               
                 <tr class="border-b">
                     <td class="">
                         <div class="px-2 py-1">{{ $loop->iteration }}</div>
                     </td>
                     <td class="">
-                       <a href="/laporanmelihat/{{ $file->id }}">
+                       <a href="/laporan/{{ $file->id }}">
                           <div class="px-3">{{ $file->laporan }}</div>
                        </a>
                     </td>
                    <td class="px-4 py-4">
-                     <a href="/download/{{ $file->id }}">
-                        <img src="/img/downloads.png" alt="" class="h-7 w-7">
-                     </a>
+                     {{-- <a href="/laporan/{{ $file->id }}"> --}}
+                        <button type="submit" class="btn btn-succes">
+                           <img src="/img/downloads.png" alt="" class="h-7 w-7">
+                        </button>
+                     {{-- </a> --}}
                    </td>
                 </tr>
                 @endforeach
@@ -135,30 +139,6 @@
                      tooltip.classList.toggle('invisible');
                });
             });
-
-            
-
-// // Menambahkan event listener untuk tombol-tombol submit
-//             document.querySelectorAll('.submit-btn').forEach(function(btn) {
-//                btn.addEventListener('click', function(event) {
-//                event.preventDefault(); // Mencegah perilaku bawaan submit tombol
-//         // Lakukan pengiriman data melalui Ajax ke server di sini
-//         // Anda bisa menggunakan fetch atau library Ajax seperti axios
-//     });
-// });
-
-            // document.getElementById('tambah').addEventListener('click', function() {
-            //    var tooltip = document.getElementById('tooltip');
-            //    tooltip.classList.toggle('invisible');
-            // });
-
-//             document.querySelectorAll('.submit-btn').forEach(function(btn) {
-//     btn.addEventListener('click', function(event) {
-//         event.preventDefault();
-//         var value = btn.value;
-//         document.getElementById('gambar').src = "/img/" + value + ".png"; // Ganti sumber gambar sesuai dengan nilai tombol yang diklik
-//     });
-// });
 
 
 
