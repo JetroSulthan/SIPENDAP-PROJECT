@@ -7,6 +7,7 @@ use App\Models\Kios;
 use App\Models\User;
 use App\Models\Berkas;
 use App\Models\Petani;
+use App\Models\Dukcapil;
 use App\Models\DataLahan;
 use App\Models\Komoditas;
 use App\Models\Persetujuan;
@@ -24,6 +25,7 @@ class PemerintahController extends Controller
     {
         $berkas = Berkas::all();
         $data_lahan = DataLahan::all();
+        // dd($data_lahan);
         // $id = Auth::user()->id;
         $datapetani = Petani::all();
         $tgl= Carbon::now()->isoFormat('ddd, LL');
@@ -49,23 +51,15 @@ class PemerintahController extends Controller
 
     public function lihat()
     {
-        // $berkas = Berkas::all();
-        $datapetani = Petani::all();
-        // dd($datapetani->DataLahan);
-        $petani = Petani::with('berkas', 'datalahan', 'persetujuan')->first();
-        // dd($petani);
-        // $data_lahan = DataLahan::all();
-        // $persetujuan = Persetujuan::all();
-        // $berkasId = $datapetani->pluck('berkas_id')->toArray();
-        // $dataId = $datapetani->pluck('data_lahans_id')->toArray();
-        // $persId= $datapetani->pluck('persetujuans_id')->toArray();
-        // // dd($berkasId);
-        // $berkasuser = Berkas::whereIn('id', $berkasId)->first();
-        // $lahan_user = DataLahan::whereIn('id', $dataId)->first();
-        // $pers_user = Persetujuan::whereIn('id', $persId)->first();
-        // dd($lahan_user);
-        $tgl= Carbon::now()->isoFormat('ddd, LL');
-        return view('pemerintah.verif', compact( 'datapetani','tgl', 'petani'));
+        $berkas = Berkas::all();
+        $datapetani = Petani::with('berkas', 'datalahan', 'persetujuan')->get();
+        $data_lahan = DataLahan::all();
+        $persetujuan = Persetujuan::all();
+        $dukcapil = Dukcapil::all();
+        // dd($persetujuan);
+        $tgl = Carbon::now()->isoFormat('ddd, LL');
+        
+        return view('pemerintah.verif', compact('datapetani', 'tgl', 'berkas', 'data_lahan', 'persetujuan', 'dukcapil'));
     }
 
     public function kelompok()
@@ -159,6 +153,7 @@ class PemerintahController extends Controller
         $berkas = Berkas::all();
         $datalahan = DataLahan::all();
         $user = User::all();
+        $persetujuan = Persetujuan::all();
         // $userId = $profil->pluck('users_id')->toArray();
         // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
         // $berkasId = $profil->pluck('berkas_id')->toArray();
@@ -169,7 +164,7 @@ class PemerintahController extends Controller
         $datapetani = Petani::findOrFail($id);
         // dd($datapetani);
 
-        return view('pemerintah.ubah', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas'));
+        return view('pemerintah.ubah', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas', 'persetujuan'));
     }
 
     public function storeverif(Request $request)
@@ -178,11 +173,13 @@ class PemerintahController extends Controller
             'id' => 'numeric',
             'berkas' => 'required',
             'data_lahan' => 'required',
-            'komentar' => 'required'
+            'komentar' => 'required',
+            'persetujuan' => 'required'
         ]);
         
         $daftar['berkas_id']= $request ->input('berkas');
         $daftar['data_lahans_id']= $request ->input('data_lahan');
+        $daftar['persetujuans_id']= $request ->input('persetujuan');
         
         // Petani::create([
             
@@ -192,6 +189,7 @@ class PemerintahController extends Controller
             'komentar' => $daftar['komentar'],
             'berkas_id' => $daftar['berkas'],
             'data_lahans_id' => $daftar['data_lahan'],
+            'persetujuans_id' => $daftar['persetujuan']
         ]);
 
         $request = session();

@@ -19,26 +19,6 @@
     @endif
 
     <div class="flex flex-col justify-center items-center relative mx-auto mt-20 mb-8 bg-white w-[1000px]  rounded-[30px]">
-        {{-- <div class="mt-7 flex flex-row items-center justify-center">
-            
-            <div class="flex flex-row gap-1 items-center">
-                <p class="rounded-full bg-[#72B944] w-6 h-6 text-center">1</p>
-                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
-                    <div class="bg-[#72B944] h-3 rounded-full" style="width: 50%"></div>
-                  </div>
-                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">2</p>
-                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
-                    <div class=" h-3 rounded-full " style="width: 50%"></div>
-                  </div>
-                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">3</p>
-                <div class="ml-2 mr-2 w-20 bg-gray-200 rounded-full h-3">
-                    <div class=" h-3 rounded-full " style="width: 50%"></div>
-                  </div>
-                <p class="rounded-full bg-gray-300 w-6 h-6 text-center">4</p>
-            </div>
-            
-        </div> --}}
-        
         <div class="mt-6">
             <h1 class="text-center font-bold text-2xl">Lengkapi Data Diri</h1>
             <p class="text-center">Isi Keterangan Lahanmu dibawah Ini dengan Sesuai!</p>
@@ -127,6 +107,12 @@
             <div class=" px-80">
                   <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Kirim</button>
             </div>
+
+            <select id="language">
+              <option value="id-ID">Bahasa Indonesia</option>
+              <option value="en-US">English (US)</option>
+              <option value="ja-JP">Aku wibuu</option>
+            </select>
         </form>  
     </div>
 </div>

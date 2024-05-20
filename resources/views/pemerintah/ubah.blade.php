@@ -31,6 +31,15 @@
                 @endforeach
             </select>
         </div>
+        <div class="">
+            <label for="nama_lengkap" class="px-4">Status</label>
+            <select class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" name="persetujuan" id="kelurahan">
+                <option value="" disabled selected>Opsi</option>
+                @foreach ($persetujuan as $item)
+                  <option value="{{ $item->id }}" >{{ $item->opsi }}</option>
+                @endforeach
+            </select>
+        </div>
         <div>
             <input type="hidden" class="" name="id" value="{{ $datapetani->id }}">
         </div>

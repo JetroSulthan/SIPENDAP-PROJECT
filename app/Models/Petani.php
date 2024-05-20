@@ -94,6 +94,13 @@ class Petani extends Model
     {
         return $this->belongsTo(Kios::class);
     }
+
+    public function dukcapil()
+    {
+        return $this->hasOne(Dukcapil::class);
+    }
+
+
 }
 
 
