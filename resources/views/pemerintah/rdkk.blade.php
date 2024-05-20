@@ -14,7 +14,7 @@
 </head>
 <body>
   <table class="rounded-xl w-full border-opacity-90 border-black">
-      <thead class="bg-red-500 rounded-xl">
+      <thead class="bg-red-500 rounded-xl border-black">
           <tr class="rounded-xl">
               <th rowspan="3" colspan="" class="py-2 text-left text-xs font-normal text-black tracking-wider font-[Poppins]">No</th>
               <th rowspan="3" colspan="" class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">NIK</th>
@@ -42,27 +42,31 @@
               <th class="px-1 py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">Jml</th>
           </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-          <tr class="bg-white divide-y divide-gray-200">
-              <td class="py-2 text-left text-xs font-normal text-black tracking-wider font-[Poppins]">1</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">1234567890</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">John Doe</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">1000</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">10</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">10</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">10</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">30</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">5</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">5</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">5</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">15</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">8</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">8</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">8</td>
-              <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">24</td>
-          </tr>
+      <tbody class="bg-white divide-y border-black divide-gray-200">
+        @foreach ($datapetani as $dp)
+        <tr class="bg-white divide-y divide-gray-200">
+            <td class="py-2 text-left text-xs font-normal text-black tracking-wider font-[Poppins]">{{ $loop->iteration }}</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">{{ $dp->nik }}</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">{{ $dp->nama_lengkap }}</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">1000</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">10</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">10</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">10</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">30</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">5</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">5</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">5</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">15</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">8</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">8</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">8</td>
+            <td class="py-2 text-center text-xs font-normal text-black tracking-wider font-[Poppins]">24</td>
+        </tr>
+        @endforeach
           <!-- Tambahkan baris lainnya sesuai kebutuhan -->
       </tbody>
   </table>
+
+  
 </body>
 </html>

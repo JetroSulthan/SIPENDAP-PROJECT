@@ -48,9 +48,15 @@
         @csrf    
             <div class="relative z-0 w-full group">
                 <input type="text" name="nik" id="nik" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" required value="{{ old('nik') }}"/>
+                <button id="start" class="absolute top-0 right-0 flex items-center justify-center h-full px-4">
+                  <i class="fas fa-microphone"></i> 
+                </button>
             </div>
             <div class="relative z-0 w-full mt-1 group">
                 <input type="text" name="nama_lengkap" id="floating_password" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nama" required />
+                <button id="start2" class="absolute top-0 right-0 flex items-center justify-center h-full px-4">
+                  <i class="fas fa-microphone"></i> 
+                </button>
             </div>
             <div class="inline-flex content-between gap-6">
             <div class="relative z-0 w-full mb-1 group">
@@ -119,9 +125,46 @@
                 <input type="file" name="foto_lahan" id="foto lahan" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah " required /> 
             </div>
             <div class=" px-80">
-                    <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Kirim</button>
+                  <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Kirim</button>
             </div>
         </form>  
     </div>
 </div>
+
+<script>
+  const output = document.getElementById('nik');
+  const languageSelector = document.getElementById('language');
+  const startBtn = document.getElementById('start');
+  const startBtn2 = document.getElementById('start2');
+  const stopBtn = document.getElementById('stop');
+  
+  let recognition;
+  
+  startBtn.addEventListener('click', () => {
+    const lang = languageSelector.value;
+    recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    recognition.lang = lang;
+    recognition.start();
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      document.getElementById('nik').value = transcript;
+    };
+  });
+
+  startBtn2.addEventListener('click', () => {
+    const lang = languageSelector.value;
+    recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    recognition.lang = lang;
+    recognition.start();
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      document.getElementById('nama_lengkap').value = transcript;
+    };
+  });
+
+  
+  // stopBtn.addEventListener('click', () => {
+  //   recognition.stop();
+  // });
+</script>
 @endsection

@@ -21,7 +21,7 @@
     </div>
     @endif
 
-    <div class="flex flex-col justify-center items-center mx-auto relative mt-20 mb-8 bg-white w-[900px] rounded-[30px]">
+    <div class="flex flex-col justify-center items-center relative mt-20 mb-8 bg-white w-[900px] rounded-[30px]">
         <div class="mt-4">
             <h1 class="text-center font-bold text-2xl">Lengkapi Username & Password</h1>
             <p class="text-center">Isi Keterangan Dibawah untuk Kelengkapan Akun Anda!</p>

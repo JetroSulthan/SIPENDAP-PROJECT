@@ -45,4 +45,12 @@ class DaftarPemerintah extends Controller
         $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
         return redirect('/admin');
     }
+
+    public function kelompok()
+    {
+        $keltani = Pemerintah::all();
+        
+        return view('admin.pemerintah', compact('keltani'));
+    }
 }
+

@@ -1,7 +1,7 @@
 @extends('layout.pemerintah')
 @section('container')
-   
-     <div class="absolute top-20 right-2 overflow-x-auto w-[81.5%]  rounded-xl ">
+<div  class="border-black">
+   <div id="content" class="absolute top-20 right-2 overflow-x-auto w-[81.5%]  rounded-xl ">
       <table class="w-full table-auto">
          <thead class=" text-center bg-white">
              
@@ -9,7 +9,7 @@
                      No
                  </th>
                  
-                 <th class="px-1 py-2 font-xl">
+                 <th class="px- py-2 font-xl">
                      Data Laporan
                  </th>
              
@@ -30,7 +30,7 @@
                  </th>
          </thead>
    
-      @foreach ($petani as $item)
+         @foreach ($petani as $item)
          <tbody class=" bg-white">
                   <td class="text-center">
                      {{ $loop->iteration }}
@@ -41,14 +41,14 @@
                         </a>
                   </td>
                   <td class=" text-center px-2 py-4 border-b-2">
-                     <div>Patek</div>
+                     <div>{{ $tgl }}</div>
                   </td>
-                  <td class="px-2 py-4 border-b-2">
-                        
-                     <div>
-                        <img src="/img/tambah.png" class="w-7" alt="">
+                  <td class="justify-center px-4 py-4 border-b-2">
+                     <div class="ml-8">
+                        <a href="">
+                           <img src="/img/tambah.png" class="w-7" alt="">
+                        </a>
                      </div>
-                        
                   </td>
                   <td class=" object-center px-1 py-4 border-b-2">
                      <input type="text" class="px-2" placeholder="Komentar">      
@@ -59,7 +59,22 @@
             </tbody>
          @endforeach
      </table>
+   </div>
+   <button onclick="generatePDF()" class="bottom-[270px] right-4 text-lg absolute font-sans text-black rounded-lg bg-white w-[115px] mt-1">Print PDF</button>
+</div>
 
+<script>
+   function generatePDF() {
+       const element = document.getElementById('content');
+       html2pdf(element, {
+           margin: 1,
+           filename: 'document.pdf',
+           image: { type: 'jpeg', quality: 0.98 },
+           html2canvas: { scale: 2 },
+           jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+       });
+   }
+</script>
 
 
      <style>

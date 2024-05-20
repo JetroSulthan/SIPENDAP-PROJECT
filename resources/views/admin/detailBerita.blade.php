@@ -30,6 +30,7 @@
     <style>
         body {
             background-image: linear-gradient(#72B944, #FFFFFF);
+            background-attachment: fixed;
         }
     </style>
 @endsection

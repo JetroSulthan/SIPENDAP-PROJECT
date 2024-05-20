@@ -79,7 +79,7 @@ class PemerintahController extends Controller
     {   
         $data = Petani::all();
         $petani = Petani::find($id);
-        $profil = Petani::where('id', $data)->first();
+        $profil = Petani::where('id', $petani);
         // dd($petani);
         // $profil = KelompokTani::find($id);
         $kelamin = JenisKelamin::all();
@@ -96,7 +96,8 @@ class PemerintahController extends Controller
     public function verif_laporan()
     {
         $petani = Kios::all();
-        return view('pemerintah.persetujuan', compact('petani'));
+        $tgl= Carbon::now()->isoFormat('ddd, LL');
+        return view('pemerintah.persetujuan', compact('petani', 'tgl'));
     }
 
     public function showFiles()
@@ -153,21 +154,48 @@ class PemerintahController extends Controller
     public function ubahverif($id)
     {   
         $data = Petani::all();
-        $profil = Petani::where('id', $data)->first();
+        // $profil = Petani::where('id', $data)->first();
         $kelamin = JenisKelamin::all();
         $berkas = Berkas::all();
+        $datalahan = DataLahan::all();
         $user = User::all();
-        $userId = $profil->pluck('users_id')->toArray();
-        $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
-        $berkasId = $profil->pluck('berkas_id')->toArray();
+        // $userId = $profil->pluck('users_id')->toArray();
+        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        // $berkasId = $profil->pluck('berkas_id')->toArray();
         // dd($kelamin);
-        $users = User::whereIn('id', $userId)->first();
-        $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
-        $berkasuser = Berkas::whereIn('id', $kelaminId)->first();
+        // $users = User::whereIn('id', $userId)->first();
+        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+        // $berkasuser = Berkas::whereIn('id', $kelaminId)->first();
         $datapetani = Petani::findOrFail($id);
-        
-    
+        // dd($datapetani);
 
-        return view('pemerintah.ubah', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data', 'petani', 'datapetani', 'berkas', 'berkasId'));
+        return view('pemerintah.ubah', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas'));
+    }
+
+    public function storeverif(Request $request)
+    {
+        $daftar= $request->validate([
+            'id' => 'numeric',
+            'berkas' => 'required',
+            'data_lahan' => 'required',
+            'komentar' => 'required'
+        ]);
+        
+        $daftar['berkas_id']= $request ->input('berkas');
+        $daftar['data_lahans_id']= $request ->input('data_lahan');
+        
+        // Petani::create([
+            
+        // ]);
+
+        Petani::where('id',$daftar['id'])->update([
+            'komentar' => $daftar['komentar'],
+            'berkas_id' => $daftar['berkas'],
+            'data_lahans_id' => $daftar['data_lahan'],
+        ]);
+
+        $request = session();
+        $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
+        return redirect('/verifpetani');
     }
 }

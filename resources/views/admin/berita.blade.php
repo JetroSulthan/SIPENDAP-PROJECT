@@ -1,11 +1,6 @@
 @extends('layout.addberita')
 @section('container')
-    <div class="flex flex-col mt-12 h-[1280px]">
-
-        <div class="moving-container w-full bg-green-950">
-            {{-- <img src="/img/berita.png" alt="Moving Image" class="moving-image"> --}}
-            <div class="moving-text text-white">--NONA BERGERAK--</div>
-        </div>
+    <div class="flex flex-col mt-12 h-auto">
 
         <div class="flex flex-col ml-80">
             @if ($broadcastBerita->count() > 0)
@@ -99,6 +94,7 @@
     <style>
         body {
             background-image: linear-gradient(#72B944, #FFFFFF);
+            background-attachment: fixed;
         }
 
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
