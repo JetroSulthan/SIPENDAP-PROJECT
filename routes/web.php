@@ -74,6 +74,8 @@ Route::middleware('pemerintah')->group(function(){
     Route::post('/view/laporan',[PemerintahController::class,"download"]);
     Route::get('/rdkk',[BerkasController::class,"view_rdkk"]);
     Route::get('/rdkk/view',[BerkasController::class,"view_pdf"]);
+    Route::get('/testing/pdf',[PemerintahController::class,"pdf_test"]);
+    Route::get('/testing',[PemerintahController::class,"laporan_tes"]);
     Route::get('/laporanpemerintah',[PemerintahController::class,"pdf_pemerintah"]);
     Route::get('/verif/laporan',[PemerintahController::class,"verif_laporan"]);
     Route::get('/telegram', function () {return view('pemerintah.telegram');});

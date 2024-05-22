@@ -104,7 +104,25 @@ class PemerintahController extends Controller
         $tgl = Carbon::now()->isoFormat('ddd, LL');
         $html = view('pemerintah.persetujuan', compact('petani', 'tgl', 'persetujuan'));
         $mpdf->WriteHTML($html);
-        $mpdf->Output('laporan_pemerintah.pdf', );
+        $mpdf->Output('laporan_pemerintah.pdf', 'I');
+    }
+
+    public function laporan_tes()
+    {
+        $petani = Kios::all();
+        $persetujuan = Persetujuan::all();
+        $tgl= Carbon::now()->isoFormat('ddd, LL');
+        return view('pemerintah.test', compact('petani', 'tgl', 'persetujuan'));
+    }
+
+    public function pdf_test(){
+        $mpdf = new \Mpdf\Mpdf();
+        $petani = Kios::all();
+        $persetujuan = Persetujuan::all();
+        $tgl = Carbon::now()->isoFormat('ddd, LL');
+        $html = view('pemerintah.test', compact('petani', 'tgl', 'persetujuan'));
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('laporan_pemerintah.pdf', 'I');
     }
 
     public function showFiles()
@@ -177,7 +195,7 @@ class PemerintahController extends Controller
         $datapetani = Petani::findOrFail($id);
         // dd($datapetani);
 
-        return view('pemerintah.ubah', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas', 'persetujuan'));
+        return view('pemerintah.ubahverifpetani', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas', 'persetujuan'));
     }
 
     public function ubahveriflaporan($id)
@@ -200,7 +218,7 @@ class PemerintahController extends Controller
         $petani = Kios::find($id);
         // dd($datapetani);
 
-        return view('pemerintah.ubah2', compact('data', 'datapetani', 'persetujuan', 'petani'));
+        return view('pemerintah.ubahveriflaporan', compact('data', 'datapetani', 'persetujuan', 'petani'));
     }
 
     public function storeveriflaporan(Request $request)

@@ -68,7 +68,7 @@
          @endforeach
      </table>
    </div>
-   <a href="/laporanpemerintah">
+   <a href="/testing/pdf">
       <button  class="bottom-[270px] right-4 text-lg absolute font-sans text-black rounded-lg bg-white w-[115px] mt-1">Print PDF</button>
    </a>
 
