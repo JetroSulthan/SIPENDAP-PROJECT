@@ -21,6 +21,7 @@
                                 </div>
     
                                 <div class="flex gap-4">
+                                    @if (Auth::user()->roles_id == 1)
                                     <a href="{{ route('detail.berita', $bb->id) }}"
                                         class="items-center justify-center w-48 h-10 bg-[#F5682A] hover:bg-[#F54C2A] flex hover:cursor-pointer text-white font-medium py-2 px-4 rounded">
                                         Selengkapnya
@@ -30,6 +31,28 @@
                                                 stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                                         </svg>
                                     </a>
+                                    @elseif (Auth::user()->roles_id == 3)
+                                    <a href="/detailberitas/{{ $bb->id }}"
+                                        class="items-center justify-center w-48 h-10 bg-[#F5682A] hover:bg-[#F54C2A] flex hover:cursor-pointer text-white font-medium py-2 px-4 rounded">
+                                        Selengkapnya
+                                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                        </svg>
+                                    </a>
+                                    @elseif (Auth::user()->roles_id == 2)
+                                    <a href="/detailberitapemerintah/{{ $bb->id }}"
+                                        class="items-center justify-center w-48 h-10 bg-[#F5682A] hover:bg-[#F54C2A] flex hover:cursor-pointer text-white font-medium py-2 px-4 rounded">
+                                        Selengkapnya
+                                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                        </svg>
+                                    </a>
+                                    @endif
+
                                     @if (Auth::user()->roles_id == 1)
                                         <a href="{{ route('edit.berita', $bb->id) }}"
                                             class="items-center justify-center w-16 h-10 bg-blue-500 hover:bg-blue-700 flex hover:cursor-pointer fill-white font-medium py-2 px-4 rounded">

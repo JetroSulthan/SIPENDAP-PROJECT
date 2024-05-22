@@ -39,29 +39,42 @@
                         <div class="px-2 py-1">{{ $loop->iteration }}</div>
                     </td>
                     <td class="">
-                       <a href="/datapetani/{{ $dp->id }}">
-                          <div class="px-3">{{ $dp->nama_lengkap }}</div>
-                       </a>
+                        @foreach ($dukcapil as $dc)
+                        @if ($dp->nama_lengkap == $dc->nama)
+                            <a href="/datapetani/{{ $dp->id }}">
+                                <div class="px-3 text-green-500">{{ $dp->nama_lengkap }}</div>
+                            </a>
+                            @break
+                        @endif
+                    @endforeach
+
+                    @if (!$dukcapil->contains('nama', $dp->nama_lengkap))
+                        <a href="/datapetani/{{ $dp->id }}">
+                            <div class="px-3 text-red-700">{{ $dp->nama_lengkap }}</div>
+                        </a>
+                    @endif
                     </td>
                     <td class="flex content-center items-center justify-center">
-                        
-                     @if ($dp->datalahan)
-                      <!-- Check if there is a related DataLahan -->
-                     <div class="relative z-0 group">
-                        <p>{{ $dp->datalahan->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
-                     </div>
-                     
-                     @endif
+                        @foreach ($data_lahan as $data)
+                            @if ($dp->data_lahans_id == $data->id) <!-- Check if there is a related DataLahan -->
+                                <div class="relative z-0 group">
+                                    <p>{{ $data->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                                </div>
+                            @endif
+                        @endforeach
                     </td>
                     <td class="">
                        <div class="px-3">{{ $tgl }}</div>
                     </td>
                     <td class=" flex justify-center">
-                     @if ($dp->berkas) <!-- Check if there is a related DataLahan -->
-                     <div class="relative z-0 group">
-                        <p>{{ $dp->berkas->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
-                     </div>
-                     @endif
+                        @foreach ($berkas as $b)
+                            @if ($dp->berkas_id == $b->id)
+                            <!-- Check if there is a related DataLahan -->
+                                <div class="justify-center relative z-0 group">
+                                    <p>{{ $b->status }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                                </div>
+                            @endif
+                        @endforeach
                     </td>
                     <td class="">
                         <div class=" px-2 py-1 fs-6 lh-sm">
@@ -70,11 +83,14 @@
                         </div>
                     </td>
                     <td class="relative flex justify-center">
-                     @if ($dp->Persetujuan) <!-- Check if there is a related DataLahan -->
-                     <div class=" z-0 group">
-                        <p>{{ $dp->Persetujuan->opsi }}</p> <!-- Displaying the ID, change to other property as necessary -->
-                     </div>
-                     @endif
+                        @foreach ($persetujuan as $p)
+                        @if ($dp->persetujuans_id == $p->id)
+                         <!-- Check if there is a related DataLahan -->
+                        <div class="justify-center relative z-0 group">
+                            <p>{{ $p->opsi }}</p> <!-- Displaying the ID, change to other property as necessary -->
+                        </div>
+                        @endif
+                        @endforeach
                    </td>
                    
                     
@@ -131,10 +147,10 @@
 
         </script> 
 
-<style>
-   body{
-      background:#72B944;
-   }
-</style>
+    <style>
+    body{
+        background:#72B944;
+    }
+    </style>
 @endsection
 

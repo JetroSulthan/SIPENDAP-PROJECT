@@ -42,17 +42,6 @@
                         <div class="px-2 py-1">{{ $loop->iteration }}</div>
                     </td>
                     <td class="">
-                        {{-- @foreach ($dukcapil as $dc)
-                        <a href="/datapetani/{{ $dp->id }}">
-                            @if ($dp->nama_lengkap == $dc->nama)
-                                    <div class="px-3 text-green-500">{{ $dp->nama_lengkap }}</div>
-                            
-                            @elseif ($dp->nama_lengkap != $dc->nama)
-                                    <div class="px-3 text-red-700">{{ $dp->nama_lengkap }}</div>
-                                
-                            @endif
-                        </a>
-                        @endforeach --}}
                         @foreach ($dukcapil as $dc)
                             @if ($dp->nama_lengkap == $dc->nama)
                                 <a href="/datapetani/{{ $dp->id }}">

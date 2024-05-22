@@ -25,4 +25,9 @@ class Persetujuan extends Model
     {
         return $this->hasMany(Petani::class);
     }
+
+    public function Kios()
+    {
+        return $this->hasMany(Kios::class);
+    }
 }

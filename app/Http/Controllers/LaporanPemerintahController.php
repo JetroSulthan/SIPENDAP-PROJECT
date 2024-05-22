@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LaporanPemerintah;
+use Carbon\Carbon;
+use App\Models\Kios;
 use Illuminate\Http\Request;
+use App\Models\LaporanPemerintah;
+use App\Http\Controllers\Controller;
 
 class LaporanPemerintahController extends Controller
 {
     public function pdf_pemerintah(){
         $mpdf = new \Mpdf\Mpdf();
-        $petani = LaporanPemerintah::all();
-        $html = view('pemerintah.persetujuan', compact('petani'));
+        $petani = Kios::all();
+        $tgl = Carbon::now()->isoFormat('ddd, LL');
+        $html = view('pemerintah.persetujuan', compact('petani', 'tgl'));
         $mpdf->WriteHTML($html);
-        $mpdf->Output('nama_file.pdf', 'I');
+        $mpdf->Output();
     }
 
     public function cobakirim(){

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kios;
+use App\Models\Petani;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller\PDF;
 use Illuminate\Validation\Validator;
 
 
@@ -61,4 +63,7 @@ class KiosController extends Controller
         return back()->with('success', 'File has been uploaded and data saved successfully.');
     }
 
+    
 }
+
+

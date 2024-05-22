@@ -16,7 +16,7 @@
             </li>
             <li>
                 {{-- PERLU BENERIN IF NYA --}}
-                <a href="/berita"
+                <a href="/beritas"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                         <path fill-rule="evenodd"

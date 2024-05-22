@@ -20,4 +20,9 @@ class Kios extends Model
     {
         return $this->hasMany(Petani::class);
     }
+
+    public function Persetujuan()
+    {
+        return $this->belongsTo(Persetujuan::class);
+    }
 }

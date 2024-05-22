@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <iframe src="/laporan/{{ $petani->laporan }}" class="h-screen w-screen"></iframe>
+    <iframe src="/laporan/{{ $petani->laporan }}" class="h-96 w-96"></iframe>
 
 </body>
 </html>

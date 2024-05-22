@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Kios;
-use App\Models\User;
 use App\Models\Berkas;
-use App\Models\Petani;
-use App\Models\Dukcapil;
 use App\Models\DataLahan;
-use App\Models\Komoditas;
-use App\Models\Persetujuan;
+use App\Models\Dukcapil;
 use App\Models\JenisKelamin;
-use App\Models\KelompokTani;
-use Illuminate\Http\Request;
 use App\Models\KategoriPetani;
+use App\Models\KelompokTani;
+use App\Models\Kios;
+use App\Models\Komoditas;
+use App\Models\Pemerintah;
+use App\Models\Persetujuan;
+use App\Models\Petani;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Debug\Dumper;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,8 +92,19 @@ class PemerintahController extends Controller
     public function verif_laporan()
     {
         $petani = Kios::all();
+        $persetujuan = Persetujuan::all();
         $tgl= Carbon::now()->isoFormat('ddd, LL');
-        return view('pemerintah.persetujuan', compact('petani', 'tgl'));
+        return view('pemerintah.persetujuan', compact('petani', 'tgl', 'persetujuan'));
+    }
+
+    public function pdf_pemerintah(){
+        $mpdf = new \Mpdf\Mpdf();
+        $petani = Kios::all();
+        $persetujuan = Persetujuan::all();
+        $tgl = Carbon::now()->isoFormat('ddd, LL');
+        $html = view('pemerintah.persetujuan', compact('petani', 'tgl', 'persetujuan'));
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('laporan_pemerintah.pdf', );
     }
 
     public function showFiles()
@@ -167,6 +180,49 @@ class PemerintahController extends Controller
         return view('pemerintah.ubah', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas', 'persetujuan'));
     }
 
+    public function ubahveriflaporan($id)
+    {   
+        $data = Kios::all();
+        // $profil = Petani::where('id', $data)->first();
+        // $kelamin = JenisKelamin::all();
+        // $berkas = Berkas::all();
+        // $datalahan = DataLahan::all();
+        // $user = User::all();
+        $persetujuan = Persetujuan::all();
+        // $userId = $profil->pluck('users_id')->toArray();
+        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        // $berkasId = $profil->pluck('berkas_id')->toArray();
+        // dd($kelamin);
+        // $users = User::whereIn('id', $userId)->first();
+        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+        // $berkasuser = Berkas::whereIn('id', $kelaminId)->first();
+        $datapetani = Kios::findOrFail($id);
+        $petani = Kios::find($id);
+        // dd($datapetani);
+
+        return view('pemerintah.ubah2', compact('data', 'datapetani', 'persetujuan', 'petani'));
+    }
+
+    public function storeveriflaporan(Request $request)
+    {
+        $daftar= $request->validate([
+            'id' => 'numeric',
+            'komentar' => 'required',
+            'persetujuan' => 'required'
+        ]);
+        
+        $daftar['persetujuans_id']= $request ->input('persetujuan');
+        
+        Kios::where('id',$daftar['id'])->update([
+            'komentar' => $daftar['komentar'],
+            'persetujuans_id' => $daftar['persetujuan']
+        ]);
+
+        $request = session();
+        $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
+        return redirect('/veriflaporan');
+    }
+
     public function storeverif(Request $request)
     {
         $daftar= $request->validate([
@@ -195,5 +251,25 @@ class PemerintahController extends Controller
         $request = session();
         $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
         return redirect('/verifpetani');
+    }
+
+    public function dataakun()
+    {
+        $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
+        $keltani = Pemerintah::where('id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $user = Auth::user();
+        // $pemerintah = Pemerintah::where('id', $keltani)->first();
+        // $data = Pemerintah::all();
+        
+        return view('pemerintah.datapemerintah', compact('keltani', 'user'));
+    }
+
+    public function generatePdf()
+    {
+        $petani = Petani::all();
+        $tgl = now()->format('Y-m-d'); // Example for the date
+
+        $pdf = PDF::loadView('pemerintah.persetujuan', compact('petani', 'tgl'));
+        return $pdf->download('laporan_petani.pdf');
     }
 }
