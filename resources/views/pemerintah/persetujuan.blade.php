@@ -1,4 +1,4 @@
-@extends('layout.pemerintah')
+@extends('layout.laporankios')
 @section('container')
 
    <div class="absolute top-20 right-2 overflow-x-auto w-[81.5%]  rounded-xl ">

@@ -1,4 +1,24 @@
-@extends('layout.pemerintah')
+@php
+    $roleId = Auth::user()->roles_id;
+    $layout = '';
+
+    switch ($roleId) {
+        case 1:
+            $layout = 'layout.admin';
+            break;
+        case 2:
+            $layout = 'layout.pemerintah';
+            break;
+        case 3:
+            $layout = 'layout.kelompoktani';
+            break;
+        default:
+            $layout = 'layout.default';  // Optionally handle unrecognized roles
+            break;
+    }
+@endphp
+
+@extends($layout)
 
 @section('container')
 
@@ -6,11 +26,11 @@
     <form class="relative bg-[FFFFFF] px-48 mt-4 w-auto flex flex-col space-y-3">
         <div class="relative z-0 w-full group">
             <label for="username" class="px-4">Username</label>
-            @foreach ( $user as $user )
-                @if ($user->id == $users->id)
-                <p type="text" name="nik" id="username" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="">{{ $user->username }} </p>
-                @endif
-            @endforeach
+            {{-- @foreach ( $user as $us ) --}}
+                {{-- @if ($us->id == $users->id) --}}
+                    <p type="text" name="nik" id="username" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="">{{ $users->username }} </p>
+                {{-- @endif --}}
+            {{-- @endforeach --}}
         </div>
         <div class="relative z-0 w-full group">
             <label for="nama" class="px-4"> Nama Lengkap</label>
@@ -23,9 +43,9 @@
         <div class="flex relative z-0 w-full group">
             <div class=" mr-16">
                 <label for="kelamin" class="px-4">Jenis Kelamin</label>
-                @foreach ( $kelamin as $kelamin ) 
-                    @if ($kelamin->id == $kelaminuser->id)  
-                    <p type="text" name="nik" id="kelamin" class="block py-2.5 px-4 text-sm text-black w-[350px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder=""> {{ $kelamin->nama }}</p>
+                @foreach ( $kelamin as $kel ) 
+                    @if ($kel->id == $kelaminuser->id)  
+                        <p type="text" name="nik" id="kelamin" class="block py-2.5 px-4 text-sm text-black w-[350px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder=""> {{ $kel->nama }}</p>
                     @endif
                 @endforeach
             </div>

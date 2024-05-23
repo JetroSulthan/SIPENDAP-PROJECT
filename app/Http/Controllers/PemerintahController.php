@@ -10,6 +10,7 @@ use App\Models\KategoriPetani;
 use App\Models\KelompokTani;
 use App\Models\Kios;
 use App\Models\Komoditas;
+use App\Models\LaporanPemerintah;
 use App\Models\Pemerintah;
 use App\Models\Persetujuan;
 use App\Models\Petani;
@@ -73,20 +74,36 @@ class PemerintahController extends Controller
 
     public function detailkelompok($id)
     {   
+        // $data = Petani::all();
+        // $petani = Petani::find($id);
+        // $profil = Petani::where('id', $petani);
+        // // dd($petani);
+        // // $profil = KelompokTani::find($id);
+        // $kelamin = JenisKelamin::all();
+        // $user = User::all();
+        // $userId = $profil->pluck('id')->toArray();
+        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        // // dd($kelamin);
+        // $users = User::whereIn('id', $userId)->first();
+        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+
         $data = Petani::all();
-        $petani = Petani::find($id);
-        $profil = Petani::where('id', $petani);
-        // dd($petani);
-        // $profil = KelompokTani::find($id);
         $kelamin = JenisKelamin::all();
         $user = User::all();
-        $userId = $profil->pluck('users_id')->toArray();
-        $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
-        // dd($kelamin);
-        $users = User::whereIn('id', $userId)->first();
-        $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
 
-        return view('pemerintah.detail', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data', 'petani'));
+        // Mencari petani berdasarkan ID yang diberikan
+        // $petani = KelompokTani::find($id);
+        $profil = KelompokTani::where('id', $id)->first();
+        // Mengambil user ID dan kelamin ID dari profil
+        $userId = $profil->users_id; 
+        // dd($userId); // Asumsikan ada kolom user_id di tabel Petani
+        $kelaminId = $profil->jenis_kelamins_id;  // Asumsikan ada kolom jenis_kelamins_id di tabel Petani
+
+        // Mencari user dan jenis kelamin berdasarkan ID yang telah diambil
+        $users = User::find($userId);
+        $kelaminuser = JenisKelamin::find($kelaminId);
+
+        return view('pemerintah.detail', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data'));
     }
 
     public function verif_laporan()
@@ -127,7 +144,7 @@ class PemerintahController extends Controller
 
     public function showFiles()
     {
-        $files = Kios::all(); // Fetch all files from the database
+        $files = LaporanPemerintah::all(); // Fetch all files from the database
         return view('pemerintah.laporanpemerintah', compact('files'));
     }
 
@@ -143,8 +160,8 @@ class PemerintahController extends Controller
 
     // Assuming 'laporan' is a field in your Kios model that holds the file name
         // $filePath = asset('laporan/' . $data->laporan);  // Generates a URL to a file stored in the public directory
-
     return view('pemerintah.liatlaporan', compact('petani'));
+
     }
 
     public function download($file)
@@ -271,7 +288,18 @@ class PemerintahController extends Controller
         return redirect('/verifpetani');
     }
 
-    public function dataakun()
+    public function dataakun($id)
+    {
+        $keltani = Pemerintah::find($id);
+
+        $users = User::find($keltani->users_id);
+        // $pemerintah = Pemerintah::where('id', $keltani)->first();
+        // $data = Pemerintah::all();
+        
+        return view('pemerintah.datapemerintah', compact('keltani', 'users'));
+    }
+
+    public function ubahakun()
     {
         $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
         $keltani = Pemerintah::where('id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
@@ -279,7 +307,32 @@ class PemerintahController extends Controller
         // $pemerintah = Pemerintah::where('id', $keltani)->first();
         // $data = Pemerintah::all();
         
-        return view('pemerintah.datapemerintah', compact('keltani', 'user'));
+        return view('pemerintah.ubahdatapemerintah', compact('keltani', 'user'));
+    }
+
+    public function storeubah(Request $request)
+    {
+        $daftar= $request->validate([
+            'users_id' => 'numeric',
+            'username' => 'required',
+            'nama_lengkap' => 'required',
+            'nip' => 'required',
+            'nomor_sk' => 'required'
+        ]);
+
+        Pemerintah::where('users_id',$daftar['users_id'])->update([
+            'nama_lengkap' => $daftar['nama_lengkap'],
+            'nip' => $daftar['nip'],
+            'nomor_sk' => $daftar['nomor_sk']
+        ]);
+
+        User::where('id', $daftar['users_id'])->update([
+            'username' => $daftar['username']
+        ]);
+
+        $request = session();
+        $request->flash('success', 'Berhasil mengubah akun');
+        return redirect('/datapemerintah');
     }
 
     public function generatePdf()

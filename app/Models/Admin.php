@@ -13,10 +13,6 @@ class Admin extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $guarded = [
-        'id_admin',
-    ];
-
     protected $fillable =[
         'nama'  
     ];

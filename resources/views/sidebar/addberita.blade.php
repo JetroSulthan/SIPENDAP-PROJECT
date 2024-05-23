@@ -84,4 +84,14 @@
             </li>
         </ul>
     </div>
+
+    <div class="bottom-4 absolute w-[250px] p-2">
+        <form action="/logout" method="POST">
+        @csrf
+            <button class="flex w-full p-2 hover:text-white text-gray-900 rounded-lg dark:text-white hover:bg-red-600 dark:hover:bg-gray-700 group">
+                <img src="/img/logout.png" alt="" class="w-6 hover:bg-white">
+                <span class="flex ms-3 whitespace-nowrap">Log Out</span>
+            </button>
+        </form>
+    </div>
 </aside>

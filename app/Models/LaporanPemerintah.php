@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class LaporanPemerintah extends Model
 {
     use HasFactory;
+
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $fillable =[
+        'laporan'
+    ];
 }

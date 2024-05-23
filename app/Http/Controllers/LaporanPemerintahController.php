@@ -40,4 +40,6 @@ class LaporanPemerintahController extends Controller
 
         return back()->with('success', 'File has been uploaded and data saved successfully.');
     }
+
+    
 }

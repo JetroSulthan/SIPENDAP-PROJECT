@@ -2,6 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\TrustHosts;
+use Illuminate\Http\Middleware\HandleCors;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -68,4 +72,9 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'kelompoktani' => \App\Http\Middleware\KelompokTaniMiddleware::class,
     ];
+
+    protected function schedule(Schedule $schedule)
+    {   
+        $schedule->command('generate:monthlypdf')->monthly();
+    }
 }

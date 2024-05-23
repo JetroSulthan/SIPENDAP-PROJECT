@@ -1,4 +1,27 @@
-@extends('layout.admin')
+@php
+    $roleId = Auth::user()->roles_id;
+    $layout = '';
+
+    switch ($roleId) {
+        case 1:
+            $layout = 'layout.addberita';
+            break;
+        case 2:
+            $layout = 'layout.pemerintah';
+            break;
+        case 3:
+            $layout = 'layout.kelompoktani';
+            break;
+        default:
+            $layout = 'layout.default';  // Optionally handle unrecognized roles
+            break;
+    }
+@endphp
+
+@extends($layout)
+
+
+
 @section('container')
 
 <div class="flex flex-col">

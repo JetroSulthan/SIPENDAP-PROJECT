@@ -1,7 +1,30 @@
-@extends('layout.pemerintah')
+@php
+    $roleId = Auth::user()->roles_id;
+    $layout = '';
+    $link = '';
+
+    switch ($roleId) {
+        case 1:
+            $layout = 'layout.admin';
+            break;
+        case 2:
+            $layout = 'layout.pemerintah';
+            break;
+        case 3:
+            $layout = 'layout.kelompoktani';
+            break;
+        default:
+            $layout = 'layout.default';  // Optionally handle unrecognized roles
+            break;
+    }
+@endphp
+
+
+
+@extends($layout)
 
 @section('container')
-    <div class="flex flex-col mx-96 absolute top-36 bg-white w-[65vw] h-[40vw] rounded-[30px]">
+    <div class="flex flex-col mx-96 absolute top-8 bg-white w-[65vw] h-[40vw] rounded-[30px]">
         <div class="flex flex-col items-center justify-center">
             <p class="text-3xl font-bold mt-5 mb-10">Daftar Akun Kelompok Tani</p>
             <table class=" cursor-pointer text-left rounded-xl w-[60vw] text-sm">
@@ -15,11 +38,22 @@
                 <tbody>
                     @foreach ($keltani as $item)
                     <tr>
-                            <td class="px-4 py-4 border-b-2">
+                        <td class="px-4 py-4 border-b-2">
+                            @switch($roleId)
+                                @case(1)
+                                <a href="/keltanis/{{ $item->id }}">
+                                    <div>{{ $item->nama_lengkap }}</div>
+                                </a>
+                                    @break
+                                @case(2)
                                 <a href="/keltani/{{ $item->id }}">
                                     <div>{{ $item->nama_lengkap }}</div>
                                 </a>
-                            </td>
+                                    @break
+                                @default
+                                    @break
+                            @endswitch
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

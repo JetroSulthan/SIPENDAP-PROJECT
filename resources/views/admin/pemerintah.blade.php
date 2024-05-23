@@ -1,4 +1,4 @@
-@extends('layout.pemerintah')
+@extends('layout.admin')
 
 @section('container')
     <div class="flex flex-col mx-96 absolute top-36 bg-white w-[65vw] h-[40vw] rounded-[30px]">
@@ -16,7 +16,7 @@
                     @foreach ($keltani as $item)
                     <tr>
                             <td class="px-4 py-4 border-b-2">
-                                <a href="/keltani/{{ $item->id }}">
+                                <a href="/pemerintah/{{ $item->id }}">
                                     <div>{{ $item->nama_lengkap }}</div>
                                 </a>
                             </td>
@@ -24,6 +24,8 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <a href="/daftar/pemerintah" class="px-4 py-1.5 relative bg-[#72B944] w-24 text-center rounded-xl mt-3  text-white">Tambah</a>
         </div>
     </div>
 

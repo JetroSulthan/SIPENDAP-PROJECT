@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="/data-akun"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                         <path
@@ -57,5 +57,15 @@
                 </a>
             </li>
         </ul>
+    </div>
+
+    <div class="bottom-4 absolute w-[250px] p-2">
+        <form action="/logout" method="POST">
+        @csrf
+            <button class="flex w-full p-2 hover:text-white text-gray-900 rounded-lg dark:text-white hover:bg-red-600 dark:hover:bg-gray-700 group">
+                <img src="/img/logout.png" alt="" class="w-6 hover:bg-white">
+                <span class="flex ms-3 whitespace-nowrap">Log Out</span>
+            </button>
+        </form>
     </div>
 </aside>
