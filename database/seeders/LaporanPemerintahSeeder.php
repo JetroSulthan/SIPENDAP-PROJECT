@@ -2,19 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Kios;
-use Illuminate\Database\Seeder;
+use App\Models\LaporanPemerintah;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
-class KiosSeeder extends Seeder
+class LaporanPemerintahSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Kios::create([
-            'laporan' => 'Tester File.pdf'
+        LaporanPemerintah::create([
+            'laporan' => 'Testing(bkn file asli).pdf'
         ]);
     }
 }
