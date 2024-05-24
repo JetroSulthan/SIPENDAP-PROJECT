@@ -52,7 +52,9 @@
                         @foreach ($persetujuan as $p)
                            @if ($item->persetujuans_id == $p->id)    
                               <div>
-                                 {{ $p->opsi }}
+                                 <a href="/verifikasilaporan/{{ $item->id }}">
+                                    {{ $p->opsi }}
+                                 </a>
                               </div>
                            @endif
                         @endforeach
@@ -68,9 +70,6 @@
          @endforeach
      </table>
    </div>
-   <a href="/testing/pdf">
-      <button  class="bottom-[270px] right-4 text-lg absolute font-sans text-black rounded-lg bg-white w-[115px] mt-1">Print PDF</button>
-   </a>
 
 
 

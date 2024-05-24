@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('kios', function (Blueprint $table) {
             $table->id();
             $table->string('laporan');
+            $table->string('komentar');
+            $table->foreignId('persetujuans_id');
         });
     }
 

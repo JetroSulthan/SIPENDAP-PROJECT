@@ -3,8 +3,6 @@
 
 @section('container')
 
-  {{-- @dd($regist); --}}
-
 <div class=" flex justify-center h-[130vh]">
     @if($errors->any())
       <div class="absolute top-20 z-10 alert bg-slate-400">
@@ -15,10 +13,11 @@
         </ul>
       </div>
     @endif
+
     @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-      <i class="bi bi-check-circle-fill"> </i>{{ session('success') }}
-    </div>
+      <div class="alert alert-success" role="alert">
+        <i class="bi bi-check-circle-fill"> </i>{{ session('success') }}
+      </div>
     @endif
 
     <div class="flex flex-col justify-center items-center relative mt-20 mb-8 bg-white w-[900px] rounded-[30px]">

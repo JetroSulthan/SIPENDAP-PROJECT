@@ -115,13 +115,13 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Telegram</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="/testing/pdf"
                 class="flex items-center top-10 p-2 hover:text-white text-gray-900 rounded-lg dark:text-white hover:bg-lime-400 dark:hover:bg-gray-700 group">
                 <img src="/img/printer.png" alt="" class="w-6">
                     <span class="flex-1 ms-3 whitespace-nowrap">Print Pdf</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>  
     </div>
 

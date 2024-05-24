@@ -63,7 +63,7 @@ Route::middleware('kelompoktani')->group(function(){
 // Pemerintah
 Route::middleware('pemerintah')->group(function(){
     Route::get('/dashboard', function () {return view('pemerintah.dashboard');});
-    Route::get('/datapemerintah',[PemerintahController::class,"dataakun"]);
+    Route::get('/datapemerintah',[PemerintahController::class,"datapemerintah"]);
     Route::get('/ubahdatapemerintah',[PemerintahController::class,"ubahakun"]);
     Route::put('/ubahdatapemerintah',[PemerintahController::class,"storeubah"]);
     Route::get('/verifpetani',[PemerintahController::class,'lihat']);
@@ -78,6 +78,8 @@ Route::middleware('pemerintah')->group(function(){
     Route::get('/keltani/{id}',[PemerintahController::class,'detailkelompok']);
     Route::get('/daftar-kelompok-tani',[DaftarKelompokTani::class,'kelompoktani']);
     Route::post('/daftar-kelompok-tani',[DaftarKelompokTani::class,"regiskeltani"]);
+    Route::get('/daftarkelompok', function () {return view('pemerintah.succes.daftarkelompoktani');});
+    Route::get('/ubahpemerintah', function () {return view('pemerintah.succes.ubahdatapemerintah');});
     Route::get('/view/laporan',[PemerintahController::class,"showFiles"]);
     Route::get('/laporan/pdf', [PemerintahController::class, 'generatePdf']);
     Route::get('/coba',[PemerintahController::class,"cobafile"]);
@@ -104,6 +106,8 @@ Route::middleware('admin')->group(function(){
     Route::post('/daftar/pemerintah',[DaftarPemerintah::class,'regispemerintah']);
     Route::get('/pemerintah',[DaftarPemerintah::class,'kelompok']);
     Route::get('/pemerintah/{id}',[PemerintahController::class,"dataakun"]);
+    Route::get('/editdatapemerintah',[PemerintahController::class,"ubahakun"]);
+    Route::put('/editdatapemerintah',[PemerintahController::class,"storeubah"]);
     Route::get('/berita',  [BeritaController::class,'index']);
     Route::get('/keltanis',[PemerintahController::class,'kelompok']);
     Route::get('/keltanis/{id}',[PemerintahController::class,'detailkelompok']);

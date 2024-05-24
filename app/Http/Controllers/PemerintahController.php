@@ -290,6 +290,7 @@ class PemerintahController extends Controller
 
     public function dataakun($id)
     {
+        
         $keltani = Pemerintah::find($id);
 
         $users = User::find($keltani->users_id);
@@ -297,6 +298,15 @@ class PemerintahController extends Controller
         // $data = Pemerintah::all();
         
         return view('pemerintah.datapemerintah', compact('keltani', 'users'));
+    }
+
+    public function datapemerintah()
+    {
+        $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
+        $keltani = Pemerintah::where('id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $user = Auth::user();
+        
+        return view('pemerintah.datapemerintah', compact('keltani', 'user'));
     }
 
     public function ubahakun()
@@ -332,7 +342,7 @@ class PemerintahController extends Controller
 
         $request = session();
         $request->flash('success', 'Berhasil mengubah akun');
-        return redirect('/datapemerintah');
+        return redirect('/ubahpemerintah');
     }
 
     public function generatePdf()

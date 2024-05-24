@@ -104,7 +104,7 @@ class RegisterPetaniController extends Controller
 
         $request = session();
         // var_dump($request->all());
-        $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
+        $request->flash('success', 'Data Petani Sudah Berhasil Dibuat');
         return redirect('/home');
     }
 

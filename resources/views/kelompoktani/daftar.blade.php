@@ -13,10 +13,21 @@
       </div>
     @endif
     @if(session()->has('success'))
-    <div class="alert alert-success" role="alert">
-      <i class="bi bi-check-circle-fill"> </i>{{ session('success') }}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill"></i> 
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @endif
+    <script>
+        setTimeout(function() {
+            let alert = document.querySelector('.alert');
+            if (alert) {
+                let bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }
+        }, 5000); // 5 seconds
+    </script>
+@endif
 
     <div class="flex flex-col justify-center items-center relative mx-auto mt-20 mb-8 bg-white w-[1000px]  rounded-[30px]">
         <div class="mt-6">
@@ -80,7 +91,7 @@
                 <input id="text" type="number" name="vol_komoditas" min="0" id="floating_first_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Volume Komoditas" value="Volume Komoditas (Kg)" required />
             </div>
             <div class="relative z-0 w-full group">
-                <input type="text" name="luas_lahan" id="floating_last_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[365px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Luas Total" required />
+                <input type="text" name="luas_lahan" id="floating_last_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[365px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Luas Total (Dalam Bentuk Hektar)" required />
             </div>
             </div>
             <div class="relative z-0 w-full -mt-20 group">
@@ -147,6 +158,25 @@
       document.getElementById('nama_lengkap').value = transcript;
     };
   });
+
+  function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        // Set the max attribute for the date input
+        document.addEventListener('DOMContentLoaded', function() {
+            var dateInput = document.getElementById('tanggal_lahir');
+            var today = new Date();
+            dateInput.max = formatDate(today);
+    });
 
   
   // stopBtn.addEventListener('click', () => {

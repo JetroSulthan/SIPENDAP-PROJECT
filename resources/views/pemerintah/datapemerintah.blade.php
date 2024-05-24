@@ -48,7 +48,15 @@
             <div>
               <div class="relative z-0 w-full group">
                   <label for="username" class="px-4">Username</label>
-                  <div type="text" name="username" id="username" class="flex py-2.5 px-4 text-sm text-[#72B944] w-[500px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $users->username }}</div>
+                  @switch($roleId)
+                    @case(1)
+                        <div type="text" name="username" id="username" class="flex py-2.5 px-4 text-sm text-[#72B944] w-[500px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $users->username }}</div>
+                      @break
+                    @case(2)
+                      <div type="text" name="username" id="username" class="flex py-2.5 px-4 text-sm text-[#72B944] w-[500px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $user->username }}</div>
+                      @break    
+                  @endswitch
+                  
               </div>
             </div>
 
@@ -73,9 +81,18 @@
           </form>  
 
           <div class=" px-80">
-            <a href="/ubahdatapemerintah">
-              <button class=" mt-5 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Ubah</button>
-            </a>
+            @switch($roleId)
+                @case(1)
+                      <a href="/editdatapemerintah">
+                        <button class=" mt-5 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Ubah</button>
+                      </a>    
+                    @break
+                @case(2)
+                      <a href="/ubahdatapemerintah">
+                        <button class=" mt-5 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Ubah</button>
+                      </a>
+                    @break
+            @endswitch
           </div>
       </div>
   </div>

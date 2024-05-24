@@ -69,6 +69,6 @@ class DaftarKelompokTani extends Controller
         $request = session();
         // var_dump($request->all());
         $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
-        return redirect('/dashboard');
+        return redirect('/daftarkelompok');
     }
 }

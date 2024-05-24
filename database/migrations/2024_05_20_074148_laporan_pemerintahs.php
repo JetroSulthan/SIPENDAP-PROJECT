@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('laporan_pemerintahs', function (Blueprint $table) {
             $table->id();
             $table->string('laporan');
-            $table->timestamp('updated_at');
             $table->string('komentar')->nullable();
             $table->string('persetujuans_id')->nullable();
         });

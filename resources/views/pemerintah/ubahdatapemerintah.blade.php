@@ -57,7 +57,9 @@
         </div>
 
         <div class="mx-auto">
-            <button type="submit" class=" mt-5 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] sm:w-auto px-20 py-1.5 text-center">Kirim</button>
+          <a href="/ubahpemerintah">
+            <button type="submit" class=" mt-5 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] sm:w-auto px-20 py-1.5 text-center">Simpan Perubahan</button>
+          </a>
         </div>
       </form>  
 
