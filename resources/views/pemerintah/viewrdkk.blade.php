@@ -1,4 +1,19 @@
-@php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            /* border-collapse: separate; */
+        }
+    </style>
+</head>
+<body>
+    @php
     function getLuasValues($luas) {
         if ($luas <= 1) {
             return [
@@ -19,9 +34,6 @@
     }
 @endphp
 
-@extends('layout.pemerintah')
-
-@section('container')
 <div class="w-[80%] top-10 right-3 overflow-x-auto absolute rounded-xl">
     <table class="rounded-xl w-full table-auto border-opacity-90 border-black">
         <thead class="bg-[#FFA500] rounded-xl text-center">
@@ -76,20 +88,11 @@
         
     </table>
 
-    <div>
-        <a href="{{ url('/rdkk/view') }}">Print</a>
-    </div>
+    @if (strpos(url()->current(), 'view') == false)
+        <a href="/rdkk/view">
+            <button class="bottom-[270px] right-4 text-lg absolute font-sans text-black rounded-lg bg-white w-[115px] mt-1">Print PDF</button>
+        </a>
+   @endif
 </div>
-
-  <style>
-    body{
-         background:#72B944;
-    }
-
-    table, th, td {
-        border: 1px solid black;
-        /* border-collapse: separate; */
-    }
-</style>
-
-@endsection
+</body>
+</html>

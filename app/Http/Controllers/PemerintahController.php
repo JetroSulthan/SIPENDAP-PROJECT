@@ -106,6 +106,73 @@ class PemerintahController extends Controller
         return view('pemerintah.detail', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data'));
     }
 
+    public function ubahdetail($id)
+    {   
+        // $data = Petani::all();
+        // $petani = Petani::find($id);
+        // $profil = Petani::where('id', $petani);
+        // // dd($petani);
+        // // $profil = KelompokTani::find($id);
+        // $kelamin = JenisKelamin::all();
+        // $user = User::all();
+        // $userId = $profil->pluck('id')->toArray();
+        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        // // dd($kelamin);
+        // $users = User::whereIn('id', $userId)->first();
+        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+
+        $data = Petani::all();
+        $kelamin = JenisKelamin::all();
+        $user = User::all();
+
+        // Mencari petani berdasarkan ID yang diberikan
+        // $petani = KelompokTani::find($id);
+        $profil = KelompokTani::where('id', $id)->first();
+        // Mengambil user ID dan kelamin ID dari profil
+        $userId = $profil->users_id; 
+        // dd($userId); // Asumsikan ada kolom user_id di tabel Petani
+        $kelaminId = $profil->jenis_kelamins_id;  // Asumsikan ada kolom jenis_kelamins_id di tabel Petani
+
+        // Mencari user dan jenis kelamin berdasarkan ID yang telah diambil
+        $users = User::find($userId);
+        $kelaminuser = JenisKelamin::find($kelaminId);
+
+        return view('pemerintah.ubahdatakeltani', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data'));
+    }
+
+    public function storeubahdetail(Request $request)
+    {
+        $daftar= $request->validate([
+            'users_id' => 'numeric',
+            'username' => 'required',
+            'nama_lengkap' => 'required',
+            'nik' => 'required',
+            'jalan' => 'required',
+            'kecamatan' => 'required',
+            'kota' => 'required',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required'
+        ]);
+
+        KelompokTani::where('users_id',$daftar['users_id'])->update([
+            'nama_lengkap' => $daftar['nama_lengkap'],
+            'nik' => $daftar['nik'],
+            'jalan' => $daftar['jalan'],
+            'kecamatan' => $daftar['kecamatan'],
+            'kota' => $daftar['kota'],
+            'tanggal_lahir' => $daftar['tanggal_lahir'],
+            'tempat_lahir' => $daftar['tempat_lahir']
+        ]);
+
+        User::where('id', $daftar['users_id'])->update([
+            'username' => $daftar['username']
+        ]);
+
+        $request = session();
+        $request->flash('success', 'Berhasil mengubah akun');
+        return redirect('/keltani');
+    }
+
     public function verif_laporan()
     {
         $petani = Kios::all();

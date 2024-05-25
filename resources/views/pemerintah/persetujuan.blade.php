@@ -52,7 +52,7 @@
                         @foreach ($persetujuan as $p)
                            @if ($item->persetujuans_id == $p->id)    
                               <div>
-                                 <a href="/verifikasilaporan/{{ $item->id }}">
+                                 <a href="/verifikasilaporan/{{  }}">
                                     {{ $p->opsi }}
                                  </a>
                               </div>

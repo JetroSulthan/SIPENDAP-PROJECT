@@ -78,6 +78,27 @@
     </div>
 </div>
 
+<SCript>
+  function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        // Set the max attribute for the date input
+        document.addEventListener('DOMContentLoaded', function() {
+            var dateInput = document.getElementById('tanggal_lahir');
+            var today = new Date();
+            dateInput.max = formatDate(today);
+    });
+</SCript>
+
 <style>
   body{
     background-image: url('img/sawah.jpg');

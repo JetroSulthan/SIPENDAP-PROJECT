@@ -58,6 +58,16 @@
                     @endforeach
                 </tbody>
             </table>
+            @switch($roleId)
+                @case(1)
+                
+                    @break
+                @case(2)
+                <a href="/daftar-kelompok-tani" class="px-4 py-1.5 relative bg-[#72B944] w-24 text-center rounded-xl mt-3  text-white">Tambah</a>
+                    @break
+                @default
+                    @break
+            @endswitch
         </div>
     </div>
 

@@ -62,7 +62,7 @@ class RegisterPetaniController extends Controller
     {
         $regist= $request->validate([
             'nama_lengkap' => 'required',
-            'nik' => 'required | unique:petanis',
+            'nik' => 'required |numeric| unique:petanis',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required | date',
             'jalan' => 'required',
@@ -124,11 +124,51 @@ class RegisterPetaniController extends Controller
     public function dataakun()
     {
         $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
-        $keltani = KelompokTani::where('id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $keltani = KelompokTani::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
         $user = Auth::user();
-        // $pemerintah = Pemerintah::where('id', $keltani)->first();
-        // $data = Pemerintah::all();
         
         return view('kelompoktani.datakelompoktani', compact('keltani', 'user'));
+    }
+
+    public function ubahakun()
+    {
+        $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
+        $keltani = KelompokTani::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $user = Auth::user();
+        
+        return view('kelompoktani.ubahdatakelompoktani', compact('keltani', 'user'));
+    }
+
+    public function storeubah(Request $request)
+    {
+        $daftar= $request->validate([
+            'users_id' => 'numeric',
+            'username' => 'required',
+            'nama_lengkap' => 'required',
+            'nik' => 'required',
+            'jalan' => 'required',
+            'kecamatan' => 'required',
+            'kota' => 'required',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required'
+        ]);
+
+        KelompokTani::where('users_id',$daftar['users_id'])->update([
+            'nama_lengkap' => $daftar['nama_lengkap'],
+            'nik' => $daftar['nik'],
+            'jalan' => $daftar['jalan'],
+            'kecamatan' => $daftar['kecamatan'],
+            'kota' => $daftar['kota'],
+            'tanggal_lahir' => $daftar['tanggal_lahir'],
+            'tempat_lahir' => $daftar['tempat_lahir']
+        ]);
+
+        User::where('id', $daftar['users_id'])->update([
+            'username' => $daftar['username']
+        ]);
+
+        $request = session();
+        $request->flash('success', 'Berhasil mengubah akun');
+        return redirect('/data-akun');
     }
 }

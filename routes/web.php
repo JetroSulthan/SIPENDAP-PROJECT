@@ -55,6 +55,8 @@ Route::middleware('kelompoktani')->group(function(){
     Route::get('/verifikasi', [RegisterPetaniController::class, "verif"]);
     Route::get('/beritas',  [BeritaController::class,'index']);
     Route::get('/data-akun', [RegisterPetaniController::class,'dataakun']);
+    Route::get('/ubah-akun', [RegisterPetaniController::class,'ubahakun']);
+    Route::put('/ubah-akun', [RegisterPetaniController::class,'storeubah']);
     Route::get('/detailberitas/{id}',  [BeritaController::class,'detail']);
     Route::get('/home', function () { return view('kelompoktani.dashboard');});
 });
@@ -76,6 +78,8 @@ Route::middleware('pemerintah')->group(function(){
     Route::get('/detailberitapemerintah/{id}',  [BeritaController::class,'detail']);
     Route::get('/keltani',[PemerintahController::class,'kelompok']);
     Route::get('/keltani/{id}',[PemerintahController::class,'detailkelompok']);
+    Route::get('/ubahkeltani/{id}',[PemerintahController::class,'ubahdetail']);
+    Route::put('/ubahkeltani/{id}',[PemerintahController::class,'storeubahdetail']);
     Route::get('/daftar-kelompok-tani',[DaftarKelompokTani::class,'kelompoktani']);
     Route::post('/daftar-kelompok-tani',[DaftarKelompokTani::class,"regiskeltani"]);
     Route::get('/daftarkelompok', function () {return view('pemerintah.succes.daftarkelompoktani');});

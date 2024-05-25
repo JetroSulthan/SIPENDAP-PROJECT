@@ -23,7 +23,7 @@ class BerkasController extends Controller
     {
         $mpdf = new \Mpdf\Mpdf();
         $datapetani = Petani::all();
-        $html = view('pemerintah.rdkk', compact('datapetani'));
+        $html = view('pemerintah.viewrdkk', compact('datapetani'));
         $mpdf->WriteHTML($html);
         $mpdf->Output('nama_file.pdf', 'I');
     }

@@ -50,7 +50,7 @@
                   <label for="username" class="px-4">Username</label>
                   @switch($roleId)
                     @case(1)
-                        <div type="text" name="username" id="username" class="flex py-2.5 px-4 text-sm text-[#72B944] w-[500px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $users->username }}</div>
+                      <div type="text" name="username" id="username" class="flex py-2.5 px-4 text-sm text-[#72B944] w-[500px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $users->username }}</div>
                       @break
                     @case(2)
                       <div type="text" name="username" id="username" class="flex py-2.5 px-4 text-sm text-[#72B944] w-[500px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $user->username }}</div>
@@ -62,7 +62,7 @@
 
             <div>
               <div class="mb-3">
-                  <h1 class="text-center font-bold text-2xl">Data Diri Kelompok Tani</h1>
+                  <h1 class="text-center font-bold text-2xl">Data Diri Pemerintah</h1>
               </div>
               <div class="relative z-0 w-full group">
                   <label for="nama_lengkap" class="px-4">Nama Lengkap</label>
@@ -83,9 +83,9 @@
           <div class=" px-80">
             @switch($roleId)
                 @case(1)
-                      <a href="/editdatapemerintah">
+                      {{-- <a href="/editdatapemerintah">
                         <button class=" mt-5 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Ubah</button>
-                      </a>    
+                      </a>     --}}
                     @break
                 @case(2)
                       <a href="/ubahdatapemerintah">

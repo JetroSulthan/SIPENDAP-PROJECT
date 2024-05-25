@@ -50,7 +50,7 @@
                 @endforeach
             </div>
             <div class="mr-4">
-                <label for="tempat" class="px-4">Tempat</label>
+                <label for="tempat" class="px-4">Tempat Lahir</label>
                 
                 <input type="text" name="nik" id="tempat" class="block py-2.5 px-4 text-sm text-black w-[150px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="" value="{{ $profil->tempat_lahir }}"/>
             </div>
@@ -64,7 +64,7 @@
             <input type="text" name="nik" id="alamat" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="{{ $profil->jalan }}"/>
         </div>
         <div>
-            <a href="" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[15px] w-full sm:w-auto px-8 py-1.5 text-center"> Ubah
+            <a href="/ubahkeltani/{{ $profil->id }}" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[15px] w-full sm:w-auto px-8 py-1.5 text-center"> Ubah
             </a>
         </div>
     </form>
