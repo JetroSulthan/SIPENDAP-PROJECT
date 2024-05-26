@@ -1,7 +1,7 @@
 @extends('layout.laporankios')
 @section('container')
 
-   <div class="absolute top-20 right-2 overflow-x-auto w-[81.5%]  rounded-xl ">
+   <div class="absolute top-8 right-2 overflow-x-auto w-[81.5%]  rounded-xl ">
       <table class="w-full table-auto border-black text-black">
          <thead class=" text-center bg-white border-black text-black">
                  <th class="px-1 py-2 font-xl text-black">
@@ -52,7 +52,7 @@
                         @foreach ($persetujuan as $p)
                            @if ($item->persetujuans_id == $p->id)    
                               <div>
-                                 <a href="/verifikasilaporan/{{  }}">
+                                 <a href="/verifikasilaporan/{{ $item->id }}">
                                     {{ $p->opsi }}
                                  </a>
                               </div>

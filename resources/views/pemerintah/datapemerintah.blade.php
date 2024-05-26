@@ -24,7 +24,7 @@
 
 @section('container')
 
-  <div class=" bg-red-200 flex justify-center h-[100vh]">
+  <div class=" flex justify-center h-[100vh]">
       @if($errors->any())
         <div class="absolute top-20 z-10 alert bg-slate-400">
           <ul>
@@ -99,10 +99,7 @@
 
   <style>
     body{
-      background-image: url('img/sawah.jpg');
-      background-size: cover; /* Menutup seluruh bagian body */
-      background-position: center; /* Pusatkan gambar */
-      background-repeat: no-repeat;
+      background-image: linear-gradient(#72B944, #FFFFFF)
     }
   </style>
 @endsection

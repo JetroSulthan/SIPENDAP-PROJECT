@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Kios;
-use Illuminate\Http\Request;
-use App\Models\LaporanPemerintah;
 use App\Http\Controllers\Controller;
+use App\Models\Kios;
+use App\Models\LaporanPemerintah;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LaporanPemerintahController extends Controller
 {
@@ -41,5 +42,15 @@ class LaporanPemerintahController extends Controller
         return back()->with('success', 'File has been uploaded and data saved successfully.');
     }
 
-    
+    public function download($id)
+    {
+        $file = LaporanPemerintah::findOrFail($id); // Ensure the file exists
+        $filePath = storage_path('app/public/app/' . $file->laporan); // Adjust the path as necessary
+
+        if ($filePath) {
+            return response()->download($filePath, $file->laporan);
+        } else {
+            return redirect()->back()->with('error', 'File not found.');
+        }
+    }
 }

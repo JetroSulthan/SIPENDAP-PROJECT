@@ -10,7 +10,7 @@
 
         <div class="">
             <label for="nama_lengkap" class="px-4">Nama Lengkap</label>
-            <iframe src="/verifikasilaporan/{{ $datapetani->laporan }}" class="h-[300px]"></iframe>
+            <div class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{$datapetani->laporan }}</div>
         </div>
         <div class="">
             <label for="nama_lengkap" class="px-4">Status</label>
@@ -24,12 +24,12 @@
         <div>
             <input type="hidden" class="" name="id" value="{{ $datapetani->id }}">
         </div>
-        <div class="">
+        <div class="flex flex-col">
             <label for="komentar">Komentar</label>
-            <textarea class="" id="komentar" name="komentar">{{ $datapetani->komentar }}</textarea>
+            <textarea class="rounded-lg border-lime-500" id="komentar" name="komentar">{{ $datapetani->komentar }}</textarea>
         </div>
         <!-- Tambahkan field lain sesuai kebutuhan -->
-        <button type="submit" class="bg-red-200">Update</button>
+        <button type="submit" class="bg-lime-300 px-4 rounded-xl mt-4 ">Update</button>
     </form>
 </div>
 

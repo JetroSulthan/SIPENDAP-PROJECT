@@ -2,8 +2,8 @@
 
 @section('container')
 
-     <div class="flex absolute top-32 px-[340px] rounded-xl ">
-      <table class="rounded-xl w-full table-auto">
+     <div class="flex absolute overflow-x-auto top-32 px-[340px] rounded-xl ">
+      <table class="rounded-xl overflow-hidden w-full">
           <thead class="bg-white rounded-xl">
               <tr class="rounded-xl">
                   <th 

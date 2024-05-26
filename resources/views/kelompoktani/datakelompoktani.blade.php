@@ -57,7 +57,7 @@
                 </div>
                 <div class="flex flex-col">
                   <label for="tanggal_lahir" class="px-6">Tanggal Lahir</label>
-                  <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="block ml-[10px] py-2.5 px-4 text-sm text-[#72B944] w-[235px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tanggal Lahir" value="{{ $keltani->tanggal_lahir }}" required />
+                  <p type="date" name="tanggal_lahir" id="tanggal_lahir" class="block ml-[10px] py-2.5 px-4 text-sm text-[#72B944] w-[235px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tanggal Lahir">{{ $keltani->tanggal_lahir }}</p>
                 </div>
               </div>
             </div>
@@ -73,10 +73,10 @@
                 {{-- <input type="text" name="jenis_kelamin" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Jenis Kelamin " required />  --}}
             {{-- </div> --}}
           </form>  
-          <div class="mx-auto">
+          {{-- <div class="mx-auto">
             <a href="/ubah-akun" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Ubah
             </a>
-          </div>
+          </div> --}}
     </div>
 </div>
 

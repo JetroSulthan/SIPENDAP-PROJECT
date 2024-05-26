@@ -132,17 +132,19 @@ class PemerintahController extends Controller
         $userId = $profil->users_id; 
         // dd($userId); // Asumsikan ada kolom user_id di tabel Petani
         $kelaminId = $profil->jenis_kelamins_id;  // Asumsikan ada kolom jenis_kelamins_id di tabel Petani
-
+        
         // Mencari user dan jenis kelamin berdasarkan ID yang telah diambil
         $users = User::find($userId);
+        // dd($users);
         $kelaminuser = JenisKelamin::find($kelaminId);
 
-        return view('pemerintah.ubahdatakeltani', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'data'));
+        return view('pemerintah.ubahdatakeltani', compact('profil','kelamin', 'kelaminuser', 'user', 'users', 'userId', 'data'));
     }
 
     public function storeubahdetail(Request $request)
     {
         $daftar= $request->validate([
+            'id' => 'numeric',
             'users_id' => 'numeric',
             'username' => 'required',
             'nama_lengkap' => 'required',
@@ -154,14 +156,17 @@ class PemerintahController extends Controller
             'tempat_lahir' => 'required'
         ]);
 
-        KelompokTani::where('users_id',$daftar['users_id'])->update([
+        $daftar['jenis_kelamins_id'] = $request->input('jenis_kelamin');
+
+        KelompokTani::where('id',$daftar['id'])->update([
             'nama_lengkap' => $daftar['nama_lengkap'],
             'nik' => $daftar['nik'],
             'jalan' => $daftar['jalan'],
             'kecamatan' => $daftar['kecamatan'],
             'kota' => $daftar['kota'],
             'tanggal_lahir' => $daftar['tanggal_lahir'],
-            'tempat_lahir' => $daftar['tempat_lahir']
+            'tempat_lahir' => $daftar['tempat_lahir'],
+            'jenis_kelamins_id' => $daftar['jenis_kelamins_id']
         ]);
 
         User::where('id', $daftar['users_id'])->update([
@@ -170,7 +175,7 @@ class PemerintahController extends Controller
 
         $request = session();
         $request->flash('success', 'Berhasil mengubah akun');
-        return redirect('/keltani');
+        return redirect('/mengubahdatakeltani');
     }
 
     public function verif_laporan()
@@ -228,7 +233,13 @@ class PemerintahController extends Controller
     // Assuming 'laporan' is a field in your Kios model that holds the file name
         // $filePath = asset('laporan/' . $data->laporan);  // Generates a URL to a file stored in the public directory
     return view('pemerintah.liatlaporan', compact('petani'));
+    }
 
+    public function viewerpemerintah($id)
+    {
+        $petani = LaporanPemerintah::find($id);
+        
+    return view('pemerintah.liatlaporanpemerintah', compact('petani'));
     }
 
     public function download($file)
@@ -322,7 +333,7 @@ class PemerintahController extends Controller
 
         $request = session();
         $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
-        return redirect('/veriflaporan');
+        return redirect('/ubahverifkios');
     }
 
     public function storeverif(Request $request)

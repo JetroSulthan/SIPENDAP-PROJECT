@@ -97,7 +97,7 @@
             var today = new Date();
             dateInput.max = formatDate(today);
     });
-</SCript>
+</Script>
 
 <style>
   body{

@@ -52,6 +52,9 @@ Route::middleware('kelompoktani')->group(function(){
     Route::get('/daftar',[RegisterPetaniController::class,'petani']);
     Route::post('/daftar', [RegisterPetaniController::class,"regisPetani"]);
     Route::get('/datapetani/{id}', [RegisterPetaniController::class,"lihat"]);
+    Route::get('/ubahdatapetani/{id}', [RegisterPetaniController::class,"ubah"]);
+    Route::put('/ubahdatapetani/{id}', [RegisterPetaniController::class,"ubahpetani"]);
+    Route::get('/mengubahdatapetanis', function () {return view('kelompoktani.succes.mengubahdatapetani');});
     Route::get('/verifikasi', [RegisterPetaniController::class, "verif"]);
     Route::get('/beritas',  [BeritaController::class,'index']);
     Route::get('/data-akun', [RegisterPetaniController::class,'dataakun']);
@@ -84,11 +87,16 @@ Route::middleware('pemerintah')->group(function(){
     Route::post('/daftar-kelompok-tani',[DaftarKelompokTani::class,"regiskeltani"]);
     Route::get('/daftarkelompok', function () {return view('pemerintah.succes.daftarkelompoktani');});
     Route::get('/ubahpemerintah', function () {return view('pemerintah.succes.ubahdatapemerintah');});
+    Route::get('/tambahdata', function () {return view('pemerintah.succes.menambahdatapersetujuan');});
+    Route::get('/mengubahdatakeltani', function () {return view('pemerintah.succes.mengubahdatakelompoktani');});
+    Route::get('/ubahverifkios', function () {return view('pemerintah.succes.mengubahdataverifkios');});
     Route::get('/view/laporan',[PemerintahController::class,"showFiles"]);
     Route::get('/laporan/pdf', [PemerintahController::class, 'generatePdf']);
     Route::get('/coba',[PemerintahController::class,"cobafile"]);
     Route::get('/coba2',[LaporanPemerintahController::class,"cobakirim"]);
     Route::get('/laporan/{id}',[PemerintahController::class,"viewer"]);
+    Route::get('/laporanpemerintah/{id}',[PemerintahController::class,"viewerpemerintah"]);
+    Route::post('/laporanpemerintah/{id}',[LaporanPemerintahController::class,"download"])->name('download');
     Route::post('/coba',[PemerintahController::class,"store"]);
     Route::post('/coba2',[LaporanPemerintahController::class,"kirim_pemerintah"]);
     Route::post('/view/laporan',[PemerintahController::class,"download"]);
@@ -106,6 +114,8 @@ Route::middleware('pemerintah')->group(function(){
 Route::middleware('admin')->group(function(){
     Route::get('/admin', function () {return view('admin.dashboard');});
     Route::get('/data',[AdminController::class,'dataakun']);
+    Route::get('/ubahdata',[AdminController::class,'ubahakun']);
+    Route::put('/ubahdata',[AdminController::class,'storeubah']);
     Route::get('/daftar/pemerintah',[DaftarPemerintah::class,'pemerintahan']);
     Route::post('/daftar/pemerintah',[DaftarPemerintah::class,'regispemerintah']);
     Route::get('/pemerintah',[DaftarPemerintah::class,'kelompok']);
@@ -123,6 +133,9 @@ Route::middleware('admin')->group(function(){
     Route::post('/buatberita', [BeritaController::class,'store']);
     Route::get('/detailberita/{id}',  [BeritaController::class,'detail'])->name('detail.berita');
     Route::get('/telegramadmin', function () {return view('admin.telegram');});
+    Route::get('/ubahadmin', function () {return view('admin.succes.mengubahdataakunadmin');});
+    Route::get('/ubahpemerintahs', function () {return view('admin.succes.dataakunpemerintah');});
+    
 });
 
 

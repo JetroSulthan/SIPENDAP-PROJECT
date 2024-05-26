@@ -1,57 +1,59 @@
 @extends('layout.pemerintah')
 
 @section('container')
-{{-- @php
-   $berkas = Berkas::all();
-   $datapetani = Petani::all();
-   $idBerkasPetani = $datapetani->pluck('berkas_id')->toArray();
-   $berkasTerpilih = $berkas->whereIn('id', $idBerkasPetani);
 
-   dd($berkasTerpilih);
-@endphp --}}
-{{-- @dd($lahan_user) --}}
-     <div class="flex absolute top-32 px-[340px] rounded-xl ">
-      <table class="rounded-xl w-full table-auto">
-          <thead class="bg-white rounded-xl">
-              <tr class="rounded-xl">
-                  <th 
-                      class="px-3 py-2 text-left text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                      No</th>
-                  <th 
-                      class=" px-20 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                      Data Diri</th>
-                  <th 
-                      class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                     </th>
-              </tr>
-          </thead>
-<div>
-   @foreach ($files as $file)
-   {{-- @dd($file->id) --}}
-         <form action="" method="POST" enctype="multipart/form-data">
-            @csrf
-            <tbody class="bg-white  ">
-               
-                <tr class="border-b">
-                    <td class="">
-                        <div class="px-2 py-1">{{ $loop->iteration }}</div>
-                    </td>
-                    <td class="">
-                       <a href="/laporan/{{ $file->id }}">
-                          <div class="px-3">{{ $file->laporan }}</div>
-                       </a>
-                    </td>
-                   <td class="px-4 py-4">
-                     {{-- <a href="/laporan/{{ $file->id }}"> --}}
-                        <button type="submit" class="btn btn-succes">
-                           <img src="/img/downloads.png" alt="" class="h-7 w-7">
-                        </button>
-                     {{-- </a> --}}
-                   </td>
-                </tr>
-                @endforeach
-            </tbody>
-         </form>
+<div class="flex absolute w-[1100px] my-16 right-20">
+
+   @if($errors->any())
+      <div class="absolute top-20 z-10 alert bg-slate-400">
+        <ul>
+          @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
+    @if(session()->has('success'))
+    <div class="alert alert-success" role="alert">
+      <i class="bi bi-check-circle-fill"> </i>{{ session('success') }}
+    </div>
+    @endif
+
+   <table class="rounded-2xl overflow-hidden w-full">
+      <thead class="bg-white rounded-xl">
+         <tr class="rounded-xl">
+            <th class="px-2 py-2 text-left text-sm font-normal text-black tracking-wider font-[Poppins]">No</th>
+            <th class="px-3 py-2 text-left text-sm font-normal text-black tracking-wider font-[Poppins]">Data Laporan</th>
+            <th class="py-2 text-center text-sm font-normal text-black tracking-wider font-[Poppins]"></th>
+         </tr>
+      </thead>
+      <tbody class="bg-white">
+         @foreach ($files as $file)
+         <tr class="border-b">
+            <td class="">
+               <div class="px-2 py-1">{{ $loop->iteration }}</div>
+            </td>
+            <td class="">
+               <a href="/laporanpemerintah/{{ $file->id }}">
+                  <div class="px-3">{{ $file->laporan }}</div>
+               </a>
+            </td>
+            <td class="py-4">
+               <form action="{{ route('download', $file->id) }}" method="POST">
+                  @csrf
+                  <button type="submit" class="btn btn-success">
+                     <img src="/img/downloads.png" alt="" class="h-7 w-7">
+                  </button>
+               </form>
+            </td>
+         </tr>
+         @endforeach
+      </tbody>
+   </table>
+</div>
+
+
 
           <script>
             document.getElementById('tambah').onclick = function(event) {

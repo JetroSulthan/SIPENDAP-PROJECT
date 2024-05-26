@@ -12,6 +12,7 @@
             </ul>
         </div>
     @endif
+
     @if(session()->has('success'))
         <div class="absolute top-32 z-10 alert alert-success p-4 rounded-md bg-green-500 text-white" role="alert">
             <i class="bi bi-check-circle-fill"></i> {{ session('success') }}
@@ -24,20 +25,25 @@
             <p class="text-center"></p>
         </div>
 
-        <form class="w-full flex flex-col space-y-4" enctype="multipart/form-data" action="" method="">
+        <form class="w-full flex flex-col space-y-4" enctype="multipart/form-data" action="" method="POST">
+         @csrf
+            @method('PUT')
             <div class="w-full">
                 <label for="username" class="px-4">Username</label>
-                <p type="text" name="username" id="username" class="block py-2.5 px-4 text-sm text-[#72B944] w-full border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $users->username }}</p>
+                <input type="text" name="username" id="username" class="block py-2.5 px-4 text-sm text-[#72B944] w-full border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" value="{{ $users->username }}" required/>
             </div>
+
+            <input type="hidden" name="users_id" value="{{ $keltani->users_id }}">
+
             <div class="w-full">
                 <label for="nama" class="px-4 mt-4">Nama</label>
-                <p type="text" name="nama" id="nama" class="block py-2.5 px-4 text-sm text-[#72B944] w-full border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl">{{ $keltani->nama }}</p>
+                <input type="text" name="nama" id="nama" class="block py-2.5 px-4 text-sm text-[#72B944] w-full border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" value="{{ $keltani->nama }}" required/>
             </div>
-        </form>
 
-        <div class="mt-6">
-            <a href="/ubahdata" class="text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] px-20 py-1.5 text-center">Ubah</a>
-        </div>
+            <a href="" >
+                <button type="submit" class="text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] ml-[520px] px-20 py-1.5 text-center">Simpan</button>
+            </a>
+        </form>
     </div>
 </div>
 
