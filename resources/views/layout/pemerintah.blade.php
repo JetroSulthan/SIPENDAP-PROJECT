@@ -10,8 +10,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> --}}
-    
     @vite(['resources/css/app.css','resources/js/app.js'])
+    
+    <style>
+      body{
+        background-image: linear-gradient(#72B944, #FFFFFF)
+      }
+    </style>
   </head>
   <body>
 
@@ -19,6 +24,6 @@
   @yield('container')
 
 
-    
+
   </body>
 </html>

@@ -316,24 +316,60 @@ class PemerintahController extends Controller
         return view('pemerintah.ubahveriflaporan', compact('data', 'datapetani', 'persetujuan', 'petani'));
     }
 
+    public function ubahverifkomentar($id)
+    {   
+        $data = Kios::all();
+        // $profil = Petani::where('id', $data)->first();
+        // $kelamin = JenisKelamin::all();
+        // $berkas = Berkas::all();
+        // $datalahan = DataLahan::all();
+        // $user = User::all();
+        $persetujuan = Persetujuan::all();
+        // $userId = $profil->pluck('users_id')->toArray();
+        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        // $berkasId = $profil->pluck('berkas_id')->toArray();
+        // dd($kelamin);
+        // $users = User::whereIn('id', $userId)->first();
+        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+        // $berkasuser = Berkas::whereIn('id', $kelaminId)->first();
+        $datapetani = Kios::findOrFail($id);
+        $petani = Kios::find($id);
+        // dd($datapetani);
+
+        return view('pemerintah.ubahkomentarlaporan', compact('data', 'datapetani', 'persetujuan', 'petani'));
+    }
+
     public function storeveriflaporan(Request $request)
     {
-        $daftar= $request->validate([
-            'id' => 'numeric',
-            'komentar' => 'required',
-            'persetujuan' => 'required'
-        ]);
+        if($request['persetujuan'] == 'Terima'){
+            $persetujuan = 1;
+        }else{
+            $persetujuan = 2;
+        }
         
-        $daftar['persetujuans_id']= $request ->input('persetujuan');
-        
-        Kios::where('id',$daftar['id'])->update([
-            'komentar' => $daftar['komentar'],
-            'persetujuans_id' => $daftar['persetujuan']
+        Kios::where('id',$request['id'])->update([
+            'persetujuans_id' => $persetujuan
         ]);
 
         $request = session();
         $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
         return redirect('/ubahverifkios');
+    }
+
+    public function storeverifkomentar(Request $request)
+    {
+        $daftar= $request->validate([
+            'id' => 'numeric',
+            'komentar' => 'required'
+        ]);
+        
+        Kios::where('id',$request['id'])->update([
+            'komentar' => $daftar['komentar']
+        ]);
+
+        $request = session();
+        $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
+        return redirect('/ubahkomentarkios');
     }
 
     public function storeverif(Request $request)

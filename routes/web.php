@@ -15,6 +15,7 @@ use App\Http\Controllers\DaftarKelompokTani;
 use App\Http\Controllers\PemerintahController;
 use App\Http\Controllers\RegisterPetaniController;
 use App\Http\Controllers\LaporanPemerintahController;
+use App\Models\Kios;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,9 +74,11 @@ Route::middleware('pemerintah')->group(function(){
     Route::put('/ubahdatapemerintah',[PemerintahController::class,"storeubah"]);
     Route::get('/verifpetani',[PemerintahController::class,'lihat']);
     Route::put('/verifpetani',[PemerintahController::class,'edit']);
-    Route::get('/ubahverif/{id}',[PemerintahController::class,'ubahverif']);
     Route::get('/verifikasilaporan/{id}',[PemerintahController::class,'ubahveriflaporan']);
     Route::put('/verifikasilaporan/{id}',[PemerintahController::class,'storeveriflaporan']);
+    Route::get('/komentarlaporan/{id}',[PemerintahController::class,'ubahverifkomentar']);
+    Route::put('/komentarlaporan/{id}',[PemerintahController::class,'storeverifkomentar']);
+    Route::get('/ubahverif/{id}',[PemerintahController::class,'ubahverif']);
     Route::put('/ubahverif/{id}',[PemerintahController::class,'storeverif']);
     Route::get('/beritapemerintah',  [BeritaController::class,'index']);
     Route::get('/detailberitapemerintah/{id}',  [BeritaController::class,'detail']);
@@ -90,6 +93,7 @@ Route::middleware('pemerintah')->group(function(){
     Route::get('/tambahdata', function () {return view('pemerintah.succes.menambahdatapersetujuan');});
     Route::get('/mengubahdatakeltani', function () {return view('pemerintah.succes.mengubahdatakelompoktani');});
     Route::get('/ubahverifkios', function () {return view('pemerintah.succes.mengubahdataverifkios');});
+    Route::get('/ubahkomentarkios', function () {return view('pemerintah.succes.mengubahverifkomentarkios');});
     Route::get('/view/laporan',[PemerintahController::class,"showFiles"]);
     Route::get('/laporan/pdf', [PemerintahController::class, 'generatePdf']);
     Route::get('/coba',[PemerintahController::class,"cobafile"]);
@@ -106,6 +110,7 @@ Route::middleware('pemerintah')->group(function(){
     Route::get('/testing',[PemerintahController::class,"laporan_tes"]);
     Route::get('/laporanpemerintah',[PemerintahController::class,"pdf_pemerintah"]);
     Route::get('/verif/laporan',[PemerintahController::class,"verif_laporan"]);
+    Route::post('/laporan/{id}',[KiosController::class,"download"])->name('downloadlaporan');
     Route::get('/telegram', function () {return view('pemerintah.telegram');});
 });
 

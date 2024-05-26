@@ -48,7 +48,7 @@
             <textarea class="" id="komentar" name="komentar">{{ $datapetani->komentar }}</textarea>
         </div>
         <!-- Tambahkan field lain sesuai kebutuhan -->
-        <button type="submit" class="bg-red-200">Update</button>
+        <button type="submit" class="bg-lime-300 px-4 rounded-xl mt-4">Update</button>
     </form>
 </div>
 

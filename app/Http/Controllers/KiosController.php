@@ -12,11 +12,11 @@ use Illuminate\Validation\Validator;
 
 class KiosController extends Controller
 {
-    public function showFiles()
-    {
-        $files = Kios::all(); // Fetch all files from the database
-        return view('pemerintah.laporanpemerintah', compact('files'));
-    }
+    // public function showFiles()
+    // {
+    //     $files = Kios::all(); // Fetch all files from the database
+    //     return view('pemerintah.laporanpemerintah', compact('files'));
+    // }
 
     public function index()
     {
@@ -33,13 +33,6 @@ class KiosController extends Controller
 
     return view('pemerintah.liatlaporan', compact('petani'));
     }
-
-    public function download($file)
-    {
-        $download = public_path('laporan/' . $file);
-        return response()->download($download);
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -61,6 +54,18 @@ class KiosController extends Controller
         Kios::create($data);
 
         return back()->with('success', 'File has been uploaded and data saved successfully.');
+    }
+
+    public function download($id)
+    {
+        $file = Kios::findOrFail($id); // Ensure the file exists
+        $filePath = public_path('laporan/' . $file->laporan); // Adjust the path as necessary
+
+        if ($filePath) {
+            return response()->download($filePath, $file->laporan);
+        } else {
+            return redirect()->back()->with('error', 'File not found.');
+        }
     }
 
     
