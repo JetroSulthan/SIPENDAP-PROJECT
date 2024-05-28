@@ -2,8 +2,8 @@
 
 @section('container')
 
-     <div class="flex absolute top-20 px-96 rounded-xl ">
-      <table class="rounded-xl w-full table-auto">
+     <div class="flex absolute overflow-hidden right-36  top-20 w-[1000px] rounded-xl ">
+      <table class="rounded-xl w-full overflow-hidden table-auto">
           <thead class="bg-white rounded-xl">
               <tr class="rounded-xl">
                   <th 
@@ -12,15 +12,15 @@
                   <th 
                       class=" px-20 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                       Data Diri</th>
-                  <th
+                  {{-- <th
                       class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                      Data Lahan</th>
+                      Data Lahan</th> --}}
                   <th
                       class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                       Pembaruan Terakhir</th>
-                  <th
+                  {{-- <th
                       class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
-                      Berkas</th>
+                      Berkas</th> --}}
                   <th 
                       class="px-12 py-2 text-center text-xs font-normal text-black  tracking-wider font-[Poppins]">
                       Komentar</th>
@@ -53,7 +53,7 @@
                             <div class="px-3 text-red-700">{{ $dp->nama_lengkap }}</div>
                         </a>
                     @endif
-                    </td>
+                    {{-- </td>
                     <td class="flex content-center items-center justify-center">
                         @foreach ($data_lahan as $data)
                             @if ($dp->data_lahans_id == $data->id) <!-- Check if there is a related DataLahan -->
@@ -62,11 +62,11 @@
                                 </div>
                             @endif
                         @endforeach
-                    </td>
+                    </td> --}}
                     <td class="">
-                       <div class="px-3">{{ $tgl }}</div>
+                       <div class="px-3 text-center">{{ $tgl }}</div>
                     </td>
-                    <td class=" flex justify-center">
+                    {{-- <td class=" flex justify-center">
                         @foreach ($berkas as $b)
                             @if ($dp->berkas_id == $b->id)
                             <!-- Check if there is a related DataLahan -->
@@ -75,11 +75,10 @@
                                 </div>
                             @endif
                         @endforeach
-                    </td>
+                    </td> --}}
                     <td class="">
-                        <div class=" px-2 py-1 fs-6 lh-sm">
+                        <div class=" px-2 py-2 text-center fs-6 lh-sm">
                            <p>{{ $dp->komentar }}</p>
-                          {{-- <input type="text"> --}}
                         </div>
                     </td>
                     <td class="relative flex justify-center">
@@ -147,10 +146,11 @@
 
         </script> 
 
-    <style>
+<style>
     body{
-        background:#72B944;
+      background-image: linear-gradient(#72B944, #ffffff);
+      background-attachment: fixed;
     }
-    </style>
+</style>
 @endsection
 

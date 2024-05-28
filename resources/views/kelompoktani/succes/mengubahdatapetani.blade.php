@@ -16,7 +16,7 @@
         <img src="/img/centang.png" alt="" class="w-[200px]">
 
         <div class="inline-flex ">
-            <a href="/verifpetani" class=" "> 
+            <a href="/verifikasi" class=" "> 
                 {{-- <img src="/img/arrows.png" alt="" class="w-6"> --}}
                 <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[15px] w-full sm:w-auto px-5  py-1.5 text-center">Kembali ke Data Petani</button>
             </a>

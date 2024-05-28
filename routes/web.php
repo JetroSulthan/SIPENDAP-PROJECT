@@ -72,14 +72,17 @@ Route::middleware('pemerintah')->group(function(){
     Route::get('/datapemerintah',[PemerintahController::class,"datapemerintah"]);
     Route::get('/ubahdatapemerintah',[PemerintahController::class,"ubahakun"]);
     Route::put('/ubahdatapemerintah',[PemerintahController::class,"storeubah"]);
+    Route::get('/datapetanis/{id}', [RegisterPetaniController::class,"lihat"]);
     Route::get('/verifpetani',[PemerintahController::class,'lihat']);
     Route::put('/verifpetani',[PemerintahController::class,'edit']);
     Route::get('/verifikasilaporan/{id}',[PemerintahController::class,'ubahveriflaporan']);
     Route::put('/verifikasilaporan/{id}',[PemerintahController::class,'storeveriflaporan']);
     Route::get('/komentarlaporan/{id}',[PemerintahController::class,'ubahverifkomentar']);
     Route::put('/komentarlaporan/{id}',[PemerintahController::class,'storeverifkomentar']);
-    Route::get('/ubahverif/{id}',[PemerintahController::class,'ubahverif']);
-    Route::put('/ubahverif/{id}',[PemerintahController::class,'storeverif']);
+    Route::get('/ubahverif/{id}',[PemerintahController::class,'ubahkomentar']);
+    Route::put('/ubahverif/{id}',[PemerintahController::class,'storekomentar']);
+    Route::get('/ubahverifs/{id}',[PemerintahController::class,'ubahverif']);
+    Route::put('/ubahverifs/{id}',[PemerintahController::class,'storeverif']);
     Route::get('/beritapemerintah',  [BeritaController::class,'index']);
     Route::get('/detailberitapemerintah/{id}',  [BeritaController::class,'detail']);
     Route::get('/keltani',[PemerintahController::class,'kelompok']);
@@ -130,6 +133,8 @@ Route::middleware('admin')->group(function(){
     Route::get('/berita',  [BeritaController::class,'index']);
     Route::get('/keltanis',[PemerintahController::class,'kelompok']);
     Route::get('/keltanis/{id}',[PemerintahController::class,'detailkelompok']);
+    Route::get('/ubahkeltanis/{id}',[PemerintahController::class,'ubahdetail']);
+    Route::put('/ubahkeltanis/{id}',[PemerintahController::class,'storeubahdetail']);
     Route::get('/buatberita', [BeritaController::class,'create']);
     Route::get('/buatberita', [BeritaController::class,'create']);
     Route::get('/updateberita/{id}', [BeritaController::class,'edit'])->name('edit.berita');

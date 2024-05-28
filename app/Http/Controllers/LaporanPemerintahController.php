@@ -14,6 +14,7 @@ class LaporanPemerintahController extends Controller
     public function pdf_pemerintah(){
         $mpdf = new \Mpdf\Mpdf();
         $petani = Kios::all();
+        Carbon::setLocale('id');
         $tgl = Carbon::now()->isoFormat('ddd, LL');
         $html = view('pemerintah.persetujuan', compact('petani', 'tgl'));
         $mpdf->WriteHTML($html);

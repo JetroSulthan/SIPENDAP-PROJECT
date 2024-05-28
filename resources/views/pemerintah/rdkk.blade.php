@@ -22,7 +22,7 @@
 @extends('layout.pemerintah')
 
 @section('container')
-<div class="w-[80%] top-10 right-3 overflow-x-auto absolute rounded-xl">
+<div class="w-[80%] space-y-4 top-10 right-3 overflow-x-auto absolute rounded-xl">
     <table class="rounded-xl w-full table-auto border-opacity-90 border-black">
         <thead class="bg-[#FFA500] rounded-xl text-center">
             <tr class="rounded-xl">
@@ -72,18 +72,17 @@
                 @endif
             @endforeach
         </tbody>
-        
-        
     </table>
 
     <div>
-        <a href="{{ url('/rdkk/view') }}">Print</a>
+        <a href="{{ url('/rdkk/view') }}" class="text-xl px-5 rounded-xl mt-7 text-white bg-[#FFA500]">Unduh</a>
     </div>
 </div>
 
   <style>
     body{
-         background:#72B944;
+      background-image: linear-gradient(#72B944, #ffffff);
+      background-attachment: fixed;
     }
 
     table, th, td {
@@ -91,5 +90,6 @@
         /* border-collapse: separate; */
     }
 </style>
+
 
 @endsection

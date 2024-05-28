@@ -73,11 +73,17 @@
      </table>
    </div>
 
-   @if (strpos(url()->current(), 'pdf') == false)
+   {{-- @if (strpos(url()->current(), 'pdf') == false)
         <a href="/testing/pdf">
             <button class="bottom-[270px] right-4 text-lg absolute font-sans text-black rounded-lg bg-white w-[115px] mt-1">Print PDF</button>
         </a>
-   @endif
+   @endif --}}
+<style>
+    body{
+      background-image: linear-gradient(#72B944, #ffffff);
+      background-attachment: fixed;
+    }
+</style>
 
 </body>
 </html>

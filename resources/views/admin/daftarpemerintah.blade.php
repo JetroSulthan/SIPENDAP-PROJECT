@@ -3,7 +3,7 @@
 
 @section('container')
 
-  <div class=" bg-red-300 flex justify-center h-[100vh]">
+  <div class=" flex justify-center h-[100vh]">
       @if($errors->any())
         <div class="absolute top-20 z-10 alert bg-slate-400">
           <ul>
@@ -36,8 +36,8 @@
                   <input type="password" name="password" id="password" class="block mb-4 py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" required />
               </div>
               <div class="mb-3">
-                <h1 class="text-center font-bold text-2xl">Lengkapi Data Diri Kelompok Tani</h1>
-                <p class="text-center">Isi Keterangan Kelompok Tani dibawah Ini dengan Sesuai!</p>
+                <h1 class="text-center font-bold text-2xl">Lengkapi Data Diri Pemerintah</h1>
+                <p class="text-center">Isi Keterangan Pemerintah dibawah Ini dengan Sesuai!</p>
               </div>
               <div class="relative z-0 w-full group">
                   <input type="text" name="nama_lengkap" id="nama_lengkap" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nama Lengkap" required/>
@@ -49,7 +49,7 @@
                   <input type="text" name="nomor_sk" id="nomor_sk" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nomor SK" required/>
               </div>
               <div class=" px-80">
-                      <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Kirim</button>
+                      <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-20 py-1.5 text-center">Simpan</button>
               </div>
           </form>  
       </div>
@@ -57,10 +57,7 @@
 
 <style>
     body{
-      background-image: url('img/sawah.jpg');
-      background-size: cover; /* Menutup seluruh bagian body */
-      background-position: center; /* Pusatkan gambar */
-      background-repeat: no-repeat;
+      background-image: linear-gradient(#72B944, #ffffff)
     }
 </style>
 @endsection

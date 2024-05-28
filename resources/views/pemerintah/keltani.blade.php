@@ -72,9 +72,10 @@
     </div>
 
 
-<style>
-    body{
-    background: #72B944;
+    <style>
+        body{
+      background-image: linear-gradient(#72B944, #ffffff);
+      background-attachment: fixed;
     }
-</style>
+    </style>
 @endsection

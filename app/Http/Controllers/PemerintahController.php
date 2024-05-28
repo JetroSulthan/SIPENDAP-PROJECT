@@ -31,6 +31,7 @@ class PemerintahController extends Controller
         // dd($data_lahan);
         // $id = Auth::user()->id;
         $datapetani = Petani::all();
+        Carbon::setLocale('id');
         $tgl= Carbon::now()->isoFormat('ddd, LL');
         
         return view('pemerintah.verif', compact('datapetani', 'berkas', 'data_lahan','tgl'));
@@ -60,6 +61,7 @@ class PemerintahController extends Controller
         $persetujuan = Persetujuan::all();
         $dukcapil = Dukcapil::all();
         // dd($persetujuan);
+        Carbon::setLocale('id');
         $tgl = Carbon::now()->isoFormat('ddd, LL');
         
         return view('pemerintah.verif', compact('datapetani', 'tgl', 'berkas', 'data_lahan', 'persetujuan', 'dukcapil'));
@@ -182,6 +184,7 @@ class PemerintahController extends Controller
     {
         $petani = Kios::all();
         $persetujuan = Persetujuan::all();
+        Carbon::setLocale('id');
         $tgl= Carbon::now()->isoFormat('ddd, LL');
         return view('pemerintah.persetujuan', compact('petani', 'tgl', 'persetujuan'));
     }
@@ -190,6 +193,7 @@ class PemerintahController extends Controller
         $mpdf = new \Mpdf\Mpdf();
         $petani = Kios::all();
         $persetujuan = Persetujuan::all();
+        Carbon::setLocale('id');
         $tgl = Carbon::now()->isoFormat('ddd, LL');
         $html = view('pemerintah.persetujuan', compact('petani', 'tgl', 'persetujuan'));
         $mpdf->WriteHTML($html);
@@ -200,6 +204,7 @@ class PemerintahController extends Controller
     {
         $petani = Kios::all();
         $persetujuan = Persetujuan::all();
+        Carbon::setLocale('id');
         $tgl= Carbon::now()->isoFormat('ddd, LL');
         return view('pemerintah.test', compact('petani', 'tgl', 'persetujuan'));
     }
@@ -208,6 +213,7 @@ class PemerintahController extends Controller
         $mpdf = new \Mpdf\Mpdf();
         $petani = Kios::all();
         $persetujuan = Persetujuan::all();
+        Carbon::setLocale('id');  
         $tgl = Carbon::now()->isoFormat('ddd, LL');
         $html = view('pemerintah.test', compact('petani', 'tgl', 'persetujuan'));
         $mpdf->WriteHTML($html);
@@ -271,7 +277,7 @@ class PemerintahController extends Controller
         return back()->with('success', 'File has been uploaded and data saved successfully.');
     }
 
-    public function ubahverif($id)
+    public function ubahkomentar($id)
     {   
         $data = Petani::all();
         // $profil = Petani::where('id', $data)->first();
@@ -291,6 +297,28 @@ class PemerintahController extends Controller
         // dd($datapetani);
 
         return view('pemerintah.ubahverifpetani', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas', 'persetujuan'));
+    }
+
+    public function ubahverif($id)
+    {   
+        $data = Petani::all();
+        // $profil = Petani::where('id', $data)->first();
+        $kelamin = JenisKelamin::all();
+        $berkas = Berkas::all();
+        $datalahan = DataLahan::all();
+        $user = User::all();
+        $persetujuan = Persetujuan::all();
+        // $userId = $profil->pluck('users_id')->toArray();
+        // $kelaminId = $profil->pluck('jenis_kelamins_id')->toArray();
+        // $berkasId = $profil->pluck('berkas_id')->toArray();
+        // dd($kelamin);
+        // $users = User::whereIn('id', $userId)->first();
+        // $kelaminuser = JenisKelamin::whereIn('id', $kelaminId)->first();
+        // $berkasuser = Berkas::whereIn('id', $kelaminId)->first();
+        $datapetani = Petani::findOrFail($id);
+        // dd($datapetani);
+
+        return view('pemerintah.ubahpersetujuanpetani', compact('datalahan','kelamin', 'user', 'data', 'datapetani', 'berkas', 'persetujuan'));
     }
 
     public function ubahveriflaporan($id)
@@ -374,32 +402,35 @@ class PemerintahController extends Controller
 
     public function storeverif(Request $request)
     {
-        $daftar= $request->validate([
-            'id' => 'numeric',
-            'berkas' => 'required',
-            'data_lahan' => 'required',
-            'komentar' => 'required',
-            'persetujuan' => 'required'
-        ]);
+        if($request['persetujuan'] == 'Terima'){
+            $persetujuan = 1;
+        }else{
+            $persetujuan = 2;
+        }
         
-        $daftar['berkas_id']= $request ->input('berkas');
-        $daftar['data_lahans_id']= $request ->input('data_lahan');
-        $daftar['persetujuans_id']= $request ->input('persetujuan');
-        
-        // Petani::create([
-            
-        // ]);
-
-        Petani::where('id',$daftar['id'])->update([
-            'komentar' => $daftar['komentar'],
-            'berkas_id' => $daftar['berkas'],
-            'data_lahans_id' => $daftar['data_lahan'],
-            'persetujuans_id' => $daftar['persetujuan']
+        Petani::where('id',$request['id'])->update([
+            'persetujuans_id' => $persetujuan
         ]);
 
         $request = session();
         $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
-        return redirect('/verifpetani');
+        return redirect('/tambahdata');
+    }
+
+    public function storekomentar(Request $request)
+    {
+        $daftar= $request->validate([
+            'id' => 'numeric',
+            'komentar' => 'required'
+        ]);
+        
+        Petani::where('id',$request['id'])->update([
+            'komentar' => $daftar['komentar']
+        ]);
+
+        $request = session();
+        $request->flash('success', 'Berhasil menambahkan akun, Silakan Login!');
+        return redirect('/tambahdata');
     }
 
     public function dataakun($id)

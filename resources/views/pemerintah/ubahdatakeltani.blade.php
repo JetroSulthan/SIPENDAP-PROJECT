@@ -132,7 +132,8 @@
 
 <style>
     body{
-    background: #72B944;
+      background-image: linear-gradient(#72B944, #ffffff);
+      background-attachment: fixed;
     }
 </style>
 @endsection

@@ -95,6 +95,8 @@ class RegisterPetaniController extends Controller
             'foto_lahan' => 'required |file|mimes:png,jpg,pdf,jpeg'
         ]);
 
+        $regist['jenis_kelamins_id']= $request ->input('jenis_kelamin');
+
         $fileupload = [
             'scan_ktp',
             'scan_kk',
@@ -109,6 +111,11 @@ class RegisterPetaniController extends Controller
                 $regist[$upload] = $nama_file;
             }
         }
+
+        $request = session();
+        // var_dump($request->all());
+        $request->flash('success', 'Data Petani Sudah Berhasil Dibuat');
+        return redirect('/mengubahdatapetanis');
     }
 
     public function ubahpetani(Request $request)
@@ -207,6 +214,7 @@ class RegisterPetaniController extends Controller
         $data_lahan = DataLahan::all();
         $persetujuan = Persetujuan::all();
         $dukcapil = Dukcapil::all();
+        Carbon::setLocale('id');
         $tgl= Carbon::now()->isoFormat('ddd, LL');
 
         return view('kelompoktani.verif', compact( 'datapetani','tgl', 'berkas', 'persetujuan', 'dukcapil', 'data_lahan'));
