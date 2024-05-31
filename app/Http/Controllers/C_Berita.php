@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Berita;
 use App\Models\User;
+use App\Models\Berita;
+use App\Models\M_Berita;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class BeritaController extends Controller
+class C_Berita extends Controller
 {
     public function index()
     {
         $id = Auth::user()->id;
         // $currentuser = User::find($id);
-        $broadcastBerita = Berita::orderBy('created_at', 'DESC')->get();
+        $broadcastBerita = M_Berita::orderBy('created_at', 'DESC')->get();
 
-        return view('admin.berita', compact('broadcastBerita', 'id'));
+        return view('admin.V_berita', compact('broadcastBerita', 'id'));
     }
 
     public function detail(Request $request, $id)
     {
-        $broadcastBerita = Berita::findOrFail($id);
+        $broadcastBerita = M_Berita::findOrFail($id);
         $users_id = $broadcastBerita['users_id'];
         $currentuser = User::find($users_id);
 
-        return view('admin.detailBerita', compact('broadcastBerita', 'currentuser'));
+        return view('admin.V_detailBerita', compact('broadcastBerita', 'currentuser'));
     }
 
     /**
@@ -33,7 +34,7 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('admin.createBerita');
+        return view('admin.V_createBerita');
     }
 
     /**
@@ -58,7 +59,7 @@ class BeritaController extends Controller
         };
 
         $validatedAdd['users_id'] = $id;
-        Berita::create($validatedAdd);
+        M_Berita::create($validatedAdd);
 
         return redirect('berita')->with('success', 'Berita Berhasil Ditambahkan!');
     }
@@ -76,8 +77,8 @@ class BeritaController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $broadcastBerita = Berita::findOrFail($id);
-        return view('admin.updateBerita', compact('broadcastBerita'));
+        $broadcastBerita = M_Berita::findOrFail($id);
+        return view('admin.V_updateBerita', compact('broadcastBerita'));
     }
 
     /**
@@ -85,7 +86,7 @@ class BeritaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $broadcastBerita = Berita::findOrFail($id);
+        $broadcastBerita = M_Berita::findOrFail($id);
 
         $validatedUpdate = $request->validate([
             'thumbnail'=> 'file|mimes:jpg,jpeg,png',
@@ -116,7 +117,7 @@ class BeritaController extends Controller
      */
     public function destroy($id)
     {
-        $destroy = Berita::findOrFail($id);
+        $destroy = M_Berita::findOrFail($id);
         $destroy->delete();
         return redirect('berita')->with('success', 'Berita Berhasil Dihapus!');
     }

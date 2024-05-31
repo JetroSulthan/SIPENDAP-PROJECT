@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <iframe src="/storage/app/{{ $petani->laporan }}" class="h-screen w-screen"></iframe>
+    <iframe src="/public/kk/{{ $files->scan_kk }}" class="h-screen w-screen"></iframe>
 
 </body>
 </html>

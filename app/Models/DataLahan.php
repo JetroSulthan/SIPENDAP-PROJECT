@@ -19,6 +19,6 @@ class DataLahan extends Model
 
     public function Petani()
     {
-        return $this->hasMany(Petani::class, 'data_lahans_id', 'id');
+        return $this->hasMany(M_Petani::class, 'data_lahans_id', 'id');
     }
 }

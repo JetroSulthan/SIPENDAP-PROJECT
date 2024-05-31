@@ -25,15 +25,6 @@
 
 @section('container')
 <div class="bg-[#72B944] flex justify-center h-[150vh]">
-    @if($errors->any())
-      <div class="absolute top-20 z-10 alert bg-slate-400">
-        <ul>
-          @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
     @if(session()->has('success'))
     <div class="alert alert-success" role="alert">
       <i class="bi bi-check-circle-fill"> </i>{{ session('success') }}
@@ -51,22 +42,67 @@
             @method('PUT')
             <div class=" z-0 w-full group">
                 <input type="text" name="nik" id="nik" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="{{ $profil->nik }}"/>
+                @error('nik')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
             </div>
 
             <input type="hidden" name="id" value="{{ $profil->id }}">
 
             <div class=" z-0 w-full mt-1 group">
                 <input type="text" name="nama_lengkap" id="floating_password" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Nama" value="{{ $profil->nama_lengkap }}" />
+                @error('nama_lengkap')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
             </div>
             <div class="inline-flex content-between gap-6">
               <div class=" z-0 w-full mb-1 group">
+                <div>
                   <input type="text" name="jalan" id="floating_first_name" class="block py-2.5 px-4 text-sm mb-2 text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Jalan" value="{{ $profil->jalan }}" />
+                  @error('jalan')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
+                </div>
+                <div>
                   <input type="text" name="kecamatan" id="floating_first_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Kecamatan" value="{{ $profil->kecamatan }}" />
+                  @error('kecamatan')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
+                </div>
+                <div>
                   <input type="text" name="kota" id="floating_first_name" class="block py-2.5 px-4 text-sm mt-2 text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Kota" value="{{ $profil->kota }}" />
+                  @error('kota')
+                  <div class="text-red-500 text-xs  px-4">
+                    *{{ $message }}
+                  </div>
+                @enderror
+                </div>
               </div>
               <div class=" flex z-0 w-full mb-1 group">
+                <div>
                   <input type="text" name="tempat_lahir" id="tempat" class="block py-2.5 px-4 text-sm text-[#72B944] w-[120px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tempat Lahir " value="{{ $profil->tempat_lahir }}" />
+                  @error('tempat_lahir')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
+                </div>
+                <div>
                   <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="block ml-[10px] py-2.5 px-4 text-sm text-[#72B944] w-[245px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tanggal Lahir" value="{{ $profil->tanggal_lahir }}" />
+                  @error('tanggal_lahir')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
+                </div>
               </div>
             </div>
             <div class="inline-flex content-between grid-cols-2 gap-6">
@@ -77,10 +113,21 @@
                         <option value="{{ $item->id }}" {{ $kelaminuser->id == $item->id ? 'selected' : ''}} >{{ $item->nama }}</option>
                       @endforeach
                     </select>
+
+                  @error('jenis_kelamin')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
                   {{-- <input type="text" name="jenis_kelamin" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Jenis Kelamin " required />  --}}
               </div>
               <div class=" z-0 w-full mb-1 group">
                   <input type="text" name="no_telp" id="floating_company" class="block py-2.5 px-4 text-sm text-[#72B944] w-[375px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="No. Telp" value="{{ $profil->no_telp }}" />
+                  @error('no_telp')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
               </div>
             </div>
             <div class=" z-0 w-full group">
@@ -90,17 +137,37 @@
                       <option value="{{ $item->id }}" {{ $komoditasuser->id == $item->id ? 'selected' : '' }} >{{ $item->nama_komoditas }}</option>
                     @endforeach
                   </select>
+                  @error('komoditas')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
                 {{-- <input type="text" name="komoditas" id="floating_email" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="Komoditas " required /> --}}
             </div>
             <div class=" z-0 w-full mt-2 group">
                 <input type="text" name="titik_koor_lahan" id="floating_password" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Koordinat Lahan" value="{{ $profil->titik_koor_lahan }}" />
+                @error('titik_koor_lahan')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
             </div>
             <div class="inline-flex content-between md:gap-6">
             <div class=" z-0 w-full group">
                 <input id="text" type="number" name="vol_komoditas" id="floating_first_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="{{ $profil->vol_komoditas }}" value="" />
+                @error('vol_komoditas')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
             </div>
             <div class=" z-0 w-full group">
                 <input type="text" name="luas_lahan" id="floating_last_name" class="block py-2.5 px-4 text-sm text-[#72B944] w-[375px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Luas Total" value="{{ $profil->luas_lahan }}" />
+                @error('luas_lahan')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
             </div>
             </div>
             <div class=" z-0 w-full -mt-20 group">
@@ -110,6 +177,11 @@
                       <option value="{{ $item->id }}" {{ $kategoriuser->id == $item->id ? 'selected':'' }} >{{ $item->kategori_petani }}</option>
                     @endforeach
                   </select>
+                  @error('kategoris_petanis')
+                    <div class="text-red-500 text-xs  px-4">
+                      *{{ $message }}
+                    </div>
+                  @enderror
                 {{-- <input type="text" name="kategori_petani" id="floating_phone" class="block py-2.5 px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Kategori Petani " required />  --}}
             </div>
             <div class=" z-0 w-full group">
@@ -122,7 +194,8 @@
             </div>
             <div class=" z-0 w-full -mt-10 group">
                 <label for="foto lahan">Foto Lahan (Sertakan Timestamp)</label>
-                <input type="file" name="foto_lahan" id="foto lahan" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah " value="{{ $profil->foto_lahan }}" /> 
+                <p  name="foto_lahan" id="foto lahan" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah " value="">{{ $profil->foto_lahan }}</p>
+                <input type="file"  name="foto_lahan" id="foto lahan" class="block px-4 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah " value="{{ $profil->foto_lahan }}" /> 
             </div>
             <div class="">
               @switch($roleId)

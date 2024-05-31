@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kios extends Model
+class M_LaporanPemerintah extends Model
 {
     use HasFactory;
+
+    protected $table = 'laporan_pemerintahs';
 
     public $incrementing = false;
     public $timestamps = false;
@@ -15,14 +17,4 @@ class Kios extends Model
     protected $fillable =[
         'laporan'
     ];
-
-    public function Petani()
-    {
-        return $this->hasMany(Petani::class);
-    }
-
-    public function Persetujuan()
-    {
-        return $this->belongsTo(Persetujuan::class);
-    }
 }

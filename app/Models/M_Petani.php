@@ -13,12 +13,14 @@ use App\Models\Pemerintah;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Petani extends Model
+class M_Petani extends Model
 {
     use HasFactory;
 
     public $incrementing = false;
     public $timestamps = false;
+
+    protected $table = 'petanis';
 
     protected $guarded = [
         'id_petani',
@@ -52,12 +54,12 @@ class Petani extends Model
 
     public function Pemerintah()
     {
-        return $this->belongsTo(Pemerintah::class);
+        return $this->belongsTo(M_Pemerintah::class);
     }
 
     public function KelompokTani()
     {
-        return $this->belongsTo(KelompokTani::class);
+        return $this->belongsTo(M_KelompokTani::class);
     }
 
     public function Komoditas()
@@ -72,7 +74,7 @@ class Petani extends Model
 
     public function persetujuan()
     {
-        return $this->belongsTo(Persetujuan::class);
+        return $this->belongsTo(M_Persetujuan::class);
     }
 
     public function KategoriPetani()
@@ -92,7 +94,7 @@ class Petani extends Model
 
     public function kios()
     {
-        return $this->belongsTo(Kios::class);
+        return $this->belongsTo(M_LaporanKios::class);
     }
 
     public function dukcapil()

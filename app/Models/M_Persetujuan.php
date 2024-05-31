@@ -2,36 +2,34 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use App\Models\Petani;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Pemerintah extends Model
+class M_Persetujuan extends Model
 {
     use HasFactory;
 
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $table = 'persetujuans';
+
     protected $guarded = [
-        'id_pemerintah',
+        'id_persetujuan',
     ];
 
     protected $fillable =[
-        'users_id',
-        'nip',
-        'nama_lengkap',
-        'nomor_sk'  
+        'opsi'
     ];
-
+    
     public function Petani()
     {
-        return $this->hasMany(Petani::class);
+        return $this->hasMany(M_Petani::class);
     }
 
-    public function User()
+    public function Kios()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(M_LaporanKios::class);
     }
 }

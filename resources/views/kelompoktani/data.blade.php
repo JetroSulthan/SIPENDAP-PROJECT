@@ -61,7 +61,7 @@
                   <p type="text" name="kota" id="floating_first_name" class="block py-2.5 px-4 text-sm mt-2 text-[#72B944] w-[400px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Kota">{{ $profil->kota }}</p>
               </div>
               <div class=" flex z-0 w-full mb-1 group">
-                  <p type="text" name="tempat_lahir" id="tempat" class=" text-center block py-2.5 px-4 text-sm text-[#72B944] w-[120px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tempat Lahir ">{{ $profil->tempat_lahir }}</p>
+                  <p type="text" name="tempat_lahir" id="tempat" class=" flex justify-center py-2.5 px-4 text-sm text-[#72B944] w-[120px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tempat Lahir ">{{ $profil->tempat_lahir }}</p>
                   <p type="date" name="tanggal_lahir" id="tanggal_lahir" class=" text-center text-balance   block ml-[10px] py-2.5 px-4 text-sm text-[#72B944] w-[245px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Tanggal Lahir">{{ $profil->tanggal_lahir }}</p>
               </div>
             </div>
@@ -92,20 +92,26 @@
             </div>
             <div class=" z-0 w-full group">
                 <label for="ktp">KTP</label>
-                <p type="File" name="scan_ktp" id="ktp" class="block px-4 py-2 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="Klik Untuk Mengunggah ">{{ $profil->scan_ktp }}</p>
+                <a href="/ktpfile/{{ $profil->id }}">
+                  <p type="File" name="scan_ktp" id="ktp" class="block px-4 py-2 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="Klik Untuk Mengunggah ">{{ $profil->scan_ktp }}</p>
+                </a>
             </div>
             <div class=" z-0 w-full mt-1 group">
                 <label for="KK">Kartu Keluarga</label>
-                <p type="file" name="scan_kk" id="KK" class="block px-4 py-2 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah">{{ $profil->scan_kk }}</p>
+                <a href="/kkfile/{{ $profil->id }}">
+                  <p type="file" name="scan_kk" id="KK" class="block px-4 py-2 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah">{{ $profil->scan_kk }}</p>
+                </a>
             </div>
             <div class=" z-0 w-full -mt-10 group">
                 <label for="foto lahan">Foto Lahan (Sertakan Timestamp)</label>
-                <p type="file" name="foto_lahan" id="foto lahan" class="block px-4 py-2 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah ">{{ $profil->foto_lahan }}</p> 
+                <a href="/fotolahanfile/{{ $profil->id }}">
+                  <p type="file" name="foto_lahan" id="foto lahan" class="block px-4 py-2 text-sm text-[#72B944] w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl" placeholder="Klik Untuk Mengunggah ">{{ $profil->foto_lahan }}</p> 
+                </a>
             </div>
             <div class="">
               @switch($roleId)
                   @case(2) 
-                    <a href="/verifikasi">
+                    <a href="/verifpetani">
                         <button type="button" class=" mt-2 mb-4 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[20px] w-full sm:w-auto px-16 py-1.5 text-center">Kembali</button>
                     </a>
                   @break

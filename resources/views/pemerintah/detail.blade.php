@@ -34,11 +34,11 @@
         </div>
         <div class="relative z-0 w-full group">
             <label for="nama" class="px-4"> Nama Lengkap</label>
-            <input type="text" name="nik" id="nama" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="{{ $profil->nama_lengkap }}"/>
+            <p type="text" name="nik" id="nama" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK">{{ $profil->nama_lengkap }}</p>
         </div>
         <div class="relative z-0 w-full group">
             <label for="nik" class="px-4">NIK</label>
-            <input type="text" name="nik" id="nik" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="{{ $profil->nik }}"/>
+            <p type="text" name="nik" id="nik" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="">{{ $profil->nik }}</p>
         </div>
         <div class="flex relative z-0 w-full group">
             <div class=" mr-16">
@@ -52,16 +52,16 @@
             <div class="mr-4">
                 <label for="tempat" class="px-4">Tempat Lahir</label>
                 
-                <input type="text" name="nik" id="tempat" class="block py-2.5 px-4 text-sm text-black w-[150px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="" value="{{ $profil->tempat_lahir }}"/>
+                <p type="text" name="nik" id="tempat" class="block py-2.5 px-4 text-sm text-black w-[150px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="" value="">{{ $profil->tempat_lahir }}</p>
             </div>
             <div>
                 <label for="lahir" class="px-4">Tanggal Lahir</label>
-                <input type="text" name="nik" id="lahir" class="block py-2.5 px-4 text-sm text-black w-[200px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="" value="{{ $profil->tanggal_lahir }}"/>
+                <p type="text" name="nik" id="lahir" class="block py-2.5 px-4 text-sm text-black w-[200px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="" value="">{{ $profil->tanggal_lahir }}</p>
             </div>
         </div>
         <div class="relative z-0 w-full group">
             <label for="alamat" class="px-4">Alamat Rumah</label>
-            <input type="text" name="nik" id="alamat" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="{{ $profil->jalan }}"/>
+            <p type="text" name="nik" id="alamat" class="block py-2.5 px-4 text-sm text-black w-[800px] border-[#72B944] focus:border-[#72B944] border-2 rounded-3xl"  placeholder="NIK" value="">{{ $profil->jalan }}</p>
         </div>
         <div>
             @switch($roleId)

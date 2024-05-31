@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class C_FormLogin extends Controller
 {
     public function user()
     {
@@ -15,17 +15,15 @@ class LoginController extends Controller
             'title' => 'Login'
         ]);
     }
-
-    public function username()
-    {
-        return 'username';
-    }
      
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'username' => 'required',
             'password'  => 'required | min:5 | max:255'
+        ], [
+            'username.required' => 'Semua Data Harus Diisi!',
+            'password.required' => 'Semua Data Harus Diisi!'
         ]);
         
             if(Auth::attempt($credentials)){
@@ -45,7 +43,7 @@ class LoginController extends Controller
             }  
 
             else{
-                return back()->with('loginError', 'Login gagal');
+                return back()->with('invalid','Username atau Password Salah');
             }
         } 
 

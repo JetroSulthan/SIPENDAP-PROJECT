@@ -25,6 +25,7 @@
          <tr class="rounded-xl">
             <th class="px-2 py-2 text-left text-sm font-normal text-black tracking-wider font-[Poppins]">No</th>
             <th class="px-3 py-2 text-left text-sm font-normal text-black tracking-wider font-[Poppins]">Data Laporan</th>
+            {{-- <th class="px-3 py-2 text-left text-sm font-normal text-black tracking-wider font-[Poppins]">Tanggal</th> --}}
             <th class="py-2 text-center text-sm font-normal text-black tracking-wider font-[Poppins]"></th>
          </tr>
       </thead>
@@ -39,6 +40,9 @@
                   <div class="px-3">{{ $file->laporan }}</div>
                </a>
             </td>
+            {{-- <td class="">
+               <div class="px-2 py-1">tanggal file dibuat</div>
+            </td> --}}
             <td class="py-4">
                <form action="{{ route('download', $file->id) }}" method="POST">
                   @csrf

@@ -7,14 +7,15 @@ use App\Models\Admin;
 use App\Models\Pemerintah;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\M_Admin;
 use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class C_AkunAdmin extends Controller
 {
     public function dataakun()
     {
         $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
-        $keltani = Admin::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $keltani = M_Admin::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
         $user = Auth::user();
         // dd($keltani);
         $userId = $keltani->users_id;
@@ -28,7 +29,7 @@ class AdminController extends Controller
     public function ubahakun()
     {
         $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
-        $keltani = Admin::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $keltani = M_Admin::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
         $user = Auth::user();
         // dd($keltani);
         $userId = $keltani->users_id;
@@ -47,7 +48,7 @@ class AdminController extends Controller
             'nama' => 'required'
         ]);
 
-        Admin::where('users_id', $daftar['users_id'])->update([
+        M_Admin::where('users_id', $daftar['users_id'])->update([
             'nama' => $daftar['nama']
         ]);
 

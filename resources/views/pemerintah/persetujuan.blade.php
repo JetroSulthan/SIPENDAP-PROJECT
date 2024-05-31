@@ -16,7 +16,7 @@
                  </th>
              
                  <th class=" py-2 font-xl text-black">
-                     Status
+                     Status Verifikasi
                  </th>
              
                  <th class="py-2 font-xl text-black">

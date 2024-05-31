@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KelompokTani extends Model
+class M_KelompokTani extends Model
 {
     use HasFactory;
 
     public $incrementing = false;
     public $timestamps = false;
+
+    protected $table = 'kelompok_tanis';
 
     protected $guarded = [
         'id_kelompok_tani',
@@ -31,7 +33,7 @@ class KelompokTani extends Model
 
     public function Petani()
     {
-        return $this->hasMany(Petani::class);
+        return $this->hasMany(M_Petani::class);
     }
 
     public function JenisKelamin()

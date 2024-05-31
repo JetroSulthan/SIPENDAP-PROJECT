@@ -19,7 +19,7 @@ class Komoditas extends Model
 
     public function Petani()
     {
-        return $this->hasMany(Petani::class);
+        return $this->hasMany(M_Petani::class);
     }
 
     public function JenisKomoditas()

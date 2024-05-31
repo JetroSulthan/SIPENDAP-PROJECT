@@ -43,17 +43,17 @@ class User extends Authenticatable
     
     public function Pemerintah()
     {
-        return $this->hasMany(Pemerintah::class);
+        return $this->hasMany(M_Pemerintah::class);
     }
 
     public function kelompokTani()
     {
-        return $this->hasMany(KelompokTani::class);
+        return $this->hasMany(M_KelompokTani::class);
     }
 
     public function Admin()
     {
-        return $this->hasMany(Admin::class);
+        return $this->hasMany(M_Admin::class);
     }
 
 }

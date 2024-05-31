@@ -11,6 +11,6 @@ class Dukcapil extends Model
 
     public function Petani()
     {
-        return $this->hasOne(Petani::class);
+        return $this->hasOne(M_Petani::class);
     }
 }

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Berkas;
 use App\Models\Petani;
 use App\Models\Dukcapil;
+use App\Models\M_Petani;
 use App\Models\DataLahan;
 use App\Models\Komoditas;
 use App\Models\Pemerintah;
@@ -14,7 +15,10 @@ use App\Models\Persetujuan;
 use App\Models\JenisKelamin;
 use App\Models\KelompokTani;
 use Illuminate\Http\Request;
+use App\Models\M_Persetujuan;
 use App\Models\KategoriPetani;
+use App\Models\M_KelompokTani;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -36,7 +40,7 @@ class RegisterPetaniController extends Controller
 
     public function lihat($id)
     {   
-        $profil = Petani::find($id);
+        $profil = M_Petani::find($id);
         $kategoriId = $profil->kategori_petanis_id;
         $komoditasId = $profil->komoditas_id;
         $kelaminId = $profil->jenis_kelamins_id;
@@ -55,7 +59,7 @@ class RegisterPetaniController extends Controller
         // $data = Petani::all();
         // $petani = Petani::find($data);
         // $profil = Petani::where('id', $data)->first();
-        $profil = Petani::find($id);
+        $profil = M_Petani::find($id);
         $kelamin = JenisKelamin::all();
         $komoditas = Komoditas::all();
         $kategori = KategoriPetani::all();
@@ -85,17 +89,44 @@ class RegisterPetaniController extends Controller
             'jalan' => 'required',
             'kecamatan' => 'required',
             'kota' => 'required',
-            'vol_komoditas' => 'required',
-            'luas_lahan' => 'required',
+            'jenis_kelamin' => 'required',
+            'vol_komoditas' => 'required|numeric',
+            'luas_lahan' => 'required|numeric',
             'titik_koor_lahan' => 'required',
-            'no_telp' => 'required',
+            'no_telp' => 'required|numeric',
             'kategori_petanis' => 'required',
             'scan_ktp' => 'required |file|mimes:png,jpg,pdf,jpeg',
             'scan_kk' => 'required | file|mimes:png,jpg,pdf,jpeg',
             'foto_lahan' => 'required |file|mimes:png,jpg,pdf,jpeg'
+        ], [
+            'nama_lengkap.required' => 'Data Harus Diisi!',
+            'nik.required' => 'Data Harus Diisi!',
+            'nik.numeric' => 'Wajib berbentuk Angka (0-9)!',
+            'nik.unique' => 'NIK telah terdaftar pada Sistem, Silahkan Gunakan NIK yang Lain!',
+            'tempat_lahir.required' => 'Data Harus Diisi!',
+            'tanggal_lahir.required' => 'Data Harus Diisi!',
+            'jalan.required' => 'Data Harus Diisi!',
+            'jenis_kelamin.required' => 'Data Harus Diisi!',
+            'kecamatan.required' => 'Data Harus Diisi!',
+            'kota.required' => 'Data Harus Diisi!',
+            'vol_komoditas.required' => 'Data Harus Diisi!',
+            'vol_komoditas.numeric' => 'Wajib berbentuk Angka (0-9)!',
+            'luas_lahan.required' => 'Data Harus Diisi!',
+            'luas_lahan.numeric' => 'Wajib berbentuk Angka (0-9)!',
+            'titik_koor_lahan.required' => 'Data Harus Diisi!',
+            'no_telp.required' => 'Data Harus Diisi!',
+            'kategori_petanis.required' => 'Data Harus Diisi!',
+            'scan_ktp.required' => 'Data Harus Diisi!',
+            'scan_ktp.mimes' => 'File Harus Berupa .png, .jpg, .pdf, .jpeg',
+            'scan_kk.required' => 'Data Harus Diisi!',
+            'scan_kk.mimes' => 'File Harus Berupa .png, .jpg, .pdf, .jpeg',
+            'foto_lahan.required' => 'Data Harus Diisi!',
+            'foto_lahan.mimes' => 'File Harus Berupa .png, .jpg, .pdf, .jpeg',
         ]);
 
-        $regist['jenis_kelamins_id']= $request ->input('jenis_kelamin');
+        $regist['jenis_kelamins_id'] = $request->input('jenis_kelamin');
+        $regist['komoditas_id'] = $request->input('komoditas');
+        $regist['kategori_petanis_id'] = $request->input('kategori_petanis');
 
         $fileupload = [
             'scan_ktp',
@@ -112,6 +143,8 @@ class RegisterPetaniController extends Controller
             }
         }
 
+        M_Petani::create($regist);
+
         $request = session();
         // var_dump($request->all());
         $request->flash('success', 'Data Petani Sudah Berhasil Dibuat');
@@ -123,7 +156,11 @@ class RegisterPetaniController extends Controller
         $regist= $request->validate([
             'id'=> 'numeric',
             'nama_lengkap' => 'required',
-            'nik' => 'required |numeric| unique:petanis',
+            'nik' => [
+                'required',
+                'numeric',
+                Rule::unique('petanis')->ignore($request->id),
+            ],
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required | date',
             'jalan' => 'required',
@@ -134,6 +171,23 @@ class RegisterPetaniController extends Controller
             'titik_koor_lahan' => 'required',
             'no_telp' => 'required',
             'kategori_petanis' => 'required',
+        ], [
+            'nama_lengkap.required' => 'Data Harus Diisi',
+            'nik.numeric' => 'NIK wajib berupa Angka!',
+            'nik.required' => 'Data Harus Diisi!',
+            'nik.unique' => 'Data Harus Diisi!',
+            'tempat_lahir.required' => 'Data Harus Diisi!',
+            'tanggal_lahir.required' => 'Data Harus Diisi!',
+            'jalan.required' => 'Data Harus Diisi!',
+            'kecamatan.required' => 'Data Harus Diisi!',
+            'kota.required' => 'Data Harus Diisi!',
+            'vol_komoditas.required' => 'Data Harus Diisi!',
+            'luas_lahan.required' => 'Data Harus Diisi!',
+            'titik_koor_lahan.required' => 'Data Harus Diisi!',
+            'no_telp.required' => 'Data Harus Diisi!',
+            'kategori_petanis.required' => 'Data Harus Diisi!',
+            'jenis_kelamin.required' => 'Data Harus Diisi!',
+            'komoditas.required' => 'Data Harus Diisi!'
         ]);
 
         $folders = ['ktp', 'kk', 'fotolahan'];
@@ -177,10 +231,13 @@ class RegisterPetaniController extends Controller
         $regist['jenis_kelamins_id']= $request ->input('jenis_kelamin');
         $regist['komoditas_id']= $request ->input('komoditas');
         $regist['kategori_petanis_id']= $request ->input('kategori_petanis');
+        $regist['scan_kk'] = $request ->input('scan_kk');
+        $regist['scan_ktp'] = $request ->input('scan_ktp');
+        $regist['foto_lahan'] = $request ->input('foto_lahan');
         
         
 
-        Petani::where('id',$regist['id'])->update([
+        M_Petani::where('id',$regist['id'])->update([
             'nama_lengkap' => $regist['nama_lengkap'],
             'nik' => $regist['nik'],
             'tempat_lahir' => $regist['tempat_lahir'],
@@ -210,9 +267,9 @@ class RegisterPetaniController extends Controller
     {
         
         $berkas = Berkas::all();
-        $datapetani = Petani::with('berkas', 'datalahan', 'persetujuan')->get();
+        $datapetani = M_Petani::with('berkas', 'datalahan', 'persetujuan')->get();
         $data_lahan = DataLahan::all();
-        $persetujuan = Persetujuan::all();
+        $persetujuan = M_Persetujuan::all();
         $dukcapil = Dukcapil::all();
         Carbon::setLocale('id');
         $tgl= Carbon::now()->isoFormat('ddd, LL');
@@ -223,7 +280,7 @@ class RegisterPetaniController extends Controller
     public function dataakun()
     {
         $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
-        $keltani = KelompokTani::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $keltani = M_KelompokTani::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
         $user = Auth::user();
         
         return view('kelompoktani.datakelompoktani', compact('keltani', 'user'));
@@ -232,7 +289,7 @@ class RegisterPetaniController extends Controller
     public function ubahakun()
     {
         $userlogin = Auth::id(); // Cara lebih singkat untuk mendapatkan ID user yang sedang login
-        $keltani = KelompokTani::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
+        $keltani = M_KelompokTani::where('users_id', $userlogin)->first(); // Sesuaikan kolom dengan struktur tabel Anda
         $user = Auth::user();
         
         return view('kelompoktani.ubahdatakelompoktani', compact('keltani', 'user'));
@@ -252,7 +309,7 @@ class RegisterPetaniController extends Controller
             'tempat_lahir' => 'required'
         ]);
 
-        KelompokTani::where('users_id',$daftar['users_id'])->update([
+        M_KelompokTani::where('users_id',$daftar['users_id'])->update([
             'nama_lengkap' => $daftar['nama_lengkap'],
             'nik' => $daftar['nik'],
             'jalan' => $daftar['jalan'],

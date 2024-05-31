@@ -16,6 +16,11 @@ use App\Models\JenisKelamin;
 use App\Models\KelompokTani;
 use App\Models\JenisKomoditas;
 use App\Models\KategoriPetani;
+use App\Models\M_Admin;
+use App\Models\M_KelompokTani;
+use App\Models\M_Pemerintah;
+use App\Models\M_Persetujuan;
+use App\Models\M_Petani;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -59,11 +64,11 @@ class DatabaseSeeder extends Seeder
             'nama_role' => 'Kelompok Tani'
         ]);
 
-        Persetujuan::create([
+        M_Persetujuan::create([
             'opsi' => 'disetujui'
         ]);
 
-        Persetujuan::create([
+        M_Persetujuan::create([
             'opsi' => 'tidak disetujui'
         ]);
 
@@ -156,7 +161,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Perempuan'
         ]);
 
-        KelompokTani::create([
+        M_KelompokTani::create([
             'users_id' => 4,
             'nama_kelompok' => 'Hidayah',
             'nik' => '321098765432109',
@@ -169,7 +174,7 @@ class DatabaseSeeder extends Seeder
             'kota' => 'Situbondo'
         ]);
 
-        KelompokTani::create([
+        M_KelompokTani::create([
             'users_id' => 3,
             'nama_kelompok' => 'Sumber Makmur',
             'nik' => '351098565432178',
@@ -182,19 +187,19 @@ class DatabaseSeeder extends Seeder
             'kota' => 'Situbondo'
         ]);
 
-        Pemerintah::create([
+        M_Pemerintah::create([
             'users_id' => 1,
             'nip' => '198507232005022001',
             'nama_lengkap' => 'Ahmad Mahfud',
             'nomor_sk' => '188/59/431.308.5/2024'
         ]);
 
-        Admin::create([
+        M_Admin::create([
             'users_id' => 2,
             'nama' => 'SIPENDAP2024',
         ]);
 
-        Petani::create([
+        M_Petani::create([
             'nama_lengkap' => 'Ayu Murti Sari',
             'nik' => '3509210359102395',
             'jenis_kelamins_id' => 2,

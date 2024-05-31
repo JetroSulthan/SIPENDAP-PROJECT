@@ -1,5 +1,25 @@
 
-@extends('layout.pemerintah')
+@php
+    $roleId = Auth::user()->roles_id;
+    $layout = '';
+
+    switch ($roleId) {
+        case 1:
+            $layout = 'layout.admin';
+            break;
+        case 2:
+            $layout = 'layout.pemerintah';
+            break;
+        case 3:
+            $layout = 'layout.kelompoktani';
+            break;
+        default:
+            $layout = 'layout.default';  // Optionally handle unrecognized roles
+            break;
+    }
+@endphp
+
+@extends($layout)
 
 @section('container')
 
@@ -16,10 +36,21 @@
         <img src="/img/centang.png" alt="" class="w-[200px]">
 
         <div class="inline-flex ">
-            <a href="/keltani" class=" "> 
-                {{-- <img src="/img/arrows.png" alt="" class="w-6"> --}}
-                <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[15px] w-full sm:w-auto px-5  py-1.5 text-center">Kembali ke Data Petani</button>
-            </a>
+          @switch($roleId)
+              @case(1)
+                  <a href="/keltanis" class=" "> 
+                      {{-- <img src="/img/arrows.png" alt="" class="w-6"> --}}
+                      <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[15px] w-full sm:w-auto px-5  py-1.5 text-center">Kembali ke Akun Kelompok Tani</button>
+                  </a>
+                  
+                  @break
+              @case(2)
+                  <a href="/keltani" class=" "> 
+                      {{-- <img src="/img/arrows.png" alt="" class="w-6"> --}}
+                      <button type="submit" class=" mt-2 text-white bg-[#72B944] hover:bg-[#5D9B35] focus:ring-2 focus:outline-none focus:ring-[#72B944] font-medium rounded-full text-[15px] w-full sm:w-auto px-5  py-1.5 text-center">Kembali ke Akun Kelompok Tani</button>
+                  </a>
+                  @break 
+          @endswitch
         </div>
     </div>
 </div>

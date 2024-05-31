@@ -37,7 +37,7 @@
 
         <div>
           <div class="mb-3">
-            <h1 class="text-center font-bold text-2xl">Data Diri Kelompok Tani</h1>
+            <h1 class="text-center font-bold text-2xl">Data Diri Pemerintah</h1>
           </div>
           <div class="relative z-0 w-full group">
               <label for="nama_lengkap" class="px-4">Nama Lengkap</label>

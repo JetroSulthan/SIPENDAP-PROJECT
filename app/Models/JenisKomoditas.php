@@ -22,6 +22,6 @@ class JenisKomoditas extends Model
 
     public function Komodtias()
     {
-        return $this->hasMany(Komodtias::class);
+        return $this->hasMany(Komoditas::class);
     }
 }
